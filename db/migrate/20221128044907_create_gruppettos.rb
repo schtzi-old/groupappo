@@ -7,7 +7,7 @@ class CreateGruppettos < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.float :avg_speed
-      t.integer :status
+      t.integer :gruppetto_status
       t.integer :difficulty
       t.integer :event_type
       t.integer :participation_rule
