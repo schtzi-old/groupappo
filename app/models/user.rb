@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :participations
   has_many :gruppettos, through: :participations
   has_many :tracks
+
+  enum :level, { novice: 0, intermediate: 1, pro: 2, merckx: 3 }, default: :novice
+  validates :first_name, :last_name, :email, :password, presence: true
+
 end
