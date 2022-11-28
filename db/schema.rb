@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_032048) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_045030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,45 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_032048) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "gruppettos", force: :cascade do |t|
+    t.bigint "track_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "start", precision: nil
+    t.string "name"
+    t.text "description"
+    t.float "avg_speed"
+    t.integer "status"
+    t.integer "difficulty"
+    t.integer "event_type"
+    t.integer "participation_rule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["track_id"], name: "index_gruppettos_on_track_id"
+    t.index ["user_id"], name: "index_gruppettos_on_user_id"
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.bigint "gruppetto_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gruppetto_id"], name: "index_participations_on_gruppetto_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "name"
+    t.float "total_km"
+    t.float "total_vm"
+    t.text "data_gpx"
+    t.text "data_geojson"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tracks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,10 +89,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_032048) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.text "about"
+    t.integer "level"
+    t.string "zip_code"
+    t.string "country"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "gruppettos", "tracks"
+  add_foreign_key "gruppettos", "users"
+  add_foreign_key "participations", "gruppettos"
+  add_foreign_key "participations", "users"
+  add_foreign_key "tracks", "users"
 end
