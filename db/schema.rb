@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_045030) do
     t.string "name"
     t.text "description"
     t.float "avg_speed"
-    t.integer "status"
+    t.integer "gruppetto_status"
     t.integer "difficulty"
     t.integer "event_type"
     t.integer "participation_rule"
@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_045030) do
   create_table "participations", force: :cascade do |t|
     t.bigint "gruppetto_id", null: false
     t.bigint "user_id", null: false
-    t.integer "status"
+    t.integer "participation_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gruppetto_id"], name: "index_participations_on_gruppetto_id"
