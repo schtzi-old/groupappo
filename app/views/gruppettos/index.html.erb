@@ -1,23 +1,27 @@
 <%# Navigation bar at the top   %>
 
 <%# Map with the start locations of each gruppettos %>
-
+<div style="width:100%; height: 30vh;" class="sticky-top"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
 <%# col-4 mid navigation with padding and space evenly %>
-<% @gruppettos.each do | gruppetto | %>
-  <% if gruppetto.track.latitude.nil? %>
-    <p><%= gruppetto.name %> | Data comming soon :)</p>
-  <% else %>
-  <p><%= gruppetto.track.name  %></p>
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-left" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= gruppetto.name %></h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+<div class="container">
+  <div class="row py-2">
+    <div class="col">
+      Upcomming
     </div>
-  <% end %>
-<% end %>
-<%# list of each current gruppettos %>
+    <div class="col">
+      Going
+    </div>
+    <div class="col">
+      Past
+    </div>
+  </div>
+</div>
+<% @gruppettos.each do | gruppetto | %>
+  <%# renders the index_card.html.erb with sending the gruppetto params %>
+  <%= render "index_card", gruppetto: gruppetto %>
 
-<%# Type of footer %>
+<% end %>

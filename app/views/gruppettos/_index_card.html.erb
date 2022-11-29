@@ -1,0 +1,38 @@
+<%= link_to gruppetto_path(gruppetto), :action => 'go' do  %>
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+  <div class="row border-bottom">
+    <div class="col-2">
+      <div style="width: 128px; height: 128px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+    <div class="col-10">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="text-gray-dark"><%= gruppetto.name %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= gruppetto.start %></td>
+            <td><%= gruppetto.participants.count %></td>
+            <td><%= gruppetto.track.total_km %></td>
+            <td><%= gruppetto.track.total_vm %></td>
+            <%# raise %>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>blue t</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>

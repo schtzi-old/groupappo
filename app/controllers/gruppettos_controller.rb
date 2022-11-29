@@ -5,10 +5,34 @@ class GruppettosController < ApplicationController
     @gruppettos = policy_scope(Gruppetto)
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
-    # @markers = @gruppettos.geocoded.map do |gruppetto|
+    # @markers = @gruppettos.map do |gruppetto|
     #   {
     #     lat: gruppetto.track.latitude,
-    #     lng: gruppetto.track.longitude
+    #     lon: gruppetto.track.longitude
+    #   }
+    # end
+    @tracks = policy_scope(Track)
+    @markers = @tracks.map do |track|
+      {
+        lat: track.latitude,
+        lng: track.longitude
+      }
+    end
+
+
+
+
+    # @track_datas = []
+    # @gruppettos.each do |gruppetto|
+    #   @track_datas << {
+    #     lat: gruppetto.track.latitude,
+    #     lon: gruppetto.track.longitude
+    #   }
+    # end
+    # @markers = @track_datas.geocoded.map do |track_data|
+    #   {
+    #     lat: track_data.lat,
+    #     lon: track_data.lon
     #   }
     # end
   end
