@@ -10,16 +10,21 @@
     </div>
   </div>
 
-  <div style="width: 60%; height: 200px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <div>
+    <div style="width: 80%; height: 200px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
 
   <div class="card">
-  <p>Distance </p>
-  <p>Pace</p>
-  <p>Incline</p>
+    <p>Distance <%= @gruppetto.track.total_km %></p>
+    <p>Pace <%= @gruppetto.avg_speed %></p>
+    <p>Incline <%= @gruppetto.track.total_vm %></p>
+    <p> <%= @gruppetto.description %></p>
+    <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
+    <%= link_to "Download the route as GPX", root_path %>
   </div>
 
 
