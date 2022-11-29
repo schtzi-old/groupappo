@@ -1,4 +1,6 @@
 class GruppettosController < ApplicationController
+  before_action :set_gruppetto, only: [:show]
+
   def index
     @gruppettos = policy_scope(Gruppetto)
     # The `geocoded` scope filters only flats with coordinates
@@ -12,11 +14,18 @@ class GruppettosController < ApplicationController
   end
 
   def show
+    authorize @gruppetto
   end
 
   def new
   end
 
   def create
+  end
+
+  private
+
+  def set_gruppetto
+    @gruppetto = Gruppetto.find(params[:id])
   end
 end
