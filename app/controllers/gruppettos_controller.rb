@@ -15,6 +15,10 @@ class GruppettosController < ApplicationController
 
   def show
     authorize @gruppetto
+    @track = @gruppetto.track
+    @marker = { lat: @track.latitude, lng: @track.longitude }
+    @markers = []
+    @markers << @marker
   end
 
   def new
