@@ -7,13 +7,23 @@ class GruppettosController < ApplicationController
 
   def new
     @gruppetto = Gruppetto.new
-    @track = Track.first
+    @tracks = policy_scope(Track)
     authorize @gruppetto
-    authorize @track
   end
 
   def create
-    @grupetto = Gruppetto.new(gruppetto_params)
+    @gruppetto = Gruppetto.new(gruppetto_params)
+    @gruppetto.track = Track.find(params[:track_id])
+    @gruppetto.user = current_user
+    @tracks = policy_scope(Track)
+    authorize @gruppetto
+
+    if @gruppetto.save
+      redirect_to gruppetto_path(@gruppetto), notice: 'Gruppetto successfully created'
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   private
