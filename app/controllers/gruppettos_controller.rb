@@ -19,15 +19,18 @@ class GruppettosController < ApplicationController
 
   def new
     @gruppetto = Gruppetto.new
-    @tracks = policy_scope(Track)
     authorize @gruppetto
+
+    @tracks = policy_scope(Track)
+    @track = Track.new
+    authorize @track
   end
 
   def create
     @gruppetto = Gruppetto.new(gruppetto_params)
-    @gruppetto.track = Track.find(params[:track_id])
+    @gruppetto.track = fetch_track
     @gruppetto.user = current_user
-    @tracks = policy_scope(Track)
+    # @tracks = policy_scope(Track)
     authorize @gruppetto
 
     if @gruppetto.save
@@ -35,17 +38,33 @@ class GruppettosController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   private
+
+  # Refactor & use controller instead of directly working with Track
+
+  def fetch_track
+    if track_params[:id] == ""
+      track = Track.new(track_params)
+      track.user = current_user
+
+      return track if track.save
+
+      render :new, status: :unprocessable_entity
+    else
+      Track.find(track_params[:id])
+    end
+  end
+
+  def track_params
+    params.require(:track).permit(:id, :name, :total_km, :total_vm)
+  end
 
   def gruppetto_params
     params.require(:gruppetto).permit(:start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
                                       :event_type, :participation_rule)
   end
-
-  private
 
   def set_gruppetto
     @gruppetto = Gruppetto.find(params[:id])

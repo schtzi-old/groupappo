@@ -1,0 +1,8 @@
+<div class="<%= hidden ? 'visually-hidden' : '' %>">
+  <%= simple_form_for(track) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :address %>
+      <%= f.input :total_km %>
+      <%= f.input :total_vm %>
+  <% end %>
+</div>
