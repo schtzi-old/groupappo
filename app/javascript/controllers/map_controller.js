@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import { MapboxGeocoder } from "@mapbox/mapbox-gl-geocoder"
 
+
+// Connects to data-controller="map"
 export default class extends Controller {
   static values = {
     apiKey: String,
@@ -8,6 +10,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log("show map here")
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
       container: this.element,

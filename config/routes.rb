@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :gruppettos, only: %i[index show new create]
+
+  resources :tracks, only: %i[new create]
 end

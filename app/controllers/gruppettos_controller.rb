@@ -39,15 +39,60 @@ class GruppettosController < ApplicationController
 
   def show
     authorize @gruppetto
+    @track = @gruppetto.track
+    @marker = { lat: @track.latitude, lng: @track.longitude }
+    @markers = []
+    @markers << @marker
   end
 
   def new
+    @gruppetto = Gruppetto.new
+    authorize @gruppetto
+
+    @tracks = policy_scope(Track)
+    @track = Track.new
+    authorize @track
   end
 
   def create
+    @gruppetto = Gruppetto.new(gruppetto_params)
+    @gruppetto.track = retrieve_track
+    @gruppetto.user = current_user
+    # @tracks = policy_scope(Track)
+    authorize @gruppetto
+
+    if @gruppetto.save
+      redirect_to gruppetto_path(@gruppetto), notice: 'Gruppetto successfully created'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
+
+  # Refactor & use controller instead of directly working with Track
+
+  def retrieve_track
+    if params[:track_option] == "new"
+      track = Track.new(track_params)
+      track.user = current_user
+
+      return track if track.save
+
+      render :new, status: :unprocessable_entity
+    else
+      Track.find(track_params[:id])
+    end
+  end
+
+  def track_params
+    params.require(:track).permit(:id, :name, :total_km, :total_vm)
+  end
+
+  def gruppetto_params
+    params.require(:gruppetto).permit(:start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
+                                      :event_type, :participation_rule)
+  end
 
   def set_gruppetto
     @gruppetto = Gruppetto.find(params[:id])
