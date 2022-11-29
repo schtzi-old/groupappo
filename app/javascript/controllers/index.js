@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import GrFormTrackController from "./gr_form_track_controller"
+application.register("gr-form-track", GrFormTrackController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

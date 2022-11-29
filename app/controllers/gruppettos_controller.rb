@@ -28,7 +28,7 @@ class GruppettosController < ApplicationController
 
   def create
     @gruppetto = Gruppetto.new(gruppetto_params)
-    @gruppetto.track = fetch_track
+    @gruppetto.track = retrieve_track
     @gruppetto.user = current_user
     # @tracks = policy_scope(Track)
     authorize @gruppetto
@@ -44,8 +44,8 @@ class GruppettosController < ApplicationController
 
   # Refactor & use controller instead of directly working with Track
 
-  def fetch_track
-    if track_params[:id] == ""
+  def retrieve_track
+    if params[:track_option] == "new"
       track = Track.new(track_params)
       track.user = current_user
 

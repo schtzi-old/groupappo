@@ -1,5 +1,4 @@
-<div class="container"></div>
-  <div class="col-12">
+<div class="container">
     <h1>New gruppetto</h1>
     <%= simple_form_for(@gruppetto) do |f| %>
       <%= f.input :start %>
@@ -15,14 +14,24 @@
                   collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
 
       <%# Existing vs new route %>
-      <div class='mb-3'>
+      <div class='mb-3' data-controller='gr-form-track' id='route-creation'>
         <p>Use...</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="new">
+            <input class="form-check-input"
+                    type="radio"
+                    name="track_option"
+                    id="new-route"
+                    value="existing"
+                    data-action='click->gr-form-track#select'>
             <label class="form-check-label" for="inlineRadio1">existing route</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="existing">
+            <input class="form-check-input"
+                    type="radio"
+                    name="track_option"
+                    id="existing-route"
+                    value="new"
+                    data-action='click->gr-form-track#new'>
             <label class="form-check-label" for="inlineRadio2">new route</label>
           </div>
         <%# Render form for track new, but hidden - visibility via stimulus %>
@@ -35,5 +44,4 @@
         <%= f.submit 'Save as draft not-implemented', class: "ms-3 btn btn-outline-primary"%>
       </div>
     <% end %>
-  </div>
 </div>
