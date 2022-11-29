@@ -1,12 +1,16 @@
-<div class="container">
+<div class="container m-3 px-2">
   <h1> <%= @gruppetto.name %></h1>
   <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
 
-  <div class="d-flex justify-space-between">
-    <p> <%= User.find(@gruppetto.user_id).first_name %>  <%= User.find(@gruppetto.user_id).last_name %> is hosting</p>
-    <div class="d-flex">
-      <i class="fa-solid fa-person-biking"></i>
-      <p> <%= @gruppetto.participant_ids.count %> joining </p>
+  <div class="d-flex justify-content-center">
+    <div class="col-6">
+        <p> <%= User.find(@gruppetto.user_id).first_name %> is hosting</p>
+    </div>
+    <div class="col-6">
+      <div class="d-flex">
+        <p class="px-1"><i class="fa-solid fa-person-biking"></i></p>
+        <p class="px-1"> <%= @gruppetto.participant_ids.count %> joining </p>
+      </div>
     </div>
   </div>
 
@@ -18,14 +22,34 @@
     </div>
   </div>
 
-  <div class="card">
-    <p>Distance <%= @gruppetto.track.total_km %></p>
-    <p>Pace <%= @gruppetto.avg_speed %></p>
-    <p>Incline <%= @gruppetto.track.total_vm %></p>
-    <p> <%= @gruppetto.description %></p>
-    <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
-    <%= link_to "Download the route as GPX", root_path %>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div>
+          <p>Distance</p>
+          <p><%= @gruppetto.track.total_km %></p>
+        </div>
+        <div>
+          <p>Pace</p>
+          <p><%= @gruppetto.avg_speed %></p>
+        </div>
+        <div>
+          <p>Incline</p>
+          <p><%= @gruppetto.track.total_vm %></p>
+        </div>
+      </div>
+      <div class="col-6">
+        <p> <%= @gruppetto.description %></p>
+      </div>
+    </div>
   </div>
+  <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
+  <%= link_to "Download the route as GPX", root_path %>
 
-
+  <%# TO BE THE STANDARDISED FOOTER %>
+  <div class="d-flex justify-content-between">
+    <%= link_to "Back to Grupettos", gruppettos_index_path, class: "btn btn-outline-primary" %>
+    <%# TO BE UPDATED WHEN PARTICIPANTS IS ADDED %>
+    <%= link_to "Join the Ride!", root_path, class: "btn btn-primary" %>
+  </div>
 </div>
