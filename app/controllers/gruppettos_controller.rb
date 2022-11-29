@@ -11,11 +11,11 @@ class GruppettosController < ApplicationController
     #     lon: gruppetto.track.longitude
     #   }
     # end
-    @tracks = policy_scope(Track)
-    @markers = @tracks.map do |track|
+
+    @markers = @gruppettos.map do |gruppetto|
       {
-        lat: track.latitude,
-        lng: track.longitude
+        lat: gruppetto.track.latitude,
+        lng: gruppetto.track.longitude
       }
     end
 
