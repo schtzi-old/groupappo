@@ -6,7 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+    <%# Defer waits till all the html is loaded and then loads %>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js" defer></script>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
