@@ -1,2 +1,23 @@
-<h1>Gruppettos#index</h1>
-<p>Find me in app/views/gruppettos/index.html.erb</p>
+<%# Navigation bar at the top   %>
+
+<%# Map with the start locations of each gruppettos %>
+
+<%# col-4 mid navigation with padding and space evenly %>
+<% @gruppettos.each do | gruppetto | %>
+  <% if gruppetto.track.latitude.nil? %>
+    <p><%= gruppetto.name %> | Data comming soon :)</p>
+  <% else %>
+  <p><%= gruppetto.track.name  %></p>
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-left" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= gruppetto.name %></h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<%# list of each current gruppettos %>
+
+<%# Type of footer %>

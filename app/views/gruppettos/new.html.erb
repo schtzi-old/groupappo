@@ -1,2 +1,23 @@
-<h1>Gruppettos#new</h1>
-<p>Find me in app/views/gruppettos/new.html.erb</p>
+<div class="container"></div>
+  <div class="col-12">
+    <h1>New gruppetto</h1>
+    <%= simple_form_for(@gruppetto) do |f| %>
+      <%= f.input :start %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :avg_speed %>
+
+      <%= f.input :difficulty,
+                  collection: Gruppetto::difficulties.keys.map{ |d| d.capitalize }%>
+      <%= f.input :event_type,
+                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize }%>
+      <%= f.input :participation_rule,
+                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
+      <input type="hidden" name="track_id" value="<%= @tracks.first.id %>">
+      <div class="d-flex">
+        <%= f.submit 'Save and publish', class: "btn btn-primary"%>
+        <%= f.submit 'Save as draft not-implemented', class: "ms-3 btn btn-outline-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
