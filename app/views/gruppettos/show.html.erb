@@ -1,2 +1,26 @@
-<h1> <%= @gruppetto.name %></h1>
-<p>Find me in app/views/gruppettos/show.html.erb</p>
+<div class="container">
+  <h1> <%= @gruppetto.name %></h1>
+  <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
+
+  <div class="d-flex justify-space-between">
+    <p> <%= User.find(@gruppetto.user_id).first_name %>  <%= User.find(@gruppetto.user_id).last_name %> is hosting</p>
+    <div class="d-flex">
+      <i class="fa-solid fa-person-biking"></i>
+      <p> <%= @gruppetto.participant_ids.count %> joining </p>
+    </div>
+  </div>
+
+  <div style="width: 60%; height: 200px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
+  <div class="card">
+  <p>Distance </p>
+  <p>Pace</p>
+  <p>Incline</p>
+  </div>
+
+
+</div>
