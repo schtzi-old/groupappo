@@ -5,4 +5,8 @@ class TrackPolicy < ApplicationPolicy
       scope.where(user:)
     end
   end
+
+  def new?
+    true
+  end
 end
