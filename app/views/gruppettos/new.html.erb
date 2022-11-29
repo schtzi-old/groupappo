@@ -1,2 +1,16 @@
 <h1>Gruppettos#new</h1>
 <p>Find me in app/views/gruppettos/new.html.erb</p>
+
+
+<%= simple_form_for(@gruppetto) do |f| %>
+  <%= f.input :name %>
+  <%= f.text :description %>
+  <%= f.input :avg_speed %>
+  <%= f.input :difficulty %>
+  <%= f.input :event_type %>
+  <%= f.input :participation_rule %>
+  <input type="hidden" name="track_id" value="<%= @track.id %>">
+  <%= f.submit %>
+
+
+<% end %>

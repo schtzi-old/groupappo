@@ -10,6 +10,6 @@ class Gruppetto < ApplicationRecord
   enum :difficulty, { novice: 0, easy: 1, moderate: 2, hard: 3, double_black_diamond: 4 }, default: :novice
   enum :participation_rule, { manual: 0, auto: 1 }, default: :manual
 
-  # validates :start, :name, :description, :gruppetto_status, :avg_speed, :difficulty, :event_type, :participation_rule,
+  # validates :name, :description, :gruppetto_status, :avg_speed, :difficulty, :event_type, :participation_rule,
   #           presence: true
 end
