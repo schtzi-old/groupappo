@@ -14,6 +14,12 @@
     </div>
   </div>
 
+  <% if @gruppetto.participant_ids.include? current_user.id %>
+     <% @participant = @gruppetto.participations.find { |participant|
+          participant.user_id == current_user.id} %>
+            <%= render "participations/status",  participation_status: @participant.participation_status  %>
+  <% end %>
+
   <div>
     <div style="width: 80%; height: 200px;"
       data-controller="map"
@@ -48,8 +54,13 @@
 
   <%# TO BE THE STANDARDISED FOOTER %>
   <div class="d-flex justify-content-between">
-    <%= link_to "Back to Grupettos", gruppettos_index_path, class: "btn btn-outline-primary" %>
-    <%# TO BE UPDATED WHEN PARTICIPANTS IS ADDED %>
-    <%= link_to "Join the Ride!", root_path, class: "btn btn-primary" %>
+    <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary" %>
+    <%= render "participations/new", gruppetto: @gruppetto %>
   </div>
+
+    <% if @gruppetto.participant_ids.include? current_user.id %>
+      <% @participant = @gruppetto.participations.find { |participant|
+          participant.user_id == current_user.id} %>
+            <%= render "participations/delete", { gruppetto: @gruppetto, participant: @participant } %>
+    <% end %>
 </div>

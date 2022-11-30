@@ -1,0 +1,5 @@
+<form action="<%= gruppetto_participations_path(gruppetto) %>", method="POST">
+  <input type="hidden" name="gruppetto_id" value="<%= gruppetto.id %>">
+  <input type="hidden" name="user_id" value="<%= current_user %>">
+  <input type="submit" name="commit" value="Join the ride!" class="btn btn-primary">
+</form>
