@@ -17,14 +17,21 @@ class ParticipationsController < ApplicationController
   def edit
   end
 
-  # def update
-  #   if accept
-  #     @participation.update(participation_status: 1)
-  #   else
-  #     @participation.update(participation_status: 2)
-  #   end
-  #   redirect_to gruppetto_path(@gruppetto_id)
-  # end
+  def update
+    # raise
+    # if accept
+    #   @participation.update(participation_status: 1)
+    # else
+    #   @participation.update(participation_status: 2)
+    # end
+    # redirect_to gruppetto_path(@gruppetto_id)
+    authorize @participation
+    if @participation.update(participation_params)
+      redirect_to gruppetto_path(params[:gruppetto_id])
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def destroy
     @participation.destroy
@@ -43,6 +50,6 @@ class ParticipationsController < ApplicationController
   end
 
   def participation_params
-    params.permit(:gruppetto_id, :user_id, :participation_status)
+    params.require(:participant).permit(:gruppetto_id, :user_id, :participation_status)
   end
 end
