@@ -4,10 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['radio', 'selector', 'form']
 
-  connect() {
-    console.log('hello')
-  }
-
   new() {
     this.formTarget.classList.remove('d-none')
     this.selectorTarget.classList.add('d-none')
