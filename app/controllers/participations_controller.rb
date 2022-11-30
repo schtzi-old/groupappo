@@ -1,6 +1,6 @@
 class ParticipationsController < ApplicationController
   before_action :set_gruppetto, only: %i[create edit update]
-  before_action :set__partication, only: %i[edit update destroy]
+  before_action :set_participation, only: %i[edit update destroy]
 
   def create
     @participation = Participation.new(gruppetto_id: @gruppetto.id, user_id: current_user.id)
@@ -8,8 +8,7 @@ class ParticipationsController < ApplicationController
     authorize @participation
 
     if @participation.save
-      # @participation.update(gruppetto_id: @gruppetto.id, user_id: current_user.id)
-      redirect_to gruppettos_path
+      redirect_to gruppetto_path(@gruppetto), notice: "Requested to join Gruppetto"
     else
       render 'gruppettos/show', alert: 'sth went wrong'
     end
@@ -29,7 +28,8 @@ class ParticipationsController < ApplicationController
 
   def destroy
     @participation.destroy
-    redirect_to gruppettos_index_path
+    authorize @participation
+    redirect_to gruppettos_path, status: :see_other
   end
 
   private
@@ -39,7 +39,7 @@ class ParticipationsController < ApplicationController
   end
 
   def set_participation
-    @participation = participation.find(params[:id])
+    @participation = Participation.find(params[:id])
   end
 
   def participation_params
