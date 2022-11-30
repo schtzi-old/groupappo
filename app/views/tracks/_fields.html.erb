@@ -1,8 +1,10 @@
 <div class="<%= hidden ? 'd-none' : '' %>" data-gr-form-track-target="form">
       <%= f.simple_fields_for(track) do |tracks_form| %>
           <%= tracks_form.input :name %>
-          <%= tracks_form.input :address %>
-          <%= tracks_form.input :total_km %>
+          <%= tracks_form.input :address,
+                          input_html: {data: {address_autocomplete_target: "address"}, class: 'd-none'},
+                          wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+          <%= tracks_form.input :total_km, placeholder: "Test" %>
           <%= tracks_form.input :total_vm %>
           <%= f.input :track_file, as: :file %>
         <% end %>
