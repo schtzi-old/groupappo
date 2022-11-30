@@ -1,0 +1,27 @@
+<div class='mb-3' data-controller='gr-form-track' id='route-creation'>
+  <p>Use...</p>
+  <%# Existing vs new route %>
+    <div class="form-check form-check-inline mb-3">
+      <input class="form-check-input"
+              type="radio"
+              name="track_option"
+              id="new-route"
+              value="existing"
+              data-action='click->gr-form-track#select'>
+      <label class="form-check-label" for="inlineRadio1">existing route</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input"
+              type="radio"
+              name="track_option"
+              id="existing-route"
+              value="new"
+              data-action='click->gr-form-track#new'>
+      <label class="form-check-label" for="inlineRadio2">new route</label>
+    </div>
+  <%# Render form for track new, but hidden - visibility via stimulus %>
+  <%= render 'tracks/fields', { track: track, f: f, hidden: true } %>
+
+  <%# Render form for track select, but hidden - visibility via stimulus %>
+  <%= render 'tracks/selection', {tracks: tracks, hidden: true} %>
+</div>

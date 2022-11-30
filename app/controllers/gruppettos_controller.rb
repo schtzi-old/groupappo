@@ -74,23 +74,22 @@ class GruppettosController < ApplicationController
 
   def retrieve_track
     if params[:track_option] == "new"
-      track = Track.new(track_params)
-      track.user = current_user
+      @track = Track.new(track_params)
+      @track.user = current_user
 
-      return track if track.save
+      return @track if @track.save
 
-      render :new, status: :unprocessable_entity
     else
       Track.find(track_params[:id])
     end
   end
 
   def track_params
-    params.require(:track).permit(:id, :name, :total_km, :total_vm)
+    params[:gruppetto].require(:track).permit(:id, :name, :address, :total_km, :total_vm)
   end
 
   def gruppetto_params
-    params.require(:gruppetto).permit(:start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
+    params.require(:gruppetto).permit(:track, :start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
                                       :event_type, :participation_rule)
   end
 
