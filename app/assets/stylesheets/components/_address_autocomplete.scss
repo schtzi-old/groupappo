@@ -1,0 +1,32 @@
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+  box-shadow: none;
+  background-color: transparent;
+  border-radius: $border-radius;
+  min-height: 32px;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  width:100%;
+  margin-inline-start: -18px;
+  background-color: transparent;
+  border: none;
+  padding-inline: 12px;
+  padding-block: 6px;
+  flex-grow: 1;
+
+}
+
+.mapboxgl-ctrl-geocoder > svg {
+  visibility: hidden;
+}
+
+.mapboxgl-ctrl-geocoder--pin-right {
+  visibility: hidden;
+}
+
+.mapboxgl-ctrl-geocoder--pin-right:hover {
+  visibility: hidden;
+}
