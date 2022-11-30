@@ -56,9 +56,10 @@ class GruppettosController < ApplicationController
 
   def create
     @gruppetto = Gruppetto.new(gruppetto_params)
-    @gruppetto.track = retrieve_track
+    @track = retrieve_track
+    @gruppetto.track = @track
     @gruppetto.user = current_user
-    # @tracks = policy_scope(Track)
+
     authorize @gruppetto
 
     if @gruppetto.save
@@ -76,7 +77,8 @@ class GruppettosController < ApplicationController
     if params[:track_option] == "new"
       track = Track.new(track_params)
       track.user = current_user
-
+      track.track_file = gruppetto_params[:track_file]
+      raise
       return track if track.save
 
       render :new, status: :unprocessable_entity
@@ -91,7 +93,7 @@ class GruppettosController < ApplicationController
 
   def gruppetto_params
     params.require(:gruppetto).permit(:start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
-                                      :event_type, :participation_rule)
+                                      :event_type, :participation_rule, :track_file, :track)
   end
 
   def set_gruppetto
