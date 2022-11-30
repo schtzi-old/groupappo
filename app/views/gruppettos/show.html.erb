@@ -48,8 +48,9 @@
 
   <%# TO BE THE STANDARDISED FOOTER %>
   <div class="d-flex justify-content-between">
-    <%= link_to "Back to Grupettos", gruppettos_index_path, class: "btn btn-outline-primary" %>
+    <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary" %>
     <%# TO BE UPDATED WHEN PARTICIPANTS IS ADDED %>
-    <%= link_to "Join the Ride!", root_path, class: "btn btn-primary" %>
+    <%# <%= link_to "Join the Ride!", root_path, class: "btn btn-primary" %>
+    <%= render "participations/new", gruppetto: @gruppetto %>
   </div>
 </div>
