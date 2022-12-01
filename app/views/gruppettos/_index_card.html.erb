@@ -1,4 +1,5 @@
 <%= link_to gruppetto_path(gruppetto), :action => 'go' do  %>
+<!--
   <div class="my-3 p-3 bg-body rounded shadow-sm">
     <div class="row">
       <div class="col-12">
@@ -24,5 +25,30 @@
         </table>
       </div>
     </div>
+  </div>-->
+
+
+<div class="card flex-row m-3"><img class="card-img-left example-card-img-responsive" src="https://via.placeholder.com/128"/>
+  <div class="card-body">
+    <div class="row justify-content-center">
+      <div class="row-auto">
+        <div class="table-responsive">
+          <table class="table table-borderless card-table mb-0">
+            <tbody>
+              <tr>
+                <td colspan="4"><%= gruppetto.name %></td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-calendar"></i> <%= gruppetto.start.strftime('%d %b %l%P')%></td>
+                <td><%= image_tag "avatar-fallback.svg", style: 'height:32px;width:32px;'  %><%= @attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
+                <td><i class="fa-sharp fa-solid fa-ruler"></i><%= gruppetto.track.total_km %></td>
+                <td><i class="fa-sharp fa-solid fa-mountain"></i><%= gruppetto.track.total_vm %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 <% end %>
