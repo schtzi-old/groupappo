@@ -1,11 +1,13 @@
 <%# Navigation bar at the top   %>
 
 <%# Map with the start locations of each gruppettos %>
+
 <div style="width:100%; height: 40vh; margin-bottom:20px; background:white;" class="sticky-top">
   <div style="width:100%; height: 100%;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
   </div>
   <ul class="nav nav-tabs nav-fill d-flex justify-content-around bd-highlight start-10" style="width:100%; background:white;" role="tablist">
     <li class="nav-item">

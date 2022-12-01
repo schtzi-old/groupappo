@@ -1,108 +1,90 @@
-<div class="container m-3 px-2">
-  <h1> <%= @gruppetto.name %></h1>
+<div class="container mt-3">
+  <h1 class="pt-5"> <%= @gruppetto.name %></h1>
   <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
 
-  <div class="d-flex justify-content-center">
-    <div class="col-6">
+  <div class="d-flex justify-content-between">
+    <div class="">
         <p> <%= User.find(@gruppetto.user_id).first_name %> is hosting</p>
     </div>
-    <div class="col-6">
+    <div class="">
       <div class="d-flex">
         <p class="px-1"><i class="fa-solid fa-person-biking"></i></p>
-        <p class="px-1"> <%= @gruppetto.participant_ids.count %> joining </p>
+        <% @attending_count = @gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
+        <p class="px-1"> <%= @attending_count %> riding </p>
       </div>
     </div>
   </div>
 
   <% if @gruppetto.participant_ids.include? current_user.id %>
-     <% @participant = @gruppetto.participations.find { |participant|
+    <% @participant = @gruppetto.participations.find { |participant|
           participant.user_id == current_user.id} %>
             <%= render "participations/status",  participation_status: @participant.participation_status  %>
   <% end %>
+  <% if (@gruppetto.participant_ids.include? current_user.id) && (@participant.participation_status == "Attending") %>
+        <%= render "participations/delete", { gruppetto: @gruppetto, participant: @participant } %>
+    <% end %>
 
-  <div>
-    <div style="width: 80%; height: 200px;"
+  <div class="py-3">
+    <div style="width: 100%; height: 200px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
+  <div>
+    <%# NEED TO ADD THIS WHEN WE HAVE IMAGES ATTACHED TO ROUTES IN SEED %>
+    <%# <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 400, crop: :fill %>
+  </div>
 
-  <div class="container">
+  <div class="card border-0">
     <div class="row">
       <div class="col-6">
-        <div>
+        <div class="d-flex justify-content">
           <p>Distance</p>
-          <p><%= @gruppetto.track.total_km %></p>
+          <p><%= @gruppetto.track.total_km %> km</p>
         </div>
-        <div>
+        <div class="d-flex">
           <p>Pace</p>
-          <p><%= @gruppetto.avg_speed %></p>
-        </div>
-        <div>
+          <p><%= @gruppetto.avg_speed %> km/h</p>
+        </div class="d-flex">
+        <div class="d-flex">
           <p>Incline</p>
-          <p><%= @gruppetto.track.total_vm %></p>
+          <p><%= @gruppetto.track.total_vm %> vm</p>
         </div>
       </div>
       <div class="col-6">
         <p> <%= @gruppetto.description %></p>
+        <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
+        <%= link_to "Download the route as GPX", root_path %>
       </div>
     </div>
   </div>
-  <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
-  <%= link_to "Download the route as GPX", root_path %>
-
-  <%# TO BE THE STANDARDISED FOOTER %>
-  <div class="d-flex justify-content-between">
-    <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary" %>
-    <%= render "participations/new", gruppetto: @gruppetto %>
-  </div>
-
-    <% if @gruppetto.participant_ids.include? current_user.id %>
-      <% @participant = @gruppetto.participations.find { |participant|
-          participant.user_id == current_user.id} %>
-            <%= render "participations/delete", { gruppetto: @gruppetto, participant: @participant } %>
-    <% end %>
-</div>
 
 
 <% if current_user == @gruppetto.user %>
-  <div>
-    <p>-----------------------------------</p>
-    <p>OWNER VIEW</p>
-    <p>Attendees</p>
-    <ul class="list-group">
-      <% @gruppetto.participations.each do |participant| %>
-        <li class="list-group-item">
-          <%= participant.user.first_name %> <% participant.user.last_name %>
-          <%= render "participations/status",  participation_status: participant.participation_status %>
-          <%# <%= link_to "Update Status", edit_gruppetto_participation_path %>
-          <%# <%= render "participations/edit", { participant: participant, participation_status: participant.participation_status } %>
-          <%# <%= select_tag :participation_status, options_for_select(Participation.participation_statuses) %>
-
-          <%= turbo_frame_tag dom_id(participant) do %>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= participant.participation_status %>
-              </button>
-              <ul class="dropdown-menu">
-                <% Participation.participation_statuses.keys.each do |status| %>
-                  <li>
-
-                    <%= link_to status,
-                                gruppetto_participation_path(@gruppetto, participant, participant: {user_id: participant.user_id, participation_status: status}),
-                                class: 'dropdown-item',
-                                data: {
-                                  user_id: 1,
-                                  turbo_method: :patch
-                                } %>
-                  </li>
-                <% end %>
-              </ul>
+  <div class="border-top mx-3 pt-3">
+      <h3 class="text-center">Creator View - Choose who you would like to attend</h3>
+      <div class="py-2">
+        <% @gruppetto.participations.each do |participant| %>
+            <div class="d-flex justify-content-between py-2 border-bottom">
+              <%= render "participations/status", participation_status: participant.participation_status %>
+              <p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p>
+              <%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %>
             </div>
-          <% end %>
-
-      <% end %>
-    </ul>
+        <% end %>
+      </div>
   </div>
 <% end %>
+
+  <%# TO BE THE STANDARDISED FOOTER %>
+  <div class="d-flex justify-content-between fixed-bottom bg-white p-2">
+    <div class="w-50">
+      <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary w-100" %>
+    </div>
+    <div class="w-50">
+      <%= render "participations/new", gruppetto: @gruppetto %>
+    </div>
+  </div>
+
+
+</div>
