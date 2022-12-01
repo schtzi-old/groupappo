@@ -1,47 +1,78 @@
-require 'polylines'
+# require 'polylines'
+require "open-uri"
+# require "nokogiri"
+require "fast_polylines"
 
 class Track < ApplicationRecord
   belongs_to :user
   has_many :gruppettos
+  has_many :coordinates
 
-  has_one_attached :track_file
-  validates :name, presence: true
+  has_one_attached :file
+  has_one_attached :image
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
+  validates :name, presence: true
+  validate :validate_file_filetypes
 
+  after_create :async_map_data
 
-  public
-
-  # after_commit :update_map_data
-
-  # after file-save run file-analyzer - if gpx, then call gpx to coordinates and save it
-  # additionally create and safe the polyline
+  def async_map_data
+    TrackDataJob.perform_later(self)
+  end
 
   def update_map_data
-    # Create
-    if true # file has been updated
-      read_coordinates
-    end
-    if address
-      self.data_geojson = Polylines::Encoder.encode_points([[latitude.round(6), longitude.round(6)], [latitude.round(6), longitude.round(6)]])
-    else
-      p 'todo for when we have file upload'
-      data_gpx
-    end
+    encode_coordinates
+    create_track_image
+    # create_geojson
+    # inform frontend about new data via ActionCable
   end
 
   private
 
-  # def read_coordinates
-  #   if track_file.
+  def encode_coordinates
+    if file.attached?
+      import_gpx
+    elsif @address
+      update(encoded_coordinates: FastPolylines.encode([[lon, lat], [lon, lat]], 5))
+    end
+  end
 
+  def create_track_image
+    image_size = 600
+    output = ERB::Util.url_encode(encoded_coordinates)
+    url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
+    file = URI.open(url)
+    image.attach(io: file, filename: "track-#{id}.png", content_type: "image/png")
+  end
 
-  # def validate_file_filetypes
-  #   return unless track_file.attached?
+  def create_geojson
+    decoded_coordinates = FastPolylines.decode(@encoded_coordinates, 5)
+    geojson = "{'type': 'geojson','data': {'type': 'Feature','properties': {},'geometry': {'type': 'LineString','coordinates':#{decoded_coordinates}}}}"
+    update(data_geojson: geojson)
+  end
 
-  #   p "hasjnbdasbjkdkbhasfbhjajhbdashjvdVGKAHCKVJBLKNBHJVKJGCFGZHLJKBVGCFJXDHFUTRFZIUGIHÖJKNBHVGCFJUZITUGOIHJÖNKLBHVGCJFXDFUCZIGUHIJÖKNB VCGFDXHCJHVHBLJKNÖB VCGFGZHUJKNB"
-  #   errors.add(:track_file, 'must be a gpx-file') unless track_file.content_type == 'gpx'
-  # end
+  def import_gpx
+    downloaded = file.attachment.blob.download
+    puts downloaded
+    coords_raw = downloaded.split.filter { |e| e.include?('lat') || e.include?('lon') }
+
+    @coordinates_array = []
+    i = 0
+    while i < coords_raw.length
+      lon = coords_raw[i][5..][..(coords_raw[i][6..].length - 3)].to_f
+      lat = coords_raw[i + 1][5..][..(coords_raw[i + 1][6..].length - 3)].to_f
+      @coordinates_array << [lon, lat]
+      i += 2
+    end
+    update(encoded_coordinates: FastPolylines.encode(@coordinates_array, 5))
+  end
+
+  def validate_file_filetypes
+    return unless file.attached?
+
+    errors.add(:file, 'must be a gpx-file') unless file.content_type == 'application/xml'
+  end
 end

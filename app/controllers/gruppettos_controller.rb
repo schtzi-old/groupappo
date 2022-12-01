@@ -56,8 +56,8 @@ class GruppettosController < ApplicationController
 
   def create
     @gruppetto = Gruppetto.new(gruppetto_params)
-    @track = retrieve_track
-    @gruppetto.track = @track
+
+    @gruppetto.track = retrieve_track
     @gruppetto.user = current_user
 
     authorize @gruppetto
@@ -86,12 +86,12 @@ class GruppettosController < ApplicationController
   end
 
   def track_params
-    params[:gruppetto].require(:track).permit(:id, :name, :address, :total_km, :total_vm)
+    params[:gruppetto].require(:track).permit(:id, :name, :address, :total_km, :total_vm, :file)
   end
 
   def gruppetto_params
     params.require(:gruppetto).permit(:start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
-                                      :event_type, :participation_rule, :track_file, :track)
+                                      :event_type, :participation_rule, :track)
   end
 
   def set_gruppetto
