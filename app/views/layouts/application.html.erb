@@ -9,6 +9,8 @@
     <%# Defer waits till all the html is loaded and then loads %>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js" defer></script>
 
+    <%= favicon_link_tag asset_path('logo.svg'), rel: "icon", type: "image/png" %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
