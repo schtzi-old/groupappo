@@ -18,13 +18,6 @@ class ParticipationsController < ApplicationController
   end
 
   def update
-    # raise
-    # if accept
-    #   @participation.update(participation_status: 1)
-    # else
-    #   @participation.update(participation_status: 2)
-    # end
-    # redirect_to gruppetto_path(@gruppetto_id)
     authorize @participation
     if @participation.update(participation_params)
       redirect_to gruppetto_path(params[:gruppetto_id])
