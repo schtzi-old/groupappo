@@ -55,9 +55,7 @@ class Track < ApplicationRecord
   end
 
   def import_gpx
-    downloaded = file.attachment.blob.download
-    puts downloaded
-    coords_raw = downloaded.split.filter { |e| e.include?('lat') || e.include?('lon') }
+    coords_raw = file.attachment.blob.download.split.filter { |e| e.include?('lat') || e.include?('lon') }
 
     @coordinates_array = []
     i = 0
