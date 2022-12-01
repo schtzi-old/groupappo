@@ -14,7 +14,11 @@ class ParticipationPolicy < ApplicationPolicy
     true
   end
 
-  def edit?
+  def accept?
+    update?
+  end
+
+  def reject?
     update?
   end
 

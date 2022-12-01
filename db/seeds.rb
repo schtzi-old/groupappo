@@ -14,10 +14,10 @@ Track.create(user_id: 3, name: "Tester Track - Yarra Bend", address: "Yarra Bend
 
 Gruppetto.create(name: "Bike Race 1", track_id: 1, user_id: 1, start: Time.now + 5,
                  description: "Cycle for our lives", gruppetto_status: "draft",
-                 difficulty: "novice", event_type: "invite_only", participation_rule: "manual")
+                 difficulty: "Novice", event_type: "Invite_only", participation_rule: "Manual")
 Gruppetto.create(name: "Bike Race 2", track_id: 2, user_id: 2, start: Time.now + 10,
                  description: "Lets do it", gruppetto_status: "draft",
-                 difficulty: "hard", event_type: "invite_only", participation_rule: "manual")
+                 difficulty: "Hard", event_type: "Invite_only", participation_rule: "Manual")
 Gruppetto.create(name: "Bike Race 3", track_id: 3, user_id: 3, start: Time.now + 3,
                  description: "Cycle and chill", gruppetto_status: "draft",
-                 difficulty: "moderate", event_type: "invite_only", participation_rule: "manual")
+                 difficulty: "Moderate", event_type: "Invite_only", participation_rule: "Manual")

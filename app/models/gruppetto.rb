@@ -5,7 +5,7 @@ class Gruppetto < ApplicationRecord
 
   has_many :participants, through: :participations, source: :user
 
-  enum :gruppetto_status, { draft: 0, upcomming: 1, started: 2, finnished: 3 }, default: :draft
+  enum :gruppetto_status, { draft: 0, upcoming: 1, started: 2, finnished: 3 }, default: :draft
   enum :event_type, { Invite_only: 0, Friends: 1, Open: 2 }, default: :Invite_only
   enum :difficulty, { Novice: 0, Easy: 1, Moderate: 2, Hard: 3, double_black_diamond: 4 }, default: :Novice
   enum :participation_rule, { Manual: 0, Auto: 1 }, default: :Manual
