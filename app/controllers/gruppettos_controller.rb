@@ -10,36 +10,12 @@ class GruppettosController < ApplicationController
     @gruppettos = policy_scope(Gruppetto)
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
-    # @markers = @gruppettos.map do |gruppetto|
-    #   {
-    #     lat: gruppetto.track.latitude,
-    #     lon: gruppetto.track.longitude
-    #   }
-    # end
-
     @markers = @gruppettos.map do |gruppetto|
       {
         lat: gruppetto.track.latitude,
         lng: gruppetto.track.longitude
       }
     end
-
-
-
-
-    # @track_datas = []
-    # @gruppettos.each do |gruppetto|
-    #   @track_datas << {
-    #     lat: gruppetto.track.latitude,
-    #     lon: gruppetto.track.longitude
-    #   }
-    # end
-    # @markers = @track_datas.geocoded.map do |track_data|
-    #   {
-    #     lat: track_data.lat,
-    #     lon: track_data.lon
-    #   }
-    # end
   end
 
   def show
@@ -67,6 +43,7 @@ class GruppettosController < ApplicationController
     authorize @gruppetto
 
     if @gruppetto.save
+      @participation = Participation.create(user_id: @gruppetto.user_id, gruppetto_id: @gruppetto.id, participation_status: "Attending")
       redirect_to gruppetto_path(@gruppetto), notice: 'Gruppetto successfully created'
     else
       render :new, status: :unprocessable_entity
@@ -79,23 +56,22 @@ class GruppettosController < ApplicationController
 
   def retrieve_track
     if params[:track_option] == "new"
-      track = Track.new(track_params)
-      track.user = current_user
+      @track = Track.new(track_params)
+      @track.user = current_user
 
-      return track if track.save
+      return @track if @track.save
 
-      render :new, status: :unprocessable_entity
     else
       Track.find(track_params[:id])
     end
   end
 
   def track_params
-    params.require(:track).permit(:id, :name, :total_km, :total_vm)
+    params[:gruppetto].require(:track).permit(:id, :name, :address, :total_km, :total_vm)
   end
 
   def gruppetto_params
-    params.require(:gruppetto).permit(:start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
+    params.require(:gruppetto).permit(:track, :start, :name, :description, :gruppetto_status, :avg_speed, :difficulty,
                                       :event_type, :participation_rule)
   end
 

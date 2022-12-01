@@ -1,0 +1,10 @@
+<% case participation_status %>
+  <% when "Pending" %>
+    <span class="badge bg-info">Pending</span>
+  <% when "Attending" %>
+    <span class="badge bg-secondary">Attending</span>
+  <% when "Rejected" %>
+    <span class="badge bg-danger">Rejected</span>
+  <% else %>
+    Unknown status
+<% end %>

@@ -1,6 +1,10 @@
 <div class="<%= hidden ? 'd-none' : '' %>" data-gr-form-track-target="form">
-      <div class="mb-3 string required track_name"><label class="form-label string required" for="track_name">Name <abbr title="required">*</abbr></label><input class="form-control string required" type="text" name="track[name]" id="track_name"></div>
-      <div class="mb-3 string optional track_address"><label class="form-label string optional" for="track_address">Address</label><input class="form-control string optional" type="text" name="track[address]" id="track_address"></div>
-      <div class="mb-3 float optional track_total_km"><label class="form-label float optional" for="track_total_km">Total km</label><input class="form-control numeric float optional" type="number" step="any" name="track[total_km]" id="track_total_km"></div>
-      <div class="mb-3 float optional track_total_vm"><label class="form-label float optional" for="track_total_vm">Total vm</label><input class="form-control numeric float optional" type="number" step="any" name="track[total_vm]" id="track_total_vm"></div>
+      <%= f.simple_fields_for(track) do |tracks_form| %>
+          <%= tracks_form.input :name %>
+          <%= tracks_form.input :address,
+                          input_html: {data: {address_autocomplete_target: "address"}, class: 'd-none'},
+                          wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+          <%= tracks_form.input :total_km, placeholder: "Test" %>
+          <%= tracks_form.input :total_vm %>
+        <% end %>
 </div>
