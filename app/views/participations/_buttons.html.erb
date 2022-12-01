@@ -1,13 +1,24 @@
-<% if participant.participation_status == "Pending" || participant.participation_status == "Rejected" %>
+<% if  participant.participation_status == "Rejected" %>
   <%= link_to "Accept",
     accept_participation_path(gruppetto, participant),
-    data: {turbo_method: :accept},
+    data: {turbo_method: :accept, turbo_track:"reload"},
     class: "btn btn-outline-success btn-sm"
   %>
 <% elsif participant.participation_status == "Attending" %>
   <%= link_to "Reject",
     reject_participation_path(gruppetto, participant),
-    data: {turbo_method: :reject},
+    data: {turbo_method: :reject, turbo_track:"reload"},
+    class: "btn btn-outline-danger btn-sm"
+  %>
+<% elsif participant.participation_status == "Pending" %>
+  <%= link_to "Accept",
+    accept_participation_path(gruppetto, participant),
+    data: {turbo_method: :accept, turbo_track:"reload"},
+    class: "btn btn-outline-success btn-sm"
+  %>
+  <%= link_to "Reject",
+    reject_participation_path(gruppetto, participant),
+    data: {turbo_method: :reject, turbo_track:"reload"},
     class: "btn btn-outline-danger btn-sm"
   %>
 <% end %>
