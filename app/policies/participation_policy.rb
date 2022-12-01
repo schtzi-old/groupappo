@@ -13,4 +13,16 @@ class ParticipationPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def accept?
+    update?
+  end
+
+  def reject?
+    update?
+  end
+
+  def update?
+    true
+  end
 end

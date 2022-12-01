@@ -1,26 +1,42 @@
 <%# Navigation bar at the top   %>
 
 <%# Map with the start locations of each gruppettos %>
-<div style="width:100%; height: 30vh;" class="sticky-top"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-<%# col-4 mid navigation with padding and space evenly %>
-<div class="container">
-  <div class="row py-2">
-    <div class="col">
-      Upcomming
-    </div>
-    <div class="col">
-      Going
-    </div>
-    <div class="col">
-      Past
-    </div>
+
+<div class="container" style="position: sticky; top: 6%; z-index:1000;">
+  <div style="width:100%; height: 40vh;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+<div class="container"  style="position:fixed; left: 50%; transform:translate(-50%, -50%);  z-index:1000; ">
+  <ul class="nav nav-tabs nav-fill d-flex justify-content-around bd-highlight start-10" style="width:100%; background:white;" role="tablist">
+    <li class="nav-item">
+      <% if params[:type] == "upcoming" %>
+        <%= link_to "Upcoming", gruppettos_path(type: "upcoming"), class: "nav-link active bg-primary bg-gradient text-white", data_toggle: "tab", role: "tab", aria_controls: "tasks", aria_selected: "true"%>
+      <% else %>
+        <%= link_to "Upcoming", gruppettos_path(type: "upcoming"), class: "nav-link bg-hover-primary-10", data_toggle: "tab", role: "tab", aria_controls: "files", aria_selected: "false"%>
+      <% end %>
+    </li>
+    <li class="nav-item bg-hover-primary-10">
+      <% if params[:type] == "going" %>
+        <%= link_to "Going", gruppettos_path(type: "going"), class: "nav-link active bg-primary bg-gradient text-white", data_toggle: "tab", role: "tab", aria_controls: "tasks", aria_selected: "true"%>
+      <% else %>
+        <%= link_to "Going", gruppettos_path(type: "going"), class: "nav-link bg-hover-primary-10", data_toggle: "tab", role: "tab", aria_controls: "files", aria_selected: "false"%>
+      <% end %>
+    </li>
+    <li class="nav-item bg-hover-primary-10">
+      <% if params[:type] == "past" %>
+        <%= link_to "Past", gruppettos_path(type: "past"), class: "nav-link active bg-primary bg-gradient text-white", data_toggle: "tab", role: "tab", aria_controls: "tasks", aria_selected: "true"%>
+      <% else %>
+        <%= link_to "Past", gruppettos_path(type: "past"), class: "nav-link bg-hover-primary-10", data_toggle: "tab", role: "tab", aria_controls: "files", aria_selected: "false"%>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class="container" style="position:relative; top:0;">
 <% @gruppettos.each do | gruppetto | %>
   <%# renders the index_card.html.erb with sending the gruppetto params %>
   <%= render "index_card", gruppetto: gruppetto %>
 <% end %>
+</div>

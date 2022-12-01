@@ -10,6 +10,10 @@ class GruppettoPolicy < ApplicationPolicy
     true
   end
 
+  def test?
+    true
+  end
+
   def show?
     true
   end

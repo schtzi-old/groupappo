@@ -1,0 +1,21 @@
+<%= turbo_frame_tag dom_id(participant) do %>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <%= participant.participation_status %>
+    </button>
+    <ul class="dropdown-menu">
+      <% Participation.participation_statuses.keys.each do |status| %>
+        <li>
+
+          <%= link_to status,
+                      gruppetto_participation_path(@gruppetto, participant, participant: {user_id: participant.user_id, participation_status: status}),
+                      class: 'dropdown-item',
+                      data: {
+                        user_id: 1,
+                        turbo_method: :patch
+                      } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,10 +1,10 @@
 <% case participation_status %>
-  <% when "pending" %>
-    <span class="badge bg-info">Pending</span>
-  <% when "unconfirmed" %>
-    <span class="badge bg-secondary">Accepted</span>
-  <% when "confirmed" %>
-    <span class="badge bg-danger">Rejected</span>
+  <% when "Pending" %>
+    <span class="badge bg-info align-middle">Pending</span>
+  <% when "Attending" %>
+    <span class="badge bg-success align-middle">Attending</span>
+  <% when "Rejected" %>
+    <span class="badge bg-danger align-middle">Rejected</span>
   <% else %>
     Unknown status
 <% end %>

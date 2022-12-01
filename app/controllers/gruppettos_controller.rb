@@ -1,40 +1,32 @@
 class GruppettosController < ApplicationController
   before_action :set_gruppetto, only: [:show]
+  skip_before_action :authenticate_user!, only: [ :test]
+  def test
+    @gruppetto = Gruppetto.last
+    authorize @gruppetto
+  end
 
   def index
-    @gruppettos = policy_scope(Gruppetto)
+    params[:type] = "upcoming" if params[:type].nil?
+    if params[:type] == "upcoming"
+      @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now))
+    elsif params[:type] == "past"
+      @gruppettos = policy_scope(Gruppetto.where("start < ?", Time.now))
+    elsif params[:type] == "going"
+      # @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now)).participations.where(user: current_user)
+      # <%= @attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
+      @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
+    else
+      @gruppettos = policy_scope(Gruppetto)
+    end
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
-    # @markers = @gruppettos.map do |gruppetto|
-    #   {
-    #     lat: gruppetto.track.latitude,
-    #     lon: gruppetto.track.longitude
-    #   }
-    # end
-
     @markers = @gruppettos.map do |gruppetto|
       {
         lat: gruppetto.track.latitude,
         lng: gruppetto.track.longitude
       }
     end
-
-
-
-
-    # @track_datas = []
-    # @gruppettos.each do |gruppetto|
-    #   @track_datas << {
-    #     lat: gruppetto.track.latitude,
-    #     lon: gruppetto.track.longitude
-    #   }
-    # end
-    # @markers = @track_datas.geocoded.map do |track_data|
-    #   {
-    #     lat: track_data.lat,
-    #     lon: track_data.lon
-    #   }
-    # end
   end
 
   def show
@@ -63,6 +55,7 @@ class GruppettosController < ApplicationController
     authorize @gruppetto
 
     if @gruppetto.save
+      @participation = Participation.create(user_id: @gruppetto.user_id, gruppetto_id: @gruppetto.id, participation_status: "Attending")
       redirect_to gruppetto_path(@gruppetto), notice: 'Gruppetto successfully created'
     else
       render :new, status: :unprocessable_entity
