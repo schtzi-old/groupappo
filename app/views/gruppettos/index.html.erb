@@ -1,7 +1,8 @@
 <%# Navigation bar at the top   %>
 
 <%# Map with the start locations of each gruppettos %>
-<div style="width:100%; height: 40vh; margin-bottom:20px; background:white;" class="sticky-top">
+
+<div style="width:100%; height: 40vh; margin-bottom:20px; background:white; z-index:3000;" class="position-fixed" >
   <div style="width:100%; height: 100%;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
@@ -19,10 +20,10 @@
     </li>
   </ul>
 </div>
-<div class="b-example-divider "></div>
-<div class="b-example-divider "></div>
 
-<div style="width:100%; height:2vh;"></div>
+
+
+
 <% @gruppettos.each do | gruppetto | %>
   <%# renders the index_card.html.erb with sending the gruppetto params %>
   <%= render "index_card", gruppetto: gruppetto %>
