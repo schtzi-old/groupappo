@@ -24,7 +24,7 @@ class Track < ApplicationRecord
   end
 
   def update_map_data
-    encode_coordinates
+    load_coordinates
     create_track_image
     # create_geojson
     # inform frontend about new data via ActionCable
@@ -32,16 +32,18 @@ class Track < ApplicationRecord
 
   private
 
-  def encode_coordinates
+  def load_coordinates
     if file.attached?
       import_gpx
+      calculate_distance
+      calculate_vertical_meters
     elsif @address
-      update(encoded_coordinates: FastPolylines.encode([[lon, lat], [lon, lat]], 5))
+      update(encoded_coordinates: encode_parameters([[lon, lat], [lon, lat]]))
     end
   end
 
   def create_track_image
-    image_size = 600
+    image_size = 300
     output = ERB::Util.url_encode(encoded_coordinates)
     url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
     file = URI.open(url)
@@ -49,14 +51,13 @@ class Track < ApplicationRecord
   end
 
   def create_geojson
-    decoded_coordinates = FastPolylines.decode(@encoded_coordinates, 5)
+    decoded_coordinates = decode_parameters
     geojson = "{'type': 'geojson','data': {'type': 'Feature','properties': {},'geometry': {'type': 'LineString','coordinates':#{decoded_coordinates}}}}"
     update(data_geojson: geojson)
   end
 
   def import_gpx
-    coords_raw = file.attachment.blob.download.split.filter { |e| e.include?('lat') || e.include?('lon') }
-
+    coords_raw = load_file.split.filter { |e| e.include?('lat') || e.include?('lon') }
     @coordinates_array = []
     i = 0
     while i < coords_raw.length
@@ -65,7 +66,45 @@ class Track < ApplicationRecord
       @coordinates_array << [lon, lat]
       i += 2
     end
-    update(encoded_coordinates: FastPolylines.encode(@coordinates_array, 5))
+    update(encoded_coordinates: encode_parameters(@coordinates_array))
+  end
+
+  def calculate_distance
+    coords = decode_parameters
+    km = 0.0
+    for i in (0..coords.length - 2) do
+      km += Geocoder::Calculations.distance_between(coords[i], coords[i + 1])
+    end
+    update(total_km: km.round(1))
+  end
+
+  def calculate_vertical_meters
+    elevation_raw = load_file.split.filter{ |e| e.include?('ele') }
+    vm = 0.0
+    vd = 0.0
+    elevations = elevation_raw.map { |e| e.gsub('<ele>', "").gsub('</ele>', '').to_f }
+
+    for i in (0..elevations.length - 2) do
+      vd = elevations[(i + 1)] - elevations[i]
+      vm += vd if vd.positive?
+    end
+
+    update(total_vm: vm)
+  end
+
+  def load_file
+    download = file.attachment.blob.download
+    debugger
+    sleep 3
+    return download
+  end
+
+  def encode_parameters(coordinates_array)
+    FastPolylines.encode(coordinates_array, 5)
+  end
+
+  def decode_parameters
+    FastPolylines.decode(encoded_coordinates, 5)
   end
 
   def validate_file_filetypes
