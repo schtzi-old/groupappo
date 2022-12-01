@@ -15,6 +15,7 @@ Gruppetto.destroy_all
 Gruppetto.create(name: "Ryan Bike Race 1", track_id: 1, user_id: 1, start: (Time.now + 60*60*24*5),
                  description: "Cycle for our lives", gruppetto_status: "draft",
                  difficulty: "Novice", event_type: "Invite_only", participation_rule: "Manual")
+                 
 Gruppetto.create(name: "Shelly Bike Race 2", track_id: 2, user_id: 2, start: (Time.now + 60*60*24*10),
                  description: "Lets do it", gruppetto_status: "draft",
                  difficulty: "Hard", event_type: "Invite_only", participation_rule: "Manual")
@@ -28,3 +29,4 @@ Gruppetto.create(name: "Past Bike Race 3", track_id: 3, user_id: 3, start: (Time
 
 
 Participation.create(gruppetto_id: 3,user_id: 2,participation_status: 1)
+

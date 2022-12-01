@@ -7,7 +7,18 @@ class GruppettosController < ApplicationController
   end
 
   def index
-    @gruppettos = policy_scope(Gruppetto)
+    params[:type] = "upcoming" if params[:type].nil?
+    if params[:type] == "upcoming"
+      @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now))
+    elsif params[:type] == "past"
+      @gruppettos = policy_scope(Gruppetto.where("start < ?", Time.now))
+    elsif params[:type] == "going"
+      # @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now)).participations.where(user: current_user)
+      # <%= @attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
+      @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
+    else
+      @gruppettos = policy_scope(Gruppetto)
+    end
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
     @markers = @gruppettos.map do |gruppetto|
