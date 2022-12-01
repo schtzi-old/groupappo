@@ -27,6 +27,3 @@ Gruppetto.create(name: "Past Bike Race 3", track_id: 3, user_id: 3, start: (Time
                   difficulty: "Moderate", event_type: "Invite_only", participation_rule: "Manual")
 
 
-
-Participation.create(gruppetto_id: 3,user_id: 2,participation_status: 1)
-
