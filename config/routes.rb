@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :participations, only: %i[create update destroy]
   end
   delete "gruppettos/:gruppetto_id/participations/:id", to: "participations#destroy", as: :participant
-  get "gruppettos/:gruppetto_id/participations/:id/edit", to: "participations#edit", as: :edit_participation
+  get "gruppettos/:gruppetto_id/participations/:id/accept", to: "participations#accept", as: :accept_participation
+  get "gruppettos/:gruppetto_id/participations/:id/reject", to: "participations#reject", as: :reject_participation
   get "test", to: "gruppettos#test"
 
   resources :tracks, only: %i[new create]

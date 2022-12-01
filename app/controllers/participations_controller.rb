@@ -1,6 +1,6 @@
 class ParticipationsController < ApplicationController
   before_action :set_gruppetto, only: %i[create edit update]
-  before_action :set_participation, only: %i[edit update destroy]
+  before_action :set_participation, only: %i[edit update accept reject destroy]
 
   def create
     @participation = Participation.new(gruppetto_id: @gruppetto.id, user_id: current_user.id)
@@ -10,16 +10,22 @@ class ParticipationsController < ApplicationController
     if @participation.save
       redirect_to gruppetto_path(@gruppetto), notice: "Requested to join Gruppetto"
     else
-      render 'gruppettos/show', alert: 'sth went wrong'
+      render 'gruppettos/show', alert: 'Something went wrong'
     end
   end
 
-  def edit
+  def accept
+    authorize @participation
+    if @participation.update(participation_status: 1)
+      redirect_to gruppetto_path(params[:gruppetto_id])
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
-  def update
+  def reject
     authorize @participation
-    if @participation.update(participation_params)
+    if @participation.update(participation_status: 2)
       redirect_to gruppetto_path(params[:gruppetto_id])
     else
       render :edit, status: :unprocessable_entity
