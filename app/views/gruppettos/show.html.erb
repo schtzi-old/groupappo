@@ -66,16 +66,19 @@
       <h3 class="text-center">Creator View - Choose who you would like to attend</h3>
       <div class="py-2">
         <% @gruppetto.participations.each do |participant| %>
+          <% if !@gruppetto.user_id == participant.user_id %>
             <div class="d-flex justify-content-between py-2 border-bottom">
               <%= render "participations/status", participation_status: participant.participation_status %>
               <p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p>
               <%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %>
             </div>
+          <% end %>
         <% end %>
       </div>
   </div>
 <% end %>
 
+</div>
   <%# TO BE THE STANDARDISED FOOTER %>
   <div class="d-flex justify-content-between fixed-bottom bg-white p-2">
     <div class="w-50">
@@ -85,6 +88,3 @@
       <%= render "participations/new", gruppetto: @gruppetto, participant: @participant %>
     </div>
   </div>
-
-
-</div>
