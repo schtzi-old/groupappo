@@ -1,5 +1,10 @@
 class GruppettosController < ApplicationController
   before_action :set_gruppetto, only: [:show]
+  skip_before_action :authenticate_user!, only: [ :test]
+  def test
+    @gruppetto = Gruppetto.last
+    authorize @gruppetto
+  end
 
   def index
     @gruppettos = policy_scope(Gruppetto)
