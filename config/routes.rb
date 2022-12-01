@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete "gruppettos/:gruppetto_id/participations/:id", to: "participations#destroy", as: :participant
   get "gruppettos/:gruppetto_id/participations/:id/accept", to: "participations#accept", as: :accept_participation
   get "gruppettos/:gruppetto_id/participations/:id/reject", to: "participations#reject", as: :reject_participation
+  get "test", to: "gruppettos#test"
 
   resources :tracks, only: %i[new create]
 
