@@ -12,6 +12,9 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
+            <%= link_to "New gruppettos", new_gruppetto_path, class: "btn btn-primary" %>
+          </li>
+          <li class="nav-item active">
             <%= link_to "All gruppettos", gruppettos_path, class: "nav-link" %>
           </li>
           <li class="nav-item active">
