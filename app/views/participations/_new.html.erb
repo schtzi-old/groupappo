@@ -7,7 +7,7 @@
 </form>
 <% else %>
   <% if participant.participation_status == "Attending" %>
-    <% if participant.user_id != current_user.id %>
+    <% unless @gruppetto.user_id == current_user.id %>
       <button type="button" class="btn btn-primary w-100" disabled>Already attending</button>
     <% else %>
       <button type="button" class="btn btn-primary w-100" disabled>Hosting</button>
