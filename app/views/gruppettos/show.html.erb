@@ -36,7 +36,7 @@
     <%# <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 400, crop: :fill %>
   </div>
 
-  <div class="card border-0">
+  <div class="">
     <div class="row">
       <div class="col-6">
         <div class="d-flex justify-content">
@@ -60,31 +60,33 @@
     </div>
   </div>
 
-
-<% if current_user == @gruppetto.user %>
-  <div class="border-top mx-3 pt-3">
-      <h3 class="text-center">Creator View - Choose who you would like to attend</h3>
-      <div class="py-2">
-        <% @gruppetto.participations.each do |participant| %>
-          <% if !@gruppetto.user_id == participant.user_id %>
-            <div class="d-flex justify-content-between py-2 border-bottom">
-              <%= render "participations/status", participation_status: participant.participation_status %>
-              <p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p>
-              <%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-  </div>
-<% end %>
-
+  <% if current_user == @gruppetto.user %>
+    <div class="border-top mx-5 pt-3 text-center">
+        <h3 class="text-center">Gruppetto Creator View - Manage Attendance</h3>
+        <div class="py-2">
+          <table class="table table-hover table-responsive-sm justify-content-between">
+            <thead>
+              <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Name</th>
+                <th scope="col">Accept/Reject</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @gruppetto.participations.each do |participant| %>
+                <% unless @gruppetto.user_id == participant.user_id %>
+                    <tr>
+                      <td><%= render "participations/status", participation_status: participant.participation_status %></td>
+                      <td><p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p></td>
+                      <td><%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %></td>
+                    </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  <% end %>
 </div>
-  <%# TO BE THE STANDARDISED FOOTER %>
-  <%# <div class="d-flex justify-content-between fixed-bottom bg-white p-2">
-    <div class="w-50">
-      <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary w-100" %>
-    <%# </div>
-    <div class="w-50">
-      <%= render "participations/new", gruppetto: @gruppetto, participant: @participant %>
-    <%# </div> %>
-  <%# </div>  %>
+
+<%= render "gruppettos/show_footer" %>
