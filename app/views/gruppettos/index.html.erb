@@ -2,14 +2,14 @@
 
 <%# Map with the start locations of each gruppettos %>
 
-<div class="container" style="position: sticky; top: 6%; z-index:1000;">
+<div class="" style="position: sticky; top: 6%; z-index:1000;">
   <div style="width:100%; height: 40vh;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-<div class="container"  style="position:fixed; left: 50%; transform:translate(-50%, -50%);  z-index:1000; ">
+<div class=""  style=" width:100%;position:fixed; left: 50%; transform:translate(-50%, -50%);  z-index:1000; ">
   <ul class="nav nav-tabs nav-fill d-flex justify-content-around bd-highlight start-10" style="width:100%; background:white;" role="tablist">
     <li class="nav-item">
       <% if params[:type] == "upcoming" %>
@@ -39,4 +39,12 @@
   <%# renders the index_card.html.erb with sending the gruppetto params %>
   <%= render "index_card", gruppetto: gruppetto %>
 <% end %>
+</div>
+<div class="d-flex justify-content-between fixed-bottom bg-white p-2">
+  <div class="w-50">
+    <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary w-100" %>
+  </div>
+  <div class="w-50">
+    <%= link_to "Home", root_path,class: "btn btn-primary w-100"%>
+  </div>
 </div>
