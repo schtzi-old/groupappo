@@ -1,17 +1,27 @@
 <div class="container">
     <h1>New gruppetto</h1>
     <%= simple_form_for(@gruppetto) do |f| %>
-      <%= f.input :start %>
       <%= f.input :name %>
+      <%= f.input :start, as: :string,
+                  input_html: { data: { controller: "flatpickr" } } %>
       <%= f.input :description %>
-      <%= f.input :avg_speed %>
-
+      <%= f.input :avg_speed,
+                  as: :range,
+                  collection: 20..40,
+                  label: 'Average speed planned: ',
+                  wrapper_html: { data: { controller: "range-slider" } },
+                  input_html: { data: {range_slider_target: 'slider',
+                                      action: 'input->range-slider#change' },
+                                min: Gruppetto::SPEED_RANGE.min,
+                                max: Gruppetto::SPEED_RANGE.max},
+                  label_html: { data: {range_slider_target: 'label' }} %>
       <%= f.input :difficulty,
-                  collection: Gruppetto::difficulties.keys.map{ |d| d.capitalize }%>
-      <%= f.input :event_type,
-                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize }%>
-      <%= f.input :participation_rule,
-                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
+                  as: :radio_buttons,
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper',
+                  item_wrapper_class: 'category-item',
+                  input_html: {class: 'category-selector'},
+            collection: Gruppetto::difficulties.keys.map{ |d| d.capitalize }%>
 
       <%# Existing vs new route %>
       <%= render 'tracks/gruppetto_tracks', {tracks: @tracks, track: @track, f: f} %>
@@ -19,5 +29,13 @@
         <%= f.submit 'Save and publish', class: "btn btn-primary"%>
         <%= f.submit 'Save as draft not-implemented', class: "ms-3 btn btn-outline-primary"%>
       </div>
+
+
+      <%= f.input :event_type,
+                  label: 'Who is allowed to participate?',
+                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize }%>
+      <%= f.input :participation_rule,
+                  label: 'Do you want to accept riders?',
+                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
     <% end %>
 </div>
