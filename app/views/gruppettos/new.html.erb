@@ -17,10 +17,6 @@
                   label_html: { data: {range_slider_target: 'label' }} %>
       <%= f.input :difficulty,
                   as: :radio_buttons,
-                  collection_wrapper_tag: 'div',
-                  collection_wrapper_class: 'category-wrapper',
-                  item_wrapper_class: 'category-item',
-                  input_html: {class: 'category-selector'},
             collection: Gruppetto::difficulties.keys.map{ |d| d.capitalize }%>
 
       <%# Existing vs new route %>

@@ -90,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_035321) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.text "encoded_coordinates"
     t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
