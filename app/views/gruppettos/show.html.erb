@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container container-fluid mt-3 min">
   <h1 class="pt-5"> <%= @gruppetto.name %></h1>
   <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
 
@@ -20,7 +20,9 @@
           participant.user_id == current_user.id} %>
             <%= render "participations/status",  participation_status: @participant.participation_status  %>
   <% end %>
-  <% if (@gruppetto.participant_ids.include? current_user.id) && (@participant.participation_status == "Attending") %>
+  <% if (@gruppetto.participant_ids.include? current_user.id) &&
+        (@participant.participation_status == "Attending") &&
+        (@gruppetto.user_id != current_user.id) %>
         <%= render "participations/delete", { gruppetto: @gruppetto, participant: @participant } %>
     <% end %>
 
@@ -39,18 +41,9 @@
   <div class="">
     <div class="row">
       <div class="col-6">
-        <div class="d-flex justify-content">
-          <p>Distance</p>
-          <p><%= @gruppetto.track.total_km %> km</p>
-        </div>
-        <div class="d-flex">
-          <p>Pace</p>
-          <p><%= @gruppetto.avg_speed %> km/h</p>
-        </div class="d-flex">
-        <div class="d-flex">
-          <p>Incline</p>
-          <p><%= @gruppetto.track.total_vm %> vm</p>
-        </div>
+          <p>Distance - <%= @gruppetto.track.total_km %> km </p>
+          <p>Pace - <%= @gruppetto.avg_speed %> km/h</p>
+          <p>Incline - <%= @gruppetto.track.total_vm %> vm</p>
       </div>
       <div class="col-6">
         <p> <%= @gruppetto.description %></p>
@@ -62,7 +55,7 @@
 
   <% if current_user == @gruppetto.user %>
     <div class="border-top mx-5 pt-3 text-center">
-        <h3 class="text-center">Gruppetto Creator View - Manage Attendance</h3>
+        <h5 class="text-center">Gruppetto Host View - Manage Attendance</h5>
         <div class="py-2">
           <table class="table table-hover table-responsive-sm justify-content-between">
             <thead>
