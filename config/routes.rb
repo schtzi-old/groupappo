@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :friendships
   root to: "pages#home"
-
   resources :gruppettos do
     resources :participations, only: %i[create update destroy]
   end

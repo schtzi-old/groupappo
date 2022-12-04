@@ -1,0 +1,71 @@
+
+<%= simple_form_for :friendship, url: friendships_path, method: :get, html: { class: 'form-inline' } do |f| %>
+  <%= f.text_field :name, class: "w-50"%>
+  <%= f.submit "Search", class: "btn btn-primary w-50 justify-content-center" %>
+<% end %>
+<h1>My Friends</h1>
+<ul>
+  <% @friendships.each do |friendship| %>
+      <% if friendship.friend.id == current_user.id %>
+      <li><%= friendship.user.first_name%></li>
+      <% else %>
+      <li><%= friendship.user.first_name%></li>
+      <% end %>
+  <% end %>
+</ul>
+
+<% @friendships.each do |friendship| %>
+
+
+
+
+
+<h1><% Friendship.find_friends(current_user) %></h1>
+<h1> See pending requests</h1>
+<% unless @user.nil? %>
+  <% @user.each do |user| %>
+    <%if !Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name && Friendship.pending_reacted?(current_user.id,user.id) && Friendship.request_origin(current_user.id,user.id)%>
+     <%= button_to("Confirm #{user.first_name} as a friend! ", friendship_path(id: Friendship.find_friendship(current_user.id,user.id)),
+   class: "btn btn-primary w-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
+   <%= Friendship.request_origin(current_user.id,user.id) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>ADD NEW FRIENDS</h1>
+<% unless @user.nil? %>
+  <% @user.each do |user| %>
+    <%if Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name  %>
+    <%= button_to("Add #{user.first_name} as a friend! ", new_friendship_path,
+   class: "btn btn-primary w-100",  :method => :get, params: { user_id: current_user.id, friend_id: user.id, confirmed: false }) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+
+<div class="container justify-content-center">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 ">
+            <div class="people-nearby">
+              <div class="nearby-user">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2">
+                    <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  </div>
+                  <div class="col-md-7 col-sm-7">
+                    <h5><a href="#" class="profile-link">Sophia Page</a></h5>
+                    <p>Software Engineer</p>
+                    <p class="text-muted">500m away</p>
+                  </div>
+                  <div class="col-md-3 col-sm-3">
+                    <button class="btn btn-primary pull-right">Add Friend</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    	</div>
+	</div>
+</div>
