@@ -1,4 +1,6 @@
-<div class="container container-fluid mt-3 min">
+<div class="container container-fluid mt-3 min"
+      data-controller="track-subscription"
+      data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
   <h1 class="pt-5"> <%= @gruppetto.name %></h1>
   <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
 
@@ -35,15 +37,29 @@
   </div>
   <div>
     <%# NEED TO ADD THIS WHEN WE HAVE IMAGES ATTACHED TO ROUTES IN SEED %>
-    <%# <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 400, crop: :fill %>
+    <% if @gruppetto.track.image.key %>
+
+      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300, data: {tracks_subscription_target: "image"} %>
+    <% end %>
   </div>
 
   <div class="">
     <div class="row">
       <div class="col-6">
-          <p>Distance - <%= @gruppetto.track.total_km %> km </p>
-          <p>Pace - <%= @gruppetto.avg_speed %> km/h</p>
-          <p>Incline - <%= @gruppetto.track.total_vm %> vm</p>
+        <table>
+          <tr>
+            <td>Pace</td>
+            <td><%= @gruppetto.avg_speed %> km/h</td>
+          </tr>
+          <tr>
+            <td>Distance</td>
+            <td data-tracks-subscription-target="totalKm"><%= @gruppetto.track.total_km %> km</td>
+          </tr>
+          <tr>
+            <td>Incline</td>
+            <td data-tracks-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> vm</td>
+          </tr>
+        </table>
       </div>
       <div class="col-6">
         <p> <%= @gruppetto.description %></p>
