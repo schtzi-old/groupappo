@@ -20,6 +20,8 @@ class Track < ApplicationRecord
 
   after_create :async_map_data
 
+  after_commit :broadcast_change
+
   def async_map_data
     TrackDataJob.perform_later(self)
   end
@@ -32,6 +34,14 @@ class Track < ApplicationRecord
   end
 
   private
+
+  def broadcast_change
+    TracksChannel.broadcast_to(
+      @track,
+      'hello'
+    )
+    # head :ok
+  end
 
   def load_coordinates
     if file.attached?

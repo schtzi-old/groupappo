@@ -1,7 +1,8 @@
 class TracksChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    track = Gruppetto.find(params[:id]).track
+    track = Track.find(params[:id])
+    p "hello #{params[:id]}"
     stream_for track
   end
 

@@ -35,11 +35,10 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-  <div>
+  <div data-track-subscription-target="trackImage">
     <%# NEED TO ADD THIS WHEN WE HAVE IMAGES ATTACHED TO ROUTES IN SEED %>
     <% if @gruppetto.track.image.key %>
-
-      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300, data: {tracks_subscription_target: "image"} %>
+      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300, data: {tracks_subscription_target: 'trackImage'} %>
     <% end %>
   </div>
 
@@ -53,11 +52,11 @@
           </tr>
           <tr>
             <td>Distance</td>
-            <td data-tracks-subscription-target="totalKm"><%= @gruppetto.track.total_km %> km</td>
+            <td data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km %> km</td>
           </tr>
           <tr>
             <td>Incline</td>
-            <td data-tracks-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> vm</td>
+            <td data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> vm</td>
           </tr>
         </table>
       </div>
