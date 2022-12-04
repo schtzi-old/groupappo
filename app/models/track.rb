@@ -2,6 +2,7 @@
 require "open-uri"
 # require "nokogiri"
 require "fast_polylines"
+require "down"
 
 class Track < ApplicationRecord
   belongs_to :user
@@ -45,66 +46,72 @@ class Track < ApplicationRecord
   def create_track_image
     image_size = 300
     output = ERB::Util.url_encode(encoded_coordinates)
-    url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
-    file = URI.open(url)
+    output = shorten_output if output.length >= 8000
+
+    p url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
+
+    file = Down.download(url)
     image.attach(io: file, filename: "track-#{id}.png", content_type: "image/png")
   end
 
   def create_geojson
-    decoded_coordinates = decode_parameters
-    geojson = "{'type': 'geojson','data': {'type': 'Feature','properties': {},'geometry': {'type': 'LineString','coordinates':#{decoded_coordinates}}}}"
+    coords = decode_parameters(encoded_coordinates)
+    geojson = "{'type': 'geojson','data': {'type': 'Feature','properties': {},'geometry': {'type': 'LineString','coordinates':#{coords}}}}"
     update(data_geojson: geojson)
   end
 
   def import_gpx
-    coords_raw = load_file.split.filter { |e| e.include?('lat') || e.include?('lon') }
     @coordinates_array = []
-    i = 0
-    while i < coords_raw.length
-      lon = coords_raw[i][5..][..(coords_raw[i][6..].length - 3)].to_f
-      lat = coords_raw[i + 1][5..][..(coords_raw[i + 1][6..].length - 3)].to_f
-      @coordinates_array << [lon, lat]
-      i += 2
+    @elevations_array = []
+    gpx_file = Down.download("#{ENV.fetch('CLOUDINARY_DOWNLOAD_URL')}#{file.attachment.blob.key}.gpx")
+
+    Nokogiri::XML(gpx_file).xpath('//xmlns:trkpt').each do |trkpt|
+      lat = trkpt.xpath('@lat').to_s.to_f
+      lon = trkpt.xpath('@lon').to_s.to_f
+      @coordinates_array << [lat, lon]
+
+      @elevations_array << trkpt.text.strip.to_f
     end
-    update(encoded_coordinates: encode_parameters(@coordinates_array))
+    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s)
   end
 
   def calculate_distance
-    coords = decode_parameters
+    coords = decode_parameters(encoded_coordinates)
     km = 0.0
-    for i in (0..coords.length - 2) do
-      km += Geocoder::Calculations.distance_between(coords[i], coords[i + 1])
+
+    coords.each_index do |index|
+      km += Geocoder::Calculations.distance_between(coords[index], coords[index + 1]) unless index == coords.length - 1
     end
     update(total_km: km.round(1))
   end
 
   def calculate_vertical_meters
-    elevation_raw = load_file.split.filter{ |e| e.include?('ele') }
-    vm = 0.0
-    vd = 0.0
-    elevations = elevation_raw.map { |e| e.gsub('<ele>', "").gsub('</ele>', '').to_f }
+    elevations = encoded_elevations.split(',')
+    elevations.map!(&:to_f)
 
-    for i in (0..elevations.length - 2) do
-      vd = elevations[(i + 1)] - elevations[i]
+    vd = 0.0
+    vm = 0.0
+
+    elevations.each_index do |index|
+      vd = index < elevations.length - 1 ? elevations[(index + 1)] - elevations[index] : 0
       vm += vd if vd.positive?
     end
 
-    update(total_vm: vm)
+    update(total_vm: vm.round(1))
   end
 
-  def load_file
-    download = file.attachment.blob.download
-    debugger
-    sleep 3
-    return download
+  def encode_parameters(array)
+    FastPolylines.encode(array, 5)
   end
 
-  def encode_parameters(coordinates_array)
-    FastPolylines.encode(coordinates_array, 5)
+  def decode_parameters(parameters)
+    FastPolylines.decode(parameters, 5)
   end
 
-  def decode_parameters
-    FastPolylines.decode(encoded_coordinates, 5)
+  def shorten_output
+    coords = decode_parameters(encoded_coordinates)
+    shortened_coords = coords.each_slice(2).map(&:last)
+    encode_parameters(shortened_coords)
   end
 
   def validate_file_filetypes
