@@ -1,71 +1,188 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
+            <p class="text-muted mb-1"><%= current_user.about %></p>
+            <p class="text-muted mb-4"><%= current_user.level %>, <%= current_user.country %></p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary">Follow</button>
+              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+            </div>
+          </div>
+        </div>
+        <!--Search Friends-->
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <%= simple_form_for :friendship, url: friendships_path, method: :get, html: { class: 'form-inline'} do |f| %>
+                    <%= f.text_field :name, class: "row-6", placeholder: "Search Users"%>
+                    <%= f.submit "Search", class: "btn btn-primary row-6 justify-content-center" %>
+                  <% end %>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <!--Search Friends-->
+        <!--Incoming Friend Requests -->
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0"><%= current_user.first_name.capitalize %>'s Friends</p>
+              </li>
+              <% @friendships.each do |friendship| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% if friendship.friend.id == current_user.id %>
+                        <p class="mb-0"><%= friendship.user.first_name%> <%= friendship.user.last_name%></p>
+                      <% else %>
+                        <p class="mb-0"><%= friendship.friend.first_name%> <%= friendship.friend.last_name%></p>
+                      <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <!--Incoming Friend Requests End-->
 
-<%= simple_form_for :friendship, url: friendships_path, method: :get, html: { class: 'form-inline' } do |f| %>
-  <%= f.text_field :name, class: "w-50"%>
-  <%= f.submit "Search", class: "btn btn-primary w-50 justify-content-center" %>
-<% end %>
-<h1>My Friends</h1>
-<ul>
-  <% @friendships.each do |friendship| %>
-      <% if friendship.friend.id == current_user.id %>
-      <li><%= friendship.user.first_name%></li>
-      <% else %>
-      <li><%= friendship.user.first_name%></li>
-      <% end %>
-  <% end %>
-</ul>
 
-<% @friendships.each do |friendship| %>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">Friend Requests</p>
+              </li>
+                <% unless @user.nil? %>
+                  <% @user.each do |user| %>
+                    <%if !Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name && Friendship.pending_reacted?(current_user.id,user.id) && Friendship.request_origin(current_user.id,user.id)%>
 
+                      <div class="nearby-user p-2">
+                        <div class="row align-middle">
+                          <div class="col-md-2 col-sm-2">
+                            <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                          </div>
+                          <div class="col-md-6 col-sm-6" style="text-align:center;">
+                            <% if user.id == current_user.id %>
+                              <span class="align-middle"><%= user.first_name%> <%= user.last_name%></span>
+                            <% else %>
+                              <span class="align-middle"><%= user.first_name%> <%= user.last_name%></span>
+                            <% end %>
+                          </div>
+                          <div class="col-md-4 col-sm-4">
+                          <%= button_to("Confirm", friendship_path(id: Friendship.find_friendship(current_user.id,user.id)),
+        class: "btn btn-primary w-100 h-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
 
-
-
-
-<h1><% Friendship.find_friends(current_user) %></h1>
-<h1> See pending requests</h1>
-<% unless @user.nil? %>
-  <% @user.each do |user| %>
-    <%if !Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name && Friendship.pending_reacted?(current_user.id,user.id) && Friendship.request_origin(current_user.id,user.id)%>
-     <%= button_to("Confirm #{user.first_name} as a friend! ", friendship_path(id: Friendship.find_friendship(current_user.id,user.id)),
-   class: "btn btn-primary w-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
-   <%= Friendship.request_origin(current_user.id,user.id) %>
-    <% end %>
-  <% end %>
-<% end %>
-
-<h1>ADD NEW FRIENDS</h1>
-<% unless @user.nil? %>
-  <% @user.each do |user| %>
-    <%if Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name  %>
-    <%= button_to("Add #{user.first_name} as a friend! ", new_friendship_path,
-   class: "btn btn-primary w-100",  :method => :get, params: { user_id: current_user.id, friend_id: user.id, confirmed: false }) %>
-    <% end %>
-  <% end %>
-<% end %>
-
-
-
-
-
-<div class="container justify-content-center">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-8 ">
-            <div class="people-nearby">
-              <div class="nearby-user">
-                <div class="row">
-                  <div class="col-md-2 col-sm-2">
-                    <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                  </div>
-                  <div class="col-md-7 col-sm-7">
-                    <h5><a href="#" class="profile-link">Sophia Page</a></h5>
-                    <p>Software Engineer</p>
-                    <p class="text-muted">500m away</p>
-                  </div>
-                  <div class="col-md-3 col-sm-3">
-                    <button class="btn btn-primary pull-right">Add Friend</button>
-                  </div>
-                </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></p>
               </div>
             </div>
-    	</div>
-	</div>
-</div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.email %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">About: </p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.about %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Zip Code</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.zip_code %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Level</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.level %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Country</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.country %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4">
+                <!--Search Friends-->
+                            <%= simple_form_for :friendship, url: friendships_path, method: :get, html: { class: 'form-inline'} do |f| %>
+                              <%= f.text_field :name, class: "row-6", placeholder: "Search Users"%>
+                              <hr>
+                              <%= f.submit "Search", class: "btn btn-primary row-6 justify-content-center" %>
+                            <% end %>
+                  <!--Search Friends-->
+                  </p>
+                  <p class="mb-4">
+                  <% unless @user.nil? %>
+                    <% @user.each do |user| %>
+
+                      <%if Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name  %>
+                      <hr>
+                      <%= button_to("Add #{user.first_name} as a friend! ", new_friendship_path,
+                    class: "btn btn-primary w-100",  :method => :get, params: { user_id: current_user.id, friend_id: user.id, confirmed: false }) %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
