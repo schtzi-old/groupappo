@@ -2,7 +2,7 @@
       data-controller="track-subscription"
       data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
   <h1 class="pt-5"> <%= @gruppetto.name %></h1>
-  <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
+  <p> <%= @gruppetto.start.strftime('%d %b %l%P') unless @gruppetto.start.nil? %></p>
 
   <div class="d-flex justify-content-between">
     <div class="">
