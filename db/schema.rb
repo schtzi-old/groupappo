@@ -134,7 +134,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_223648) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatrooms", "gruppettos"
-  add_foreign_key "friendships", "users"
   add_foreign_key "gruppettos", "tracks"
   add_foreign_key "gruppettos", "users"
   add_foreign_key "messages", "chatrooms"

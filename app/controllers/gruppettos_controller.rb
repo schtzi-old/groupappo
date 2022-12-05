@@ -57,6 +57,7 @@ class GruppettosController < ApplicationController
     if @gruppetto.save
       @participation = Participation.create(user_id: @gruppetto.user_id, gruppetto_id: @gruppetto.id, participation_status: "Attending")
       @chatroom = Chatroom.create(gruppetto_id: @gruppetto.id)
+      @message = Message.create(user_id: @gruppetto.user_id, chatroom_id: @chatroom.id, content: " Welcome! #{@gruppetto.name.capitalize} has been created by #{@gruppetto.user.first_name.capitalize}.")
       redirect_to gruppetto_path(@gruppetto), notice: 'Gruppetto successfully created'
     else
       render :new, status: :unprocessable_entity
