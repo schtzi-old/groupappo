@@ -2,7 +2,7 @@
 require "open-uri"
 # require "nokogiri"
 require "fast_polylines"
-require "down"
+# require "down"
 
 class Track < ApplicationRecord
   belongs_to :user
@@ -20,6 +20,8 @@ class Track < ApplicationRecord
 
   after_create :async_map_data
 
+  after_commit :broadcast_change
+
   def async_map_data
     TrackDataJob.perform_later(self)
   end
@@ -32,6 +34,17 @@ class Track < ApplicationRecord
   end
 
   private
+
+  def broadcast_change
+    TracksChannel.broadcast_to(
+      self,
+      {
+        totalKm: total_km,
+        totalVm: total_vm,
+        trackImage: image.url
+      }
+    )
+  end
 
   def load_coordinates
     if file.attached?
@@ -72,7 +85,7 @@ class Track < ApplicationRecord
 
       @elevations_array << trkpt.text.strip.to_f
     end
-    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s)
+    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s, address: Geocoder.search([@coordinates_array[0]]))
   end
 
   def calculate_distance

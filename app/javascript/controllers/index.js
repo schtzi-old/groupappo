@@ -13,6 +13,9 @@ application.register("flatpickr", FlatpickrController)
 import GruppettoFormHideController from "./gruppetto_form_hide_controller"
 application.register("gruppetto-form-hide", GruppettoFormHideController)
 
+import ChatroomSubscriptionController from "./chatroom_subscription_controller"
+application.register("chatroom-subscription", ChatroomSubscriptionController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -21,3 +24,6 @@ application.register("map", MapController)
 
 import RangeSliderController from "./range_slider_controller"
 application.register("range-slider", RangeSliderController)
+
+import TrackSubscriptionController from "./track_subscription_controller"
+application.register("track-subscription", TrackSubscriptionController)
