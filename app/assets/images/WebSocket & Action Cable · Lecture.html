@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#source -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css" data-tippy-stylesheet="">.tippy-iOS{cursor:pointer!important;-webkit-tap-highlight-color:transparent}.tippy-popper{transition-timing-function:cubic-bezier(.165,.84,.44,1);max-width:calc(100% - 8px);pointer-events:none;outline:0}.tippy-popper[x-placement^=top] .tippy-backdrop{border-radius:40% 40% 0 0}.tippy-popper[x-placement^=top] .tippy-roundarrow{bottom:-7px;bottom:-6.5px;-webkit-transform-origin:50% 0;transform-origin:50% 0;margin:0 3px}.tippy-popper[x-placement^=top] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(180deg);transform:rotate(180deg)}.tippy-popper[x-placement^=top] .tippy-arrow{border-top:8px solid #333;border-right:8px solid transparent;border-left:8px solid transparent;bottom:-7px;margin:0 3px;-webkit-transform-origin:50% 0;transform-origin:50% 0}.tippy-popper[x-placement^=top] .tippy-backdrop{-webkit-transform-origin:0 25%;transform-origin:0 25%}.tippy-popper[x-placement^=top] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-55%);transform:scale(1) translate(-50%,-55%)}.tippy-popper[x-placement^=top] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-50%,-45%);transform:scale(.2) translate(-50%,-45%);opacity:0}.tippy-popper[x-placement^=top] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateY(-20px);transform:translateY(-20px)}.tippy-popper[x-placement^=top] [data-animation=perspective]{-webkit-transform-origin:bottom;transform-origin:bottom}.tippy-popper[x-placement^=top] [data-animation=perspective][data-state=visible]{-webkit-transform:perspective(700px) translateY(-10px);transform:perspective(700px) translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:perspective(700px) rotateX(60deg);transform:perspective(700px) rotateX(60deg)}.tippy-popper[x-placement^=top] [data-animation=fade][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=shift-away][data-state=hidden]{opacity:0}.tippy-popper[x-placement^=top] [data-animation=scale]{-webkit-transform-origin:bottom;transform-origin:bottom}.tippy-popper[x-placement^=top] [data-animation=scale][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateY(-10px) scale(.5);transform:translateY(-10px) scale(.5)}.tippy-popper[x-placement^=bottom] .tippy-backdrop{border-radius:0 0 30% 30%}.tippy-popper[x-placement^=bottom] .tippy-roundarrow{top:-7px;-webkit-transform-origin:50% 100%;transform-origin:50% 100%;margin:0 3px}.tippy-popper[x-placement^=bottom] .tippy-roundarrow svg{position:absolute;left:0}.tippy-popper[x-placement^=bottom] .tippy-arrow{border-bottom:8px solid #333;border-right:8px solid transparent;border-left:8px solid transparent;top:-7px;margin:0 3px;-webkit-transform-origin:50% 100%;transform-origin:50% 100%}.tippy-popper[x-placement^=bottom] .tippy-backdrop{-webkit-transform-origin:0 -50%;transform-origin:0 -50%}.tippy-popper[x-placement^=bottom] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-45%);transform:scale(1) translate(-50%,-45%)}.tippy-popper[x-placement^=bottom] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-50%);transform:scale(.2) translate(-50%);opacity:0}.tippy-popper[x-placement^=bottom] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}.tippy-popper[x-placement^=bottom] [data-animation=perspective]{-webkit-transform-origin:top;transform-origin:top}.tippy-popper[x-placement^=bottom] [data-animation=perspective][data-state=visible]{-webkit-transform:perspective(700px) translateY(10px);transform:perspective(700px) translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:perspective(700px) rotateX(-60deg);transform:perspective(700px) rotateX(-60deg)}.tippy-popper[x-placement^=bottom] [data-animation=fade][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=shift-away][data-state=hidden]{opacity:0}.tippy-popper[x-placement^=bottom] [data-animation=scale]{-webkit-transform-origin:top;transform-origin:top}.tippy-popper[x-placement^=bottom] [data-animation=scale][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateY(10px) scale(.5);transform:translateY(10px) scale(.5)}.tippy-popper[x-placement^=left] .tippy-backdrop{border-radius:50% 0 0 50%}.tippy-popper[x-placement^=left] .tippy-roundarrow{right:-12px;-webkit-transform-origin:33.33333333% 50%;transform-origin:33.33333333% 50%;margin:3px 0}.tippy-popper[x-placement^=left] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(90deg);transform:rotate(90deg)}.tippy-popper[x-placement^=left] .tippy-arrow{border-left:8px solid #333;border-top:8px solid transparent;border-bottom:8px solid transparent;right:-7px;margin:3px 0;-webkit-transform-origin:0 50%;transform-origin:0 50%}.tippy-popper[x-placement^=left] .tippy-backdrop{-webkit-transform-origin:50% 0;transform-origin:50% 0}.tippy-popper[x-placement^=left] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-50%);transform:scale(1) translate(-50%,-50%)}.tippy-popper[x-placement^=left] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-75%,-50%);transform:scale(.2) translate(-75%,-50%);opacity:0}.tippy-popper[x-placement^=left] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateX(-20px);transform:translateX(-20px)}.tippy-popper[x-placement^=left] [data-animation=perspective]{-webkit-transform-origin:right;transform-origin:right}.tippy-popper[x-placement^=left] [data-animation=perspective][data-state=visible]{-webkit-transform:perspective(700px) translateX(-10px);transform:perspective(700px) translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:perspective(700px) rotateY(-60deg);transform:perspective(700px) rotateY(-60deg)}.tippy-popper[x-placement^=left] [data-animation=fade][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=shift-away][data-state=hidden]{opacity:0}.tippy-popper[x-placement^=left] [data-animation=scale]{-webkit-transform-origin:right;transform-origin:right}.tippy-popper[x-placement^=left] [data-animation=scale][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateX(-10px) scale(.5);transform:translateX(-10px) scale(.5)}.tippy-popper[x-placement^=right] .tippy-backdrop{border-radius:0 50% 50% 0}.tippy-popper[x-placement^=right] .tippy-roundarrow{left:-12px;-webkit-transform-origin:66.66666666% 50%;transform-origin:66.66666666% 50%;margin:3px 0}.tippy-popper[x-placement^=right] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.tippy-popper[x-placement^=right] .tippy-arrow{border-right:8px solid #333;border-top:8px solid transparent;border-bottom:8px solid transparent;left:-7px;margin:3px 0;-webkit-transform-origin:100% 50%;transform-origin:100% 50%}.tippy-popper[x-placement^=right] .tippy-backdrop{-webkit-transform-origin:-50% 0;transform-origin:-50% 0}.tippy-popper[x-placement^=right] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-50%);transform:scale(1) translate(-50%,-50%)}.tippy-popper[x-placement^=right] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-25%,-50%);transform:scale(.2) translate(-25%,-50%);opacity:0}.tippy-popper[x-placement^=right] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateX(20px);transform:translateX(20px)}.tippy-popper[x-placement^=right] [data-animation=perspective]{-webkit-transform-origin:left;transform-origin:left}.tippy-popper[x-placement^=right] [data-animation=perspective][data-state=visible]{-webkit-transform:perspective(700px) translateX(10px);transform:perspective(700px) translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:perspective(700px) rotateY(60deg);transform:perspective(700px) rotateY(60deg)}.tippy-popper[x-placement^=right] [data-animation=fade][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=shift-away][data-state=hidden]{opacity:0}.tippy-popper[x-placement^=right] [data-animation=scale]{-webkit-transform-origin:left;transform-origin:left}.tippy-popper[x-placement^=right] [data-animation=scale][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateX(10px) scale(.5);transform:translateX(10px) scale(.5)}.tippy-tooltip{position:relative;color:#fff;border-radius:.25rem;font-size:.875rem;padding:.3125rem .5625rem;line-height:1.4;text-align:center;background-color:#333}.tippy-tooltip[data-size=small]{padding:.1875rem .375rem;font-size:.75rem}.tippy-tooltip[data-size=large]{padding:.375rem .75rem;font-size:1rem}.tippy-tooltip[data-animatefill]{overflow:hidden;background-color:initial}.tippy-tooltip[data-interactive],.tippy-tooltip[data-interactive] .tippy-roundarrow path{pointer-events:auto}.tippy-tooltip[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-tooltip[data-inertia][data-state=hidden]{transition-timing-function:ease}.tippy-arrow,.tippy-roundarrow{position:absolute;width:0;height:0}.tippy-roundarrow{width:18px;height:7px;fill:#333;pointer-events:none}.tippy-backdrop{position:absolute;background-color:#333;border-radius:50%;width:calc(110% + 2rem);left:50%;top:50%;z-index:-1;transition:all cubic-bezier(.46,.1,.52,.98);-webkit-backface-visibility:hidden;backface-visibility:hidden}.tippy-backdrop:after{content:"";float:left;padding-top:100%}.tippy-backdrop+.tippy-content{transition-property:opacity;will-change:opacity}.tippy-backdrop+.tippy-content[data-state=hidden]{opacity:0}</style><style type="text/css" data-tag-name="trix-editor">trix-editor {
+    display: block;
+}
+
+trix-editor:empty:not(:focus)::before {
+    content: attr(placeholder);
+    color: graytext;
+    cursor: text;
+    pointer-events: none;
+    white-space: pre-line;
+}
+
+trix-editor a[contenteditable=false] {
+    cursor: text;
+}
+
+trix-editor img {
+    max-width: 100%;
+    height: auto;
+}
+
+trix-editor [data-trix-attachment] figcaption textarea {
+    resize: none;
+}
+
+trix-editor [data-trix-attachment] figcaption textarea.trix-autoresize-clone {
+    position: absolute;
+    left: -9999px;
+    max-height: 0px;
+}
+
+trix-editor [data-trix-attachment] figcaption[data-trix-placeholder]:empty::before {
+    content: attr(data-trix-placeholder);
+    color: graytext;
+}
+
+trix-editor [data-trix-cursor-target] {
+    display: inline-block !important;
+    width: 1px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+trix-editor [data-trix-cursor-target=left] {
+    vertical-align: top !important;
+    margin-left: -1px !important;
+}
+
+trix-editor [data-trix-cursor-target=right] {
+    vertical-align: bottom !important;
+    margin-right: -1px !important;
+}</style><style type="text/css" data-tag-name="trix-toolbar">trix-toolbar {
+  display: block;
+}
+
+trix-toolbar {
+  white-space: nowrap;
+}
+
+trix-toolbar [data-trix-dialog] {
+  display: none;
+}
+
+trix-toolbar [data-trix-dialog][data-trix-active] {
+  display: block;
+}
+
+trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
+  background-color: #ffdddd;
+}</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WebSocket &amp; Action Cable · Lecture</title>
+    <link rel="stylesheet" media="all" href="./WebSocket &amp; Action Cable · Lecture_files/application-eeaebaf23e52459e573086f764b5e2fdc37b7f42c2b3a8c0846903292e786cff.css" id="stylesheet">
+    <link rel="stylesheet" media="screen" href="./WebSocket &amp; Action Cable · Lecture_files/application-a632affb078838bc7d45f9a72a25ffe6.css">
+    
+    <link rel="icon" type="image/png" href="https://d26jy9fbi4q9wx.cloudfront.net/assets/favicon-97233a81d58d828d02affb086b53c73ed6dda28095fe44efcbdceddfb325e64d.png">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="NCjYVvjq6z+xcAZm9IpmFky7ONxgNg3d29ijWRWbG0xrB5V2pzvsciOf29pdTciqBUQUNj40nr1iicjEyTA26Q==">
+  <style>@-webkit-keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-shown{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;box-shadow:0 0 .625em #d9d9d9;overflow-y:hidden}.swal2-popup.swal2-toast .swal2-header{flex-direction:row}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:initial;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon-text{font-size:2em;font-weight:700;line-height:1em}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 .0625em #fff,0 0 0 .125em rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:2em;height:2.8125em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.25em;left:-.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:2em 2em;transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;-webkit-transform-origin:0 2em;transform-origin:0 2em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:showSweetToast .5s;animation:showSweetToast .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:hideSweetToast .2s forwards;animation:hideSweetToast .2s forwards}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:animate-toast-success-tip .75s;animation:animate-toast-success-tip .75s}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:animate-toast-success-long .75s;animation:animate-toast-success-long .75s}@-webkit-keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@-webkit-keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-shown{top:auto;right:auto;bottom:auto;left:auto;background-color:transparent}body.swal2-no-backdrop .swal2-shown>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-shown.swal2-top{top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-top-left,body.swal2-no-backdrop .swal2-shown.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-top-end,body.swal2-no-backdrop .swal2-shown.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-shown.swal2-center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-left,body.swal2-no-backdrop .swal2-shown.swal2-center-start{top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-end,body.swal2-no-backdrop .swal2-shown.swal2-center-right{top:50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom{bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom-left,body.swal2-no-backdrop .swal2-shown.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-bottom-end,body.swal2-no-backdrop .swal2-shown.swal2-bottom-right{right:0;bottom:0}.swal2-container{display:flex;position:fixed;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:10px;background-color:transparent;z-index:1060;overflow-x:hidden;-webkit-overflow-scrolling:touch}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-container.swal2-fade{transition:background-color .1s}.swal2-container.swal2-shown{background-color:rgba(0,0,0,.4)}.swal2-popup{display:none;position:relative;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem;box-sizing:border-box}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-popup .swal2-header{display:flex;flex-direction:column;align-items:center}.swal2-popup .swal2-title{display:block;position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-popup .swal2-actions{flex-wrap:wrap;align-items:center;justify-content:center;margin:1.25em auto 0;z-index:1}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-confirm{width:2.5em;height:2.5em;margin:.46875em;padding:0;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent;cursor:default;box-sizing:border-box;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-popup .swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{display:inline-block;width:15px;height:15px;margin-left:5px;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff;content:'';-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal}.swal2-popup .swal2-styled{margin:.3125em;padding:.625em 2em;font-weight:500;box-shadow:none}.swal2-popup .swal2-styled:not([disabled]){cursor:pointer}.swal2-popup .swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled:focus{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(50,100,150,.4)}.swal2-popup .swal2-styled::-moz-focus-inner{border:0}.swal2-popup .swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-popup .swal2-image{max-width:100%;margin:1.25em auto}.swal2-popup .swal2-close{position:absolute;top:0;right:0;justify-content:center;width:1.2em;height:1.2em;padding:0;transition:color .1s ease-out;border:none;border-radius:0;outline:initial;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer;overflow:hidden}.swal2-popup .swal2-close:hover{-webkit-transform:none;transform:none;color:#f27474}.swal2-popup>.swal2-checkbox,.swal2-popup>.swal2-file,.swal2-popup>.swal2-input,.swal2-popup>.swal2-radio,.swal2-popup>.swal2-select,.swal2-popup>.swal2-textarea{display:none}.swal2-popup .swal2-content{justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:300;line-height:normal;z-index:1;word-wrap:break-word}.swal2-popup #swal2-content{text-align:center}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-radio,.swal2-popup .swal2-select,.swal2-popup .swal2-textarea{margin:1em auto}.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-textarea{width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;font-size:1.125em;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);box-sizing:border-box}.swal2-popup .swal2-file.swal2-inputerror,.swal2-popup .swal2-input.swal2-inputerror,.swal2-popup .swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-popup .swal2-file:focus,.swal2-popup .swal2-input:focus,.swal2-popup .swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-popup .swal2-file::-webkit-input-placeholder,.swal2-popup .swal2-input::-webkit-input-placeholder,.swal2-popup .swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-popup .swal2-file:-ms-input-placeholder,.swal2-popup .swal2-input:-ms-input-placeholder,.swal2-popup .swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::-ms-input-placeholder,.swal2-popup .swal2-input::-ms-input-placeholder,.swal2-popup .swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::placeholder,.swal2-popup .swal2-input::placeholder,.swal2-popup .swal2-textarea::placeholder{color:#ccc}.swal2-popup .swal2-range input{width:80%}.swal2-popup .swal2-range output{width:20%;font-weight:600;text-align:center}.swal2-popup .swal2-range input,.swal2-popup .swal2-range output{height:2.625em;margin:1em auto;padding:0;font-size:1.125em;line-height:2.625em}.swal2-popup .swal2-input{height:2.625em;padding:0 .75em}.swal2-popup .swal2-input[type=number]{max-width:10em}.swal2-popup .swal2-file{font-size:1.125em}.swal2-popup .swal2-textarea{height:6.75em;padding:.75em}.swal2-popup .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;color:#545454;font-size:1.125em}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-radio{align-items:center;justify-content:center}.swal2-popup .swal2-checkbox label,.swal2-popup .swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-popup .swal2-checkbox input,.swal2-popup .swal2-radio input{margin:0 .4em}.swal2-popup .swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;background:#f0f0f0;color:#666;font-size:1em;font-weight:300;overflow:hidden}.swal2-popup .swal2-validation-message::before{display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center;content:'!';zoom:normal}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}.swal2-icon{position:relative;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;line-height:5em;cursor:default;box-sizing:content-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;zoom:normal}.swal2-icon-text{font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:3.75em 3.75em;transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 3.75em;transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;top:-.25em;left:-.25em;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%;z-index:2;box-sizing:content-box}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;top:.5em;left:1.625em;width:.4375em;height:5.625em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);z-index:1}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;height:.3125em;border-radius:.125em;background-color:#a5dc86;z-index:2}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.875em;width:1.5625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-progresssteps{align-items:center;margin:0 0 1.25em;padding:0;font-weight:600}.swal2-progresssteps li{display:inline-block;position:relative}.swal2-progresssteps .swal2-progresscircle{width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center;z-index:20}.swal2-progresssteps .swal2-progresscircle:first-child{margin-left:0}.swal2-progresssteps .swal2-progresscircle:last-child{margin-right:0}.swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep{background:#3085d6}.swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep~.swal2-progresscircle{background:#add8e6}.swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep~.swal2-progressline{background:#add8e6}.swal2-progresssteps .swal2-progressline{width:2.5em;height:.4em;margin:0 -1px;background:#3085d6;z-index:10}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-show.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-hide.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-animate-success-icon .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-animate-error-icon{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-animate-error-icon .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}@-webkit-keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:initial!important}}</style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;box-sizing: content-box;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style><style data-styled="" data-styled-version="4.4.1"></style></head>
+
+  <body class="bg-grey" data-controller="navbar-menu" data-action="keyup-&gt;navbar-menu#closeMenuOnEscape">
+    <div data-controller="utilities--toggle-full-screen">
+      <nav class="container-fluid navbar" data-utilities--toggle-full-screen-target="navbar">
+    <div class="navbar-collection d-flex">
+      <a class="logo d-none d-sm-block" href="https://kitt.lewagon.com/camps/1044">
+        <img alt="Le Wagon logo" class="navbar-logo" src="./WebSocket &amp; Action Cable · Lecture_files/logo-ae2beeecce25d711f577b08deb9adfc6c02b673ed106b8d6c3da0f1721d9da33.svg">
+</a>      <img alt="Le Wagon logo" class="navbar-logo d-sm-none" data-action="click-&gt;navbar-menu#toggleMenu" data-target="navbar-trigger.btn" src="./WebSocket &amp; Action Cable · Lecture_files/logo-ae2beeecce25d711f577b08deb9adfc6c02b673ed106b8d6c3da0f1721d9da33.svg">
+      <button class="menu-trigger menu-trigger-mobile" data-action="navbar-menu#toggleMenu" data-target="navbar-trigger.btn">
+  <div class="menu-trigger-content">
+    <span class="menu-trigger-content-label d-none d-sm-block">#1044 Web FT</span>
+    <span class="menu-trigger-content-label d-sm-none">#1044 Web FT</span>
+        <span class="menu-trigger-content-city">Melbourne</span>
+  </div>
+  <i class="mdi mdi-menu menu-trigger-icon d-none d-sm-block" data-target="navbar-menu.menuIcon"></i>
+</button>
+
+<!-- Main Menu -->
+<div class="menu menu-main d-none" data-controller="navbar-side-panel-menu" data-target="navbar-menu.mainMenu">
+  <div class="overflow-scroll h-100">
+    <!-- Menu only for mobile -->
+      <div class="nav-mobile-links">
+  <!-- Menu section -->
+<div class="menu-panel visible d-xl-none" data-target="navbar-menu.menuPanel">
+  <span class="menu-panel-name"></span>
+  <ul class="menu-panel-items">
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/camps/1044">
+      <i class="menu-panel-item-icon "></i>
+      Dashboard
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/camps/1044/challenges">
+      <i class="menu-panel-item-icon "></i>
+      Challenges
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link active" href="https://kitt.lewagon.com/camps/1044/lectures">
+      <i class="menu-panel-item-icon "></i>
+      Lectures
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/camps/1044/flashcards">
+      <i class="menu-panel-item-icon "></i>
+      Flashcards
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/camps/1044/products">
+      <i class="menu-panel-item-icon "></i>
+      Products
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/camps/1044/classmates">
+      <i class="menu-panel-item-icon "></i>
+      Classmates
+</a>  </li>
+
+  </ul>
+</div>
+
+  </div>
+
+
+    <!-- Batch links -->
+    
+
+    <!-- City links -->
+    
+
+    <!-- Region links -->
+    
+
+    <!-- Jump to links -->
+    <!-- Menu section -->
+<div class="menu-panel visible" data-target="navbar-menu.menuPanel">
+  <span class="menu-panel-name">Jump to</span>
+  <ul class="menu-panel-items">
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/camps/1044?path=06-Projects%2F06-Payment-with-Stripe">
+      <i class="menu-panel-item-icon mdi mdi-code-tags"></i>
+      Batch #1044 Web FT
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/alumni">
+      <i class="menu-panel-item-icon mdi mdi-school-outline"></i>
+      Careers
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/knowledge/tutorials">
+      <i class="menu-panel-item-icon mdi mdi-book-open-outline"></i>
+      Library
+</a>  </li>
+
+        <li class="menu-panel-item">
+    <a class="menu-link " href="https://kitt.lewagon.com/notion/students/cb5b88151cf84cc99e00d6fbc0291892">
+      <i class="menu-panel-item-icon mdi mdi-head-lightbulb-outline"></i>
+      Student Handbook
+</a>  </li>
+
+  </ul>
+</div>
+
+
+    <!-- Admin links -->
+    
+  </div>
+</div>
+
+        <ul class="navbar-links d-none d-xl-flex align-items-center">
+      <li class="navbar-item">
+          <a class="navbar-link" href="https://kitt.lewagon.com/camps/1044">
+            Dashboard
+</a>      </li>
+      <li class="navbar-item">
+          <a class="navbar-link" href="https://kitt.lewagon.com/camps/1044/challenges">
+            Challenges
+</a>      </li>
+      <li class="navbar-item">
+          <a class="navbar-link active" href="https://kitt.lewagon.com/camps/1044/lectures">
+            Lectures
+</a>      </li>
+      <li class="navbar-item">
+          <a class="navbar-link" href="https://kitt.lewagon.com/camps/1044/flashcards">
+            Flashcards
+</a>      </li>
+      <li class="navbar-item">
+          <a class="navbar-link" href="https://kitt.lewagon.com/camps/1044/products">
+            Products
+</a>      </li>
+      <li class="navbar-item">
+          <a class="navbar-link" href="https://kitt.lewagon.com/camps/1044/classmates">
+            Classmates
+</a>      </li>
+  </ul>
+
+    </div>
+    <div class="navbar-collection d-flex flex-row-reverse align-items-center">
+      <button class="navbar-user-trigger" data-action="navbar-menu#toggleUserMenu navbar-trigger#closeMenuTrigger">
+  <img alt="Shelley Timmins" class="navbar-avatar" src="./WebSocket &amp; Action Cable · Lecture_files/whcdhwtdneppolcbmyoa.jpg">
+</button>
+
+<!-- Menu - User menu -->
+<div class="menu menu-user d-none" data-target="navbar-menu.userMenu">
+  <div class="menu-panel visible">
+    <div class="d-flex justify-content-between">
+      <span class="menu-panel-name">Shelley Timmins</span>
+      <div data-action="click-&gt;navbar-menu#toggleUserMenu" class="menu-panel-close d-none d-sm-block">
+        <i class="mdi mdi-close"></i>
+      </div>
+    </div>
+    <ul class="menu-panel-items menu-panel-item-user">
+      <li class="menu-panel-item">
+        <a class="menu-link" href="https://kitt.lewagon.com/alumni/timminsss">
+          <i class="mdi mdi-account-outline"></i> Profile
+</a>      </li>
+        <li class="menu-panel-item">
+          <a class="menu-link" href="https://kitt.lewagon.com/camps/1044/camp_days_attendances/new?future=true">
+            <i class="mdi mdi-calendar-remove"></i> Declare absence
+</a>        </li>
+    </ul>
+  </div>
+  <div class="menu-panel visible">
+    <span class="menu-panel-name">Tools</span>
+    <ul class="menu-panel-items menu-panel-item-user">
+      <li class="menu-panel-item">
+        <a target="_blank" class="menu-link" href="https://uikit.lewagon.com/">
+          <i class="mdi mdi-palette-outline"></i> UI kit
+</a>      </li>
+        <li class="menu-panel-item">
+          <a class="menu-link" href="https://kitt.lewagon.com/db">
+            <i class="mdi mdi-database"></i> Schema editor
+</a>        </li>
+
+        <li class="menu-panel-item">
+          <a class="menu-link" target="_blank" href="https://kitt.lewagon.com/redeem_github_student_developer_pack">
+            <i class="mdi mdi-github"></i> Student Developer Pack
+</a>        </li>
+
+    </ul>
+  </div>
+  <div class="menu-panel visible">
+    <ul class="menu-panel-items menu-panel-item-user">
+
+
+      <li class="menu-panel-item">
+        <a target="blank" class="menu-link" href="https://kitt.lewagon.com/terms_of_use">
+          <i class="mdi mdi-text-box-outline"></i> Terms of use
+</a>      </li>
+      <li class="menu-panel-item">
+        <a class="menu-link" rel="nofollow" data-method="delete" href="https://kitt.lewagon.com/users/sign_out">
+          <i class="mdi mdi-logout-variant"></i> Sign out
+</a>      </li>
+    </ul>
+  </div>
+</div>
+
+      
+
+
+    </div>
+</nav>
+
+      
+      <div data-navbar-menu-target="content" data-action="click-&gt;navbar-menu#closeMenu">
+        
+
+<div id="wrapper" data-controller="ajax-form">
+  <div class="syllabus-container" data-controller="push-state" data-push-state-original-url="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit">
+    <div class="modules-nav">
+      <a class="" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=00-Setup" data-original-title="Setup">
+        <svg viewBox="0 0 185 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="terminal" fill="#000000">
+            <path d="M92.6,115.057143 L184.485714,115.057143 L184.485714,138.028571 L92.6,138.028571 L92.6,115.057143 L92.6,115.057143 L92.6,115.057143 Z M23.6857143,138.028571 L92.6,69.1142857 L23.6857143,0.2 L0.714285714,23.1714286 L46.6571429,69.1142857 L0.714285714,115.057143 L23.6857143,138.028571 L23.6857143,138.028571 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
+
+</a>      <a class="" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=01-Ruby" data-original-title="Ruby">
+        <svg viewBox="0 0 194 193" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ruby" transform="translate(-3.000000, -6.000000)" fill="#B40A00">
+            <g id="Page-1">
+                <path d="M11.3454545,105.036364 C12.5454545,101.281818 13.9727273,93.6272727 17.3,86.9 C33.4909091,54.2272727 58.5363636,30.4636364 91.9818182,16.0272727 C98.4363636,13.2454545 106.118182,12.3545455 113.245455,12.3181818 C122.154545,12.2727273 128.127273,18.4727273 128.909091,27.4636364 C129.318182,32.1454545 129.263636,37.3454545 127.654545,41.6545455 C111.809091,84.0363636 81.9090909,112.418182 39.8727273,128.363636 C38.2363636,128.981818 36.4090909,129.145455 34.6454545,129.381818 C20.3363636,131.345455 11.1272727,123.236364 11.3454545,105.036364 L11.3454545,105.036364 L11.3454545,105.036364 Z M121.354545,73.6272727 C144.590909,72 167.436364,70.4 191.372727,68.7181818 C189.627273,67.0545455 188.645455,65.9636364 187.509091,65.0545455 C166.672727,48.3454545 145.781818,31.7090909 125.027273,14.9 C122.972727,13.2363636 121.7,10.6181818 118.954545,6.98181818 C127.872727,6.98181818 135.081818,6.9 142.290909,7 C150.990909,7.12727273 159.9,6.28181818 168.354545,7.84545455 C186.636364,11.2272727 196.390909,23.0181818 196.045455,41.6 C195.727273,59.0181818 193.927273,76.4090909 192.636364,93.8 C190.663636,120.427273 188.590909,147.054545 186.536364,173.672727 C186.181818,178.263636 185.754545,182.854545 185.290909,188.309091 C175.627273,179.7 166.381818,171.472727 157.154545,163.236364 C155.963636,162.172727 154.972727,160.8 153.654545,159.954545 C142.372727,152.772727 137.663636,142.063636 135.1,129.263636 C131.754545,112.536364 126.854545,96.1181818 122.636364,79.5636364 C122.163636,77.7090909 121.818182,75.8181818 121.345455,73.6090909 L121.354545,73.6272727 L121.354545,73.6272727 Z M34.2272727,175.463636 C39.2,174.772727 43.8545455,174.481818 48.2909091,173.336364 C50.0363636,172.890909 52.0636364,170.763636 52.6272727,168.981818 C56.8090909,155.754545 60.6454545,142.409091 64.6,129.118182 C64.9454545,127.954545 65.4272727,126.827273 66.0636364,125.090909 C90.2636364,132.836364 114.272727,140.527273 138.990909,148.436364 C126.127273,161.418182 112.445455,172.3 97.1545455,182.081818 C124.4,184.163636 151.645455,186.245455 178.890909,188.327273 C178.890909,188.672727 178.890909,189.027273 178.9,189.372727 C173.027273,189.790909 167.154545,190.227273 161.281818,190.618182 C126.627273,192.9 91.9818182,195.172727 57.3272727,197.436364 C51.8181818,197.8 46.3,198.4 40.8,198.3 C17.4727273,197.872727 4.25454545,185.090909 3.95454545,161.690909 C3.78181818,148.545455 5.13636364,135.381818 5.97272727,122.236364 C6.03636364,121.245455 7.45454545,120.336364 8.24545455,119.390909 C9.41818182,120.436364 11.1272727,121.254545 11.7,122.563636 C18.6636364,138.709091 25.4636364,154.927273 32.3090909,171.118182 C32.8636364,172.418182 33.4545455,173.7 34.2272727,175.463636 L34.2272727,175.463636 L34.2272727,175.463636 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+
+</a>      <a class="" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=02-OOP" data-original-title="OOP">
+        <svg viewBox="0 0 201 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="product" fill="#8000FF">
+            <g id="Page-1">
+                <path d="M193.878225,34.7249066 C193.381498,34.520894 192.875902,34.3257515 192.370305,34.130609 C166.274429,23.8412762 140.07211,13.8180469 114.144766,3.10294869 C105.96652,-0.276564904 98.9857404,-0.64910971 90.5680018,2.79249469 C61.7135196,14.5720067 32.5042328,25.4911175 3.40138735,36.6497215 C1.33465069,37.4391617 0.651651875,38.4503547 0.731482905,40.6501431 C1.05080702,49.6089586 0.855664507,58.5677742 1.29030011,67.5354599 C1.85798744,79.2883615 1.50318286,91.0767436 1.91120812,102.847385 C2.4522851,118.387826 2.0797403,133.954877 2.79821957,149.504187 C2.79821957,153.291726 2.92240117,157.079265 2.75386899,160.849064 C2.65629774,163.102073 3.40138735,164.255188 5.48586424,165.275251 C36.3272521,180.372186 67.1154193,195.566692 97.8858463,210.796678 C99.7219599,211.70143 101.194399,211.825611 103.003902,210.787808 C105.611716,209.279888 108.361451,208.002592 111.075706,206.672075 C138.679503,193.08306 166.292169,179.494044 193.913705,165.940509 C195.590157,165.124459 196.6457,164.335019 196.698921,162.170711 C197.239998,142.958043 197.940737,123.754245 198.526165,104.550447 C198.880969,93.0015584 198.792268,81.4260591 199.484137,69.8949103 C199.989733,61.4860419 199.909902,53.0683033 200.326798,44.6594348 C200.770304,35.7094893 202.304833,38.0778099 193.869354,34.7337767 L193.878225,34.7249066 L193.878225,34.7249066 Z M94.1958786,191.220336 C94.1958786,193.837019 93.8588143,194.404707 91.2687409,193.10967 C66.9202768,180.984223 42.5363322,168.947478 18.1169072,156.963954 C16.2807935,156.059202 15.7308464,154.977048 15.7131062,152.999012 C15.5357039,136.376418 15.2962108,119.744953 14.9768867,103.122359 C14.6753028,87.4754771 14.2495373,71.8374654 13.8858626,56.1905836 C13.8592523,55.0108583 13.8858626,53.8311331 13.8858626,52.0837206 C24.0332735,56.4744272 33.6307373,60.5990304 43.2015908,64.7679842 C59.41616,71.8374654 75.6129889,78.9601673 91.8541684,85.9764278 C93.7080224,86.7747381 94.3821511,87.7327105 94.3732809,89.790577 C94.2490993,123.594583 94.1958786,157.407459 94.2047488,191.211465 L94.1958786,191.220336 L94.1958786,191.220336 Z M99.1276623,75.1105376 C75.1251326,64.5905819 51.0959926,54.1415871 27.0757228,43.6571119 C26.4282044,43.3732682 25.5678033,43.3023073 25.1863884,42.1403223 C50.3775134,32.4541573 75.4355866,22.8212131 100.46705,13.1527883 C101.682255,12.6826723 102.711189,12.7713734 103.882044,13.2326194 C127.565249,22.5462395 151.248455,31.8243792 174.94053,41.111389 C175.428387,41.3065315 175.996074,41.421843 176.253307,42.2999844 C170.2305,44.9964991 164.181081,47.7196243 158.113923,50.4161391 C139.779397,58.5589041 121.44487,66.6839289 103.110344,74.826694 C101.797567,75.4121215 100.635582,75.7757962 99.1365324,75.1105376 L99.1276623,75.1105376 L99.1276623,75.1105376 Z M186.968405,55.4543641 C186.51603,72.1745298 186.054784,88.9035656 185.540317,105.623731 C185.194383,116.950867 184.759747,128.269133 184.351722,139.587399 C184.174319,144.545793 183.837255,149.504187 183.837255,154.462581 C183.837255,156.600279 182.551088,157.176836 181.078649,157.904186 C160.056478,168.237869 139.043177,178.580422 118.021006,188.914106 C114.561661,190.617168 111.084577,192.31136 107.128505,194.245045 L107.128505,185.800696 C107.181726,154.143257 107.270427,122.494689 107.217207,90.8372505 C107.217207,88.0254242 108.113088,86.7747381 110.712032,85.6304933 C135.016145,74.9686158 159.249298,64.129336 183.491321,53.3255366 C187.021626,51.7555263 187.074847,51.7200459 186.968405,55.4454939 L186.968405,55.4543641 L186.968405,55.4543641 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+
+</a>      <a class="" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=03-AR-Database" data-original-title="DB">
+        <!--?xml version="1.0" encoding="UTF-8"?-->
+<svg viewBox="0 0 171 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>database</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="database" fill-rule="nonzero" fill="#2F6592">
+            <path d="M169.862521,28.8763565 C165.933165,14.3194153 136.686947,0 85.5272727,0 C34.3675986,0 5.11798717,14.3194153 1.19202424,28.8763565 C0.906993226,29.3751608 0.696613191,29.9214702 0.696613191,30.5390374 L0.696613191,32.2356506 L0.696613191,71.257754 L0.696613191,72.9543672 L0.696613191,74.6509804 L0.696613191,111.976471 L0.696613191,113.673084 L0.696613191,115.369697 L0.696613191,156.088414 C0.696613191,156.638116 0.842521925,157.15728 1.09362068,157.618759 C5.10102103,174.228602 40.953851,186.627451 85.5272727,186.627451 C129.998898,186.627451 165.794043,174.2795 169.933779,157.730735 C170.205237,157.245504 170.357932,156.685621 170.357932,156.088414 L170.357932,115.369697 L170.357932,113.673084 L170.357932,111.976471 L170.357932,74.6509804 L170.357932,72.9543672 L170.357932,71.257754 L170.357932,32.2356506 L170.357932,30.5390374 C170.357932,29.9214702 170.147552,29.3751608 169.862521,28.8763565 Z M163.303415,115.318799 C163.208404,115.729379 163.076068,116.136566 162.9098,116.55054 C162.774071,116.886469 162.607803,117.222399 162.424569,117.558328 C162.197223,117.975695 161.942731,118.393062 161.640734,118.810429 C161.416781,119.125999 161.162289,119.438175 160.897617,119.750352 C160.520969,120.194865 160.120568,120.639378 159.665876,121.080497 C159.391025,121.348562 159.089027,121.613234 158.783637,121.881298 C158.227148,122.36653 157.646906,122.848368 156.9988,123.326813 C156.720555,123.5338 156.421952,123.734 156.126741,123.937594 C155.359872,124.466937 154.55907,124.992887 153.680225,125.508657 C153.449485,125.64778 153.20178,125.780116 152.960861,125.915845 C151.949679,126.485907 150.894386,127.052575 149.754262,127.602278 C149.608353,127.673536 149.455658,127.7414 149.306356,127.809265 C148.033896,128.409866 146.703751,129.000287 145.281989,129.570349 C145.241271,129.587316 145.200552,129.600888 145.159833,129.617855 C137.453816,132.695511 127.596493,135.284543 116.110422,136.981156 C116.052737,136.987942 115.995052,136.994729 115.937368,137.004908 C113.704625,137.334051 111.414197,137.625869 109.062691,137.883754 C108.679256,137.924473 108.275462,137.951619 107.888635,137.992337 C105.835733,138.206111 103.759078,138.402918 101.621345,138.559006 C100.644096,138.630264 99.6193419,138.664196 98.6251266,138.725274 C97.0167373,138.820284 95.4253141,138.925475 93.7762061,138.983159 C91.0819843,139.06799 88.3334709,139.122282 85.5272727,139.122282 C82.7210745,139.122282 79.9725611,139.06799 77.2749462,138.97298 C75.6258381,138.915295 74.034415,138.806712 72.4260257,138.715094 C71.4318103,138.65741 70.407056,138.620084 69.4298068,138.548826 C67.2920742,138.392738 65.2154196,138.195931 63.1625176,137.982158 C62.7756898,137.941439 62.3718959,137.914293 61.9884613,137.873574 C59.6369554,137.615689 57.3465276,137.320478 55.1137847,136.994729 C55.0560998,136.987942 54.998415,136.981156 54.9407301,136.970976 C43.4546588,135.274363 33.5973362,132.685331 25.8913191,129.607675 C25.8506004,129.594102 25.8098816,129.577136 25.7691629,129.56017 C24.3474011,128.990108 23.0138631,128.399686 21.7447964,127.799085 C21.5988877,127.727827 21.4427993,127.659963 21.2968906,127.592098 C20.1567665,127.042396 19.1014731,126.47912 18.0902916,125.905665 C17.8527658,125.769936 17.601667,125.6376 17.3709276,125.498478 C16.492082,124.982707 15.6912806,124.456757 14.9244114,123.927414 C14.6325939,123.72382 14.3305968,123.52362 14.0523522,123.316633 C13.404246,122.838188 12.8240043,122.35635 12.2675152,121.871119 C11.965518,121.606447 11.6601276,121.341775 11.3852763,121.070317 C10.930584,120.629198 10.5301832,120.188078 10.1535351,119.740173 C9.88886346,119.427996 9.63437148,119.115819 9.41041854,118.800249 C9.11181462,118.382882 8.85732264,117.965515 8.62658324,117.548148 C8.44334902,117.212219 8.28047415,116.876289 8.14135187,116.54036 C7.97508378,116.12978 7.84274795,115.719199 7.74773761,115.308619 C7.62218824,114.769096 7.48306595,114.219393 7.48306595,113.673084 C7.48306595,113.289649 7.5271779,112.906215 7.58825597,112.526173 C7.67308663,112.013796 7.62558146,111.501419 7.48306595,111.016188 L7.48306595,85.8248749 C7.57807629,85.9130988 7.69683922,85.9979294 7.79524278,86.0861533 C8.53496613,86.7376528 9.28826239,87.385759 10.136569,88.0101127 C22.9188528,97.6774146 48.4800271,105.190018 85.5272727,105.190018 C122.41843,105.190018 147.915133,97.7384927 160.751708,88.1288756 C161.776463,87.3823658 162.69942,86.6121034 163.568086,85.8282681 L163.57148,85.8248749 L163.57148,111.016188 C163.428964,111.501419 163.381459,112.013796 163.466289,112.526173 C163.530761,112.906215 163.57148,113.289649 163.57148,113.673084 C163.57148,114.219393 163.432357,114.769096 163.303415,115.318799 Z M163.57148,45.1061583 L163.57148,70.2974709 C163.428964,70.7827023 163.381459,71.2950795 163.466289,71.8074567 C163.530761,72.187498 163.57148,72.5709326 163.57148,72.9543672 C163.57148,73.5006766 163.432357,74.0503793 163.303415,74.600082 C163.208404,75.0106624 163.076068,75.4178496 162.9098,75.8318232 C162.774071,76.1677526 162.607803,76.503682 162.424569,76.8396114 C162.197223,77.2569783 161.942731,77.6743451 161.640734,78.0917119 C161.416781,78.407282 161.162289,78.7194588 160.897617,79.0316357 C160.520969,79.4761483 160.120568,79.920661 159.665876,80.3617804 C159.391025,80.6298453 159.089027,80.8945169 158.783637,81.1625818 C158.227148,81.6478132 157.646906,82.1296513 156.9988,82.6080963 C156.720555,82.8150831 156.421952,83.0152834 156.126741,83.218877 C155.359872,83.7482203 154.55907,84.2741704 153.680225,84.7899408 C153.449485,84.9290631 153.20178,85.0613989 152.960861,85.197128 C151.949679,85.76719 150.894386,86.3338588 149.754262,86.8835615 C149.608353,86.9548193 149.455658,87.0226838 149.306356,87.0905483 C148.033896,87.6911494 146.703751,88.2815708 145.281989,88.8516328 C145.241271,88.8685989 145.200552,88.8821718 145.159833,88.899138 C137.453816,91.9767943 127.596493,94.565826 116.110422,96.2624392 C116.052737,96.2692257 115.995052,96.2760121 115.937368,96.2861918 C113.704625,96.6153348 111.414197,96.9071522 109.062691,97.1650374 C108.679256,97.2057561 108.275462,97.232902 107.888635,97.2736207 C105.835733,97.4873939 103.759078,97.6842011 101.621345,97.8402895 C100.644096,97.9115472 99.6193419,97.9454795 98.6251266,98.0065576 C97.0167373,98.1015679 95.4253141,98.2067579 93.7762061,98.2644428 C91.0819843,98.3492734 88.3334709,98.4035651 85.5272727,98.4035651 C82.7210745,98.4035651 79.9725611,98.3492734 77.2749462,98.2542631 C75.6258381,98.1965783 74.034415,98.087995 72.4260257,97.9963779 C71.4318103,97.938693 70.407056,97.9013676 69.4298068,97.8301098 C67.2920742,97.6740214 65.2154196,97.4772143 63.1625176,97.263441 C62.7756898,97.2227223 62.3718959,97.1955765 61.9884613,97.1548578 C59.6369554,96.8969725 57.3465276,96.6017619 55.1137847,96.2760121 C55.0560998,96.2692257 54.998415,96.2624392 54.9407301,96.2522595 C43.4546588,94.5556463 33.5973362,91.9666146 25.8913191,88.8889583 C25.8506004,88.8753854 25.8098816,88.8584193 25.7691629,88.8414531 C24.3474011,88.2713911 23.0138631,87.6809697 21.7447964,87.0803686 C21.5988877,87.0091109 21.4427993,86.9412463 21.2968906,86.8733818 C20.1567665,86.3236791 19.1014731,85.7604036 18.0902916,85.1869483 C17.8527658,85.0512193 17.601667,84.9188834 17.3709276,84.7797611 C16.492082,84.2639907 15.6912806,83.7380406 14.9244114,83.2086973 C14.6325939,83.0051037 14.3305968,82.8049034 14.0523522,82.5979166 C13.404246,82.1194717 12.8240043,81.6376335 12.2675152,81.1524021 C11.965518,80.8877305 11.6601276,80.6230588 11.3852763,80.3516007 C10.930584,79.9104813 10.5301832,79.4693619 10.1535351,79.021456 C9.88886346,78.7092791 9.63437148,78.3971023 9.41041854,78.0815323 C9.11181462,77.6641654 8.85732264,77.2467986 8.62658324,76.8294317 C8.44334902,76.4935023 8.28047415,76.1575729 8.14135187,75.8216435 C7.97508378,75.4110631 7.84274795,75.0004827 7.74773761,74.5899023 C7.62218824,74.0503793 7.48306595,73.5006766 7.48306595,72.9543672 C7.48306595,72.5709326 7.5271779,72.187498 7.58825597,71.8074567 C7.67308663,71.2950795 7.62558146,70.7827023 7.48306595,70.2974709 L7.48306595,45.1061583 C7.89025312,45.47602 8.35512513,45.8390952 8.79624456,46.2055636 C9.04055686,46.4091572 9.26790303,46.6127508 9.52578824,46.8163444 C10.5437561,47.6171458 11.6431615,48.4077676 12.834184,49.1780299 C13.0818895,49.3375116 13.360134,49.4936 13.6180193,49.6530816 C14.6156278,50.2740421 15.6709212,50.8814296 16.7805062,51.4786374 C17.1910866,51.6991971 17.601667,51.9163636 18.0258203,52.1335301 C19.264348,52.7646702 20.5639537,53.3788442 21.9314239,53.9726588 C22.1553768,54.0710624 22.3589704,54.1728592 22.5863166,54.2678695 C24.1777398,54.9431216 25.8675665,55.5878346 27.6252578,56.2121882 C28.1104891,56.3852428 28.6194731,56.5481176 29.1182774,56.717779 C30.5162866,57.1894374 31.9618011,57.6407365 33.4582139,58.0784627 C33.9977369,58.2345512 34.5270802,58.397426 35.0801761,58.546728 C37.0652135,59.0964307 39.1147223,59.6189875 41.2660278,60.1008257 C41.5612385,60.1686902 41.8802018,60.2229818 42.1788057,60.2874531 C44.0756193,60.7014267 46.0436906,61.0848613 48.0660535,61.4445433 C48.7514852,61.5666995 49.4470966,61.6820692 50.1461012,61.7974389 C52.0700606,62.1130089 54.0517048,62.4014332 56.0842474,62.6661048 C56.6068043,62.7339693 57.1056086,62.8120135 57.6349519,62.8764848 C60.1595123,63.1818752 62.7722966,63.4431537 65.4563387,63.6671066 C66.1180178,63.7213982 66.8068428,63.7621169 67.4787016,63.8096221 C69.6266139,63.9657105 71.8220314,64.0946531 74.0683472,64.1964499 C74.8861148,64.2337754 75.7004891,64.2711009 76.5352228,64.3016399 C79.460184,64.4000435 82.4394367,64.4713012 85.5272727,64.4713012 C88.6151087,64.4713012 91.5943615,64.4000435 94.5193226,64.3016399 C95.3506631,64.2711009 96.1650374,64.2337754 96.9861982,64.1964499 C99.2325141,64.0946531 101.427932,63.9657105 103.575844,63.8096221 C104.247703,63.7587237 104.933134,63.7213982 105.598207,63.6671066 C108.282249,63.4465469 110.895033,63.1818752 113.419594,62.8764848 C113.948937,62.8120135 114.447741,62.7339693 114.970298,62.6661048 C117.002841,62.4014332 118.981092,62.1130089 120.908444,61.7974389 C121.607449,61.6820692 122.30306,61.5666995 122.988492,61.4445433 C125.010855,61.0848613 126.978926,60.7014267 128.87574,60.2874531 C129.174344,60.2229818 129.493307,60.165297 129.788518,60.1008257 C131.939823,59.6189875 133.989332,59.0930374 135.974369,58.546728 C136.527465,58.3940328 137.056809,58.2345512 137.596332,58.0784627 C139.092744,57.6407365 140.538259,57.1894374 141.936268,56.717779 C142.435072,56.5481176 142.944056,56.3852428 143.429288,56.2121882 C145.186979,55.5878346 146.880199,54.9431216 148.468229,54.2678695 C148.695575,54.1728592 148.899169,54.0710624 149.123122,53.9726588 C150.490592,53.375451 151.790198,52.7646702 153.028725,52.1335301 C153.452878,51.9163636 153.866852,51.6991971 154.274039,51.4786374 C155.383624,50.8848228 156.438918,50.2774353 157.436526,49.6530816 C157.694411,49.4936 157.972656,49.3375116 158.220361,49.1780299 C159.411384,48.4077676 160.510789,47.620539 161.528757,46.8163444 C161.783249,46.6127508 162.010595,46.4091572 162.258301,46.2055636 C162.69942,45.8390952 163.164292,45.47602 163.57148,45.1061583 Z M85.5272727,6.78645276 C131.522456,6.78645276 163.57148,20.1964834 163.57148,32.2356506 C163.57148,44.2748178 131.522456,57.6848485 85.5272727,57.6848485 C39.5320891,57.6848485 7.48306595,44.2748178 7.48306595,32.2356506 C7.48306595,20.1964834 39.5320891,6.78645276 85.5272727,6.78645276 Z M163.57148,155.080625 C163.523974,155.229927 163.490042,155.382622 163.462896,155.538711 C161.538937,167.275881 129.761372,179.840998 85.5272727,179.840998 C41.2931736,179.840998 9.51560856,167.275881 7.5916492,155.538711 C7.56450339,155.386016 7.5271779,155.236714 7.48306595,155.094198 L7.48306595,126.543591 C7.57807629,126.631815 7.69683922,126.716646 7.79524278,126.80487 C8.53496613,127.456369 9.28826239,128.104476 10.136569,128.728829 C22.9188528,138.396131 48.4800271,145.908734 85.5272727,145.908734 C122.41843,145.908734 147.915133,138.457209 160.751708,128.847592 C161.776463,128.101082 162.69942,127.33082 163.568086,126.546985 L163.57148,126.543591 L163.57148,155.080625 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
+
+</a>      <a class="" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=04-Front-End" data-original-title="Front">
+        <svg viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M61.9186999,34.2816331 L38.1120102,47.6133794 L51.4437564,23.8066897 L38.1120102,0 L61.9186999,13.3317462 L85.7253895,0 L72.3936433,23.8066897 L85.7253895,47.6133794 L61.9186999,34.2816331 L61.9186999,34.2816331 Z M176.19081,127.603857 L199.9975,114.27211 L186.665754,138.0788 L199.9975,161.88549 L176.19081,148.553744 L152.384121,161.88549 L165.715867,138.0788 L152.384121,114.27211 L176.19081,127.603857 L176.19081,127.603857 Z M199.9975,0 L186.665754,23.8066897 L199.9975,47.6133794 L176.19081,34.2816331 L152.384121,47.6133794 L165.715867,23.8066897 L152.384121,0 L176.19081,13.3317462 L199.9975,0 L199.9975,0 Z M117.531127,102.654446 L140.766456,79.4191168 L120.578383,59.2310439 L97.3430541,82.4663731 L117.531127,102.654446 L117.531127,102.654446 Z M127.339483,50.3749554 L149.622545,72.6580169 C153.336388,76.181407 153.336388,82.3711463 149.622545,86.0849899 L38.4929172,197.214617 C34.7790736,200.928461 28.5893343,200.928461 25.0659442,197.214617 L2.78288269,174.931556 C-0.930960898,171.408166 -0.930960898,165.218426 2.78288269,161.504583 L113.91251,50.3749554 C117.626354,46.6611118 123.816093,46.6611118 127.339483,50.3749554 Z" id="Shape" fill="#4199E3"></path>
+    </g>
+</svg>
+
+</a>      <a class="" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=05-Rails" data-original-title="Rails">
+        <svg viewBox="0 0 201 197" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rails" fill="#C22821">
+            <g id="Page-1">
+                <path d="M22.3169363,196.48354 L119.927798,196.48354 C119.927798,196.48354 98.2756773,147.307837 103.776867,102.169866 C109.278058,57.0318957 144.877106,36.4817767 165.056952,34.2777742 C185.236799,32.0737718 196.247995,44.5572417 196.247995,44.5572417 L200.656,37.9540503 C200.656,37.9540503 171.66896,8.59673746 134.96791,11.9027412 C98.2668613,15.2087449 72.947281,39.426324 57.1754393,68.7836369 C41.3947816,98.1409497 32.2173153,118.691069 25.9843964,149.520655 C19.7514774,180.350242 22.3169363,196.492356 22.3169363,196.492356 L22.3169363,196.48354 L22.3169363,196.48354 Z M2.86881848,147.307837 L21.9466638,148.78011 L18.6406601,167.857956 L0.656,165.653953 L2.86000247,147.307837 L2.86881848,147.307837 L2.86881848,147.307837 Z M32.9578602,106.939328 L38.0975939,92.6309436 L21.214935,86.0277522 L15.7137449,101.438137 L32.9578602,106.939328 L32.9578602,106.939328 L32.9578602,106.939328 Z M56.8139829,57.7636245 L66.723178,46.0206994 L53.8782516,37.5837779 L43.6076001,48.9564307 L56.8139829,57.7636245 L56.8139829,57.7636245 L56.8139829,57.7636245 Z M82.8652921,12.2641976 L91.6724859,22.9051215 L103.785684,15.9316577 L94.9784896,6.02246258 L82.8652921,12.2641976 L82.8652921,12.2641976 L82.8652921,12.2641976 Z M125.79926,0.151 L128.003263,10.7919239 L143.052191,10.4216515 L141.579918,0.88272882 L125.79926,0.151 L125.79926,0.151 L125.79926,0.151 Z M176.808693,11.5236527 L176.438421,18.1268441 L186.717888,23.6280343 L188.921891,20.3220306 L176.817509,11.5148367 L176.808693,11.5236527 L176.808693,11.5236527 Z M174.604691,39.7877804 L174.604691,45.2889706 L184.513886,46.3909718 L184.513886,41.9829669 L174.604691,39.7789644 L174.604691,39.7877804 L174.604691,39.7877804 Z M143.052191,44.5572417 L147.821653,53.3644356 L154.795117,47.8632454 L153.331659,41.9917829 L143.061007,44.5660577 L143.052191,44.5572417 L143.052191,44.5572417 Z M128.003263,55.9298945 L135.338183,66.9410908 L130.938994,74.6462834 L120.29807,62.9033583 L128.003263,55.9298945 L128.003263,55.9298945 L128.003263,55.9298945 Z M113.324606,86.3892086 L108.555145,95.9281313 L121.029799,106.569055 L123.96553,94.4558576 L113.324606,86.3803926 L113.324606,86.3892086 L113.324606,86.3892086 Z M108.184872,119.784254 L107.453144,132.62918 L122.863529,139.232372 L122.1318,127.119174 L108.184872,119.775438 L108.184872,119.784254 L108.184872,119.784254 Z M112.592877,165.283681 L116.269153,178.49888 L135.717271,179.600881 L128.743807,165.292497 L112.592877,165.292497 L112.592877,165.283681 L112.592877,165.283681 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+
+</a>      <a class="active" data-toggle="tooltip" title="" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects" data-original-title="Projects">
+        <!--?xml version="1.0" encoding="UTF-8"?-->
+<svg viewBox="0 0 188 196" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>rocket-launch</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rocket-launch" transform="translate(98.092794, 95.867060) rotate(43.000000) translate(-98.092794, -95.867060) translate(30.592794, -32.632940)" fill-rule="nonzero" fill="#34B4A8">
+            <path d="M116.843023,127.726744 C120.976744,81.8895349 104.965116,35.1627907 71.372093,1.56976744 C69.3313953,-0.470930233 65.7209302,-0.470930233 63.6802326,1.56976744 C30.0872093,35.1627907 14.0755814,81.8372093 18.2093023,127.726744 C6.59302326,140.232558 0.209302326,156.348837 0.209302326,173.511628 C0.209302326,190.831395 6.80232558,207.313953 18.7848837,219.872093 C21.7151163,222.959302 29.1976744,221.546512 27.994186,214.744186 C27.3662791,211.186047 26.5813953,207.732558 26.5813953,204.331395 C26.5813953,195.854651 29.1453488,187.796512 33.9069767,180.994186 C34.6918605,181.412791 35.5813953,181.674419 36.5232558,181.674419 L98.5290698,181.674419 C99.4709302,181.674419 100.360465,181.412791 101.145349,180.994186 C105.906977,187.796512 108.47093,195.854651 108.47093,204.331395 C108.47093,207.732558 107.581395,211.133721 107.05814,214.744186 C105.959302,222.27907 113.80814,222.540698 116.267442,219.872093 C128.197674,207.261628 134.843023,190.831395 134.843023,173.511628 C134.790698,156.348837 128.459302,140.180233 116.843023,127.726744 Z M67.5,13.2906977 C77.2325581,23.755814 85.1860465,35.5290698 91.3604651,48.0348837 L43.6918605,48.0348837 C49.8139535,35.4767442 57.7674419,23.755814 67.5,13.2906977 Z M16.2209302,196.953488 C12.872093,189.680233 11.1453488,181.726744 11.1453488,173.511628 C11.1453488,162.418605 14.3372093,151.796512 20.3023256,142.69186 C20.3546512,143.110465 26.0581395,164.930233 28.255814,170.52907 C21.7151163,178.063953 17.5813953,187.168605 16.2209302,196.953488 Z M94.9186047,170.738372 L40.0813953,170.738372 C24.6976744,134.633721 24.8546512,94.2906977 38.8255814,58.8662791 L96.1744186,58.8662791 C110.145349,94.2906977 110.302326,134.633721 94.9186047,170.738372 Z M106.796512,170.52907 C109.831395,162.732558 114.697674,143.005814 114.75,142.69186 C120.715116,151.744186 123.906977,162.366279 123.906977,173.511628 C123.906977,181.726744 122.127907,189.680233 118.831395,196.953488 C117.418605,187.168605 113.284884,178.063953 106.796512,170.52907 Z" id="Shape"></path>
+            <path d="M45.4709302,190.77907 C42.4360465,190.77907 40.0290698,193.238372 40.0290698,196.22093 L40.0290698,223.587209 C40.0290698,226.622093 42.4883721,229.02907 45.4709302,229.02907 C48.4534884,229.02907 50.9127907,226.569767 50.9127907,223.587209 L50.9127907,196.22093 C50.9127907,193.186047 48.4534884,190.77907 45.4709302,190.77907 Z" id="Shape"></path>
+            <path d="M67.5,190.77907 C65.9825581,190.77907 64.622093,191.406977 63.627907,192.401163 C63.627907,192.401163 63.627907,192.401163 63.5755814,192.453488 C62.9476744,193.081395 62.4767442,193.918605 62.2151163,194.860465 C62.1104651,195.331395 62.005814,195.802326 62.005814,196.325581 L62.005814,251.005814 C62.005814,251.424419 62.0581395,251.843023 62.1627907,252.261628 C62.7383721,254.668605 64.8837209,256.447674 67.4476744,256.447674 C70.0116279,256.447674 72.1569767,254.668605 72.7325581,252.261628 C72.8372093,251.843023 72.8895349,251.424419 72.8895349,251.005814 L72.8895349,196.22093 C72.8895349,195.697674 72.8372093,195.226744 72.6802326,194.755814 C72.1046512,192.453488 70.0116279,190.77907 67.5,190.77907 L67.5,190.77907 Z" id="Shape"></path>
+            <path d="M89.5290698,190.77907 C86.494186,190.77907 84.0872093,193.238372 84.0872093,196.22093 L84.0872093,223.587209 C84.0872093,226.622093 86.5465116,229.02907 89.5290698,229.02907 C92.5116279,229.02907 94.9709302,226.569767 94.9709302,223.587209 L94.9709302,196.22093 C95.0232558,193.186047 92.5639535,190.77907 89.5290698,190.77907 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
+
+</a>  </div>
+
+
+  <div id="days-nav">
+    <div class="days-nav" data-controller="days-nav">
+  <a class="module-header " href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects">
+    <div class="module-header-name">
+      <div class="module-icon-container">
+        <!--?xml version="1.0" encoding="UTF-8"?-->
+<svg viewBox="0 0 188 196" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>rocket-launch</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rocket-launch" transform="translate(98.092794, 95.867060) rotate(43.000000) translate(-98.092794, -95.867060) translate(30.592794, -32.632940)" fill-rule="nonzero" fill="#34B4A8">
+            <path d="M116.843023,127.726744 C120.976744,81.8895349 104.965116,35.1627907 71.372093,1.56976744 C69.3313953,-0.470930233 65.7209302,-0.470930233 63.6802326,1.56976744 C30.0872093,35.1627907 14.0755814,81.8372093 18.2093023,127.726744 C6.59302326,140.232558 0.209302326,156.348837 0.209302326,173.511628 C0.209302326,190.831395 6.80232558,207.313953 18.7848837,219.872093 C21.7151163,222.959302 29.1976744,221.546512 27.994186,214.744186 C27.3662791,211.186047 26.5813953,207.732558 26.5813953,204.331395 C26.5813953,195.854651 29.1453488,187.796512 33.9069767,180.994186 C34.6918605,181.412791 35.5813953,181.674419 36.5232558,181.674419 L98.5290698,181.674419 C99.4709302,181.674419 100.360465,181.412791 101.145349,180.994186 C105.906977,187.796512 108.47093,195.854651 108.47093,204.331395 C108.47093,207.732558 107.581395,211.133721 107.05814,214.744186 C105.959302,222.27907 113.80814,222.540698 116.267442,219.872093 C128.197674,207.261628 134.843023,190.831395 134.843023,173.511628 C134.790698,156.348837 128.459302,140.180233 116.843023,127.726744 Z M67.5,13.2906977 C77.2325581,23.755814 85.1860465,35.5290698 91.3604651,48.0348837 L43.6918605,48.0348837 C49.8139535,35.4767442 57.7674419,23.755814 67.5,13.2906977 Z M16.2209302,196.953488 C12.872093,189.680233 11.1453488,181.726744 11.1453488,173.511628 C11.1453488,162.418605 14.3372093,151.796512 20.3023256,142.69186 C20.3546512,143.110465 26.0581395,164.930233 28.255814,170.52907 C21.7151163,178.063953 17.5813953,187.168605 16.2209302,196.953488 Z M94.9186047,170.738372 L40.0813953,170.738372 C24.6976744,134.633721 24.8546512,94.2906977 38.8255814,58.8662791 L96.1744186,58.8662791 C110.145349,94.2906977 110.302326,134.633721 94.9186047,170.738372 Z M106.796512,170.52907 C109.831395,162.732558 114.697674,143.005814 114.75,142.69186 C120.715116,151.744186 123.906977,162.366279 123.906977,173.511628 C123.906977,181.726744 122.127907,189.680233 118.831395,196.953488 C117.418605,187.168605 113.284884,178.063953 106.796512,170.52907 Z" id="Shape"></path>
+            <path d="M45.4709302,190.77907 C42.4360465,190.77907 40.0290698,193.238372 40.0290698,196.22093 L40.0290698,223.587209 C40.0290698,226.622093 42.4883721,229.02907 45.4709302,229.02907 C48.4534884,229.02907 50.9127907,226.569767 50.9127907,223.587209 L50.9127907,196.22093 C50.9127907,193.186047 48.4534884,190.77907 45.4709302,190.77907 Z" id="Shape"></path>
+            <path d="M67.5,190.77907 C65.9825581,190.77907 64.622093,191.406977 63.627907,192.401163 C63.627907,192.401163 63.627907,192.401163 63.5755814,192.453488 C62.9476744,193.081395 62.4767442,193.918605 62.2151163,194.860465 C62.1104651,195.331395 62.005814,195.802326 62.005814,196.325581 L62.005814,251.005814 C62.005814,251.424419 62.0581395,251.843023 62.1627907,252.261628 C62.7383721,254.668605 64.8837209,256.447674 67.4476744,256.447674 C70.0116279,256.447674 72.1569767,254.668605 72.7325581,252.261628 C72.8372093,251.843023 72.8895349,251.424419 72.8895349,251.005814 L72.8895349,196.22093 C72.8895349,195.697674 72.8372093,195.226744 72.6802326,194.755814 C72.1046512,192.453488 70.0116279,190.77907 67.5,190.77907 L67.5,190.77907 Z" id="Shape"></path>
+            <path d="M89.5290698,190.77907 C86.494186,190.77907 84.0872093,193.238372 84.0872093,196.22093 L84.0872093,223.587209 C84.0872093,226.622093 86.5465116,229.02907 89.5290698,229.02907 C92.5116279,229.02907 94.9709302,226.569767 94.9709302,223.587209 L94.9709302,196.22093 C95.0232558,193.186047 92.5639535,190.77907 89.5290698,190.77907 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
+
+      </div>
+      <span>Projects</span>
+    </div>
+</a>  <div class="days">
+      <div class="day active" data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>WebSocket &amp; Action Cable
+        </div>
+        <i class="chevron mdi mdi-chevron-up"></i>
+      </div>
+      <div class=" exercises" id="exercises_36">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-01-Pundit-01-Kick-off-overview" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/01-Pundit/01-Kick-off-overview">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F01-Pundit%2F01-Kick-off-overview">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Kick off overview
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-01-Pundit-02-Product-Design" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/01-Pundit/02-Product-Design">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F01-Pundit%2F02-Product-Design">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Product Design
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-01-Pundit-03-Building" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/01-Pundit/03-Building">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F01-Pundit%2F03-Building">
+      <span class="index">3  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Building
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-01-Pundit-04-Project-Management" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/01-Pundit/04-Project-Management">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F01-Pundit%2F04-Project-Management">
+      <span class="index">4  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Project Management
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-01-Pundit-05-Before-sign-off" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/01-Pundit/05-Before-sign-off">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F01-Pundit%2F05-Before-sign-off">
+      <span class="index">5  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Before sign off
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+          <a class="exercise nav-flashcards " data-days-nav-target="exercise" data-action="days-nav#toggleExercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?feature=flashcards&amp;path=06-Projects%2F01-Pundit">
+            <span class="index">6 - </span>
+            <span>Flashcards</span>
+            <span class="rake">
+                  <span>13 cards left</span>
+    <i class="fas fa-circle"></i>
+
+            </span>
+</a>
+
+
+          <div class="section-title">
+            <h3>Resources</h3>
+          </div>
+
+          <a class="exercise asset active" data-action="ajax:success-&gt;ajax-form#onPostSuccess days-nav#toggleExercise" data-days-nav-target="exercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit">
+            <span class="day-lecture-name">
+              <span>Lecture</span>
+              <i class="mdi mdi-presentation"></i>
+            </span>
+</a>
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>From Design To Code
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_37">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-02-i18n-01-Overview" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/02-i18n/01-Overview">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F02-i18n%2F01-Overview">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Overview
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-02-i18n-02-Daily-Standup" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/02-i18n/02-Daily-Standup">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F02-i18n%2F02-Daily-Standup">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Daily Standup
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-02-i18n-03-Building-Features" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/02-i18n/03-Building-Features">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F02-i18n%2F03-Building-Features">
+      <span class="index">3  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Building Features
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-02-i18n-04-Best-Practices" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/02-i18n/04-Best-Practices">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F02-i18n%2F04-Best-Practices">
+      <span class="index">4  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Best Practices
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+          <div class="section-title">
+            <h3>Resources</h3>
+          </div>
+
+          <a class="exercise asset " data-action="ajax:success-&gt;ajax-form#onPostSuccess days-nav#toggleExercise" data-days-nav-target="exercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F02-i18n">
+            <span class="day-lecture-name">
+              <span>Lecture</span>
+              <i class="mdi mdi-presentation"></i>
+            </span>
+</a>
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Background Jobs &amp; Sidekiq
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_38">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-03-Advanced-Admin-01-Overview" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/03-Advanced-Admin/01-Overview">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F03-Advanced-Admin%2F01-Overview">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Overview
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-03-Advanced-Admin-02-Check-Production" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/03-Advanced-Admin/02-Check-Production">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F03-Advanced-Admin%2F02-Check-Production">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Check Production
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-03-Advanced-Admin-03-Front-end" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/03-Advanced-Admin/03-Front-end">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F03-Advanced-Admin%2F03-Front-end">
+      <span class="index">3  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Front End
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-03-Advanced-Admin-04-Resources" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/03-Advanced-Admin/04-Resources">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F03-Advanced-Admin%2F04-Resources">
+      <span class="index">4  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Resources
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+          <a class="exercise nav-flashcards " data-days-nav-target="exercise" data-action="days-nav#toggleExercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?feature=flashcards&amp;path=06-Projects%2F03-Advanced-Admin">
+            <span class="index">5 - </span>
+            <span>Flashcards</span>
+            <span class="rake">
+                  <span>21 cards left</span>
+    <i class="fas fa-circle"></i>
+
+            </span>
+</a>
+
+
+          <div class="section-title">
+            <h3>Resources</h3>
+          </div>
+
+          <a class="exercise asset " data-action="ajax:success-&gt;ajax-form#onPostSuccess days-nav#toggleExercise" data-days-nav-target="exercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F03-Advanced-Admin">
+            <span class="day-lecture-name">
+              <span>Lecture</span>
+              <i class="mdi mdi-presentation"></i>
+            </span>
+</a>
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>DB advanced
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_39">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-04-Background-jobs-01-Overview" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/04-Background-jobs/01-Overview">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F04-Background-jobs%2F01-Overview">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Overview
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-04-Background-jobs-02-Core-User-Journey" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/04-Background-jobs/02-Core-User-Journey">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F04-Background-jobs%2F02-Core-User-Journey">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Core User Journey
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-04-Background-jobs-03-Mobile-Demos" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/04-Background-jobs/03-Mobile-Demos">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F04-Background-jobs%2F03-Mobile-Demos">
+      <span class="index">3  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Mobile Demos
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-04-Background-jobs-04-API-Seeds" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/04-Background-jobs/04-API-Seeds">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F04-Background-jobs%2F04-API-Seeds">
+      <span class="index">4  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      API Seeds
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-04-Background-jobs-05-Resources" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/04-Background-jobs/05-Resources">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F04-Background-jobs%2F05-Resources">
+      <span class="index">5  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Resources
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+          <a class="exercise nav-flashcards " data-days-nav-target="exercise" data-action="days-nav#toggleExercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?feature=flashcards&amp;path=06-Projects%2F04-Background-jobs">
+            <span class="index">6 - </span>
+            <span>Flashcards</span>
+            <span class="rake">
+                  <span>18 cards left</span>
+    <i class="fas fa-circle"></i>
+
+            </span>
+</a>
+
+
+          <div class="section-title">
+            <h3>Resources</h3>
+          </div>
+
+          <a class="exercise asset " data-action="ajax:success-&gt;ajax-form#onPostSuccess days-nav#toggleExercise" data-days-nav-target="exercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F04-Background-jobs">
+            <span class="day-lecture-name">
+              <span>Lecture</span>
+              <i class="mdi mdi-presentation"></i>
+            </span>
+</a>
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Demo preparation
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_40">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-05-Build-an-API-01-Intermediate-demo" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/05-Build-an-API/01-Intermediate-demo">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F05-Build-an-API%2F01-Intermediate-demo">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Intermediate demo
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+          <div class="section-title">
+            <h3>Resources</h3>
+          </div>
+
+          <a class="exercise asset " data-action="ajax:success-&gt;ajax-form#onPostSuccess days-nav#toggleExercise" data-days-nav-target="exercise" data-remote="true" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F05-Build-an-API">
+            <span class="day-lecture-name">
+              <span>Lecture</span>
+              <i class="mdi mdi-presentation"></i>
+            </span>
+</a>
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Project
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_41">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-06-Payment-with-Stripe-01-Final-countdown" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/06-Payment-with-Stripe/01-Final-countdown">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F06-Payment-with-Stripe%2F01-Final-countdown">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Final countdown
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-06-Payment-with-Stripe-02-Resources" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/06-Payment-with-Stripe/02-Resources">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F06-Payment-with-Stripe%2F02-Resources">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Resources
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+
+
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Project
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_42">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-07-Search-01-Front-end" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/07-Search/01-Front-end">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F07-Search%2F01-Front-end">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Front End
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-07-Search-02-Resources" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/07-Search/02-Resources">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F07-Search%2F02-Resources">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Resources
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+
+
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Project
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_43">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-08-Testing-01-Product-checklist" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/08-Testing/01-Product-checklist">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F08-Testing%2F01-Product-checklist">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Product Checklist
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-08-Testing-02-Progressive-web-app" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/08-Testing/02-Progressive-web-app">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F08-Testing%2F02-Progressive-web-app">
+      <span class="index">2  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Progressive Web App
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+          <div id="nav-exercise-06-Projects-08-Testing-03-Resources" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/08-Testing/03-Resources">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F08-Testing%2F03-Resources">
+      <span class="index">3  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Resources
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+
+
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Dress Rehearsal
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_44">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-09-Dress-Rehearsal-React-01-Dress-Rehearsal" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/09-Dress-Rehearsal-React/01-Dress-Rehearsal">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F09-Dress-Rehearsal-React%2F01-Dress-Rehearsal">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Dress Rehearsal
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+
+
+
+      </div>
+      <div class="day " data-days-nav-target="day" data-action="click-&gt;days-nav#toggleDay">
+        <div>Demo Day
+        </div>
+        <i class="chevron mdi mdi-chevron-down"></i>
+      </div>
+      <div class="no-height exercises" id="exercises_45">
+        <div class="section-title">
+          <h3>Instructions</h3>
+        </div>
+          <div id="nav-exercise-06-Projects-10-Demo-Day-01-Demo-Day" data-exercise-results-cable-target="navbar" data-exercise-results-cable-exercise-path="06-Projects/10-Demo-Day/01-Demo-Day">
+            
+<div>
+  <a data-days-nav-target="exercise" data-action="days-nav#toggleExercise" class="exercise " data-remote="true" href="https://kitt.lewagon.com/camps/1044/challenges?path=06-Projects%2F10-Demo-Day%2F01-Demo-Day">
+      <span class="index">1  -  </span>
+    <span class="title
+                 
+                 
+                 ">
+      Demo Day
+    </span>
+      <span class="rake">
+          <i class="fas fa-info-circle" data-toggle="tooltip" placement="top" title="" data-original-title="No rake for this exercise"></i>
+      </span>
+</a></div>
+
+          </div>
+
+
+
+
+
+
+
+      </div>
+
+  </div>
+</div>
+
+  </div>
+
+  <div class="syllabus-content">
+    <a href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#" id="sidebar-toggle" data-controller="toggle-sidenav" data-action="toggle-sidenav#toggleSidenav" data-toggle-sidenav-without-modules-value="false"><i class="mdi mdi-backburger"></i></a>
+
+
+    <div id="content-partial" class="container-fluid pb-0">
+      <div class="container">
+  <div class="small-container">
+    <div class="lecture-container">
+      <!------------------------------
+        HEADER - PANES TAB NAVIGATION
+       ------------------------------->
+      <ul class="nav nav-tabs list-inline " role="tablist">
+
+        <!-- First tab: "Slides" or one tab per lecture with lecture name -->
+            <li class="nav-item">
+              <a class="nav-link iframe-lecture-tab" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#slides0" role="tab" data-id="0" aria-selected="false">
+                <i class="mdi mdi-presentation"></i>
+                <span class="d-none d-md-inline">
+                  Slides
+                </span>
+              </a>
+            </li>
+
+        <!-- Second tab: "Videos" -->
+            <li class="nav-item">
+              <a class="nav-link resource-lecture-tab " data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#video-0" role="tab">
+                <i class="mdi mdi-play-circle"></i>
+                <span class="d-none d-md-inline">Video  </span>
+              </a>
+            </li>
+
+        <!-- Third tab: "Source" -->
+          <li class="nav-item">
+            <a class="nav-link resource-lecture-tab active" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#source" role="tab" aria-selected="true">
+              <i class="mdi mdi-file-presentation-box"></i>
+              <span class="d-none d-md-inline">Source</span>
+            </a>
+          </li>
+
+        <!-- Fourth tab: "Guidelines" -->
+      </ul>
+
+      <!------------
+        BODY - PANES
+       ------------->
+      <div class="tab-content main-content left-corner-not-rounded" id="js-tab-pane-content">
+            <div class="tab-pane p-2 karr-container" id="slides0" role="tabpanel">
+              <iframe src="./WebSocket &amp; Action Cable · Lecture_files/index.html" id="karr_0" frameborder="0" class="karr-iframe"></iframe>
+
+
+              <a title="Open Slides" class="full-screen-lecture" target="_blank" href="https://kitt.lewagon.com/camps/1044/lectures/content/lectures/projects/action-cable/index.html?title=WebSocket+%26+Action+Cable">
+                <i class="mdi mdi-arrow-expand"></i>
+</a>
+              <a title="Print Slides" class="print-lecture d-none d-sm-block" target="_blank" href="https://kitt.lewagon.com/camps/1044/lectures/content/lectures/projects/action-cable/index.html?print-pdf=true&amp;title=WebSocket+%26+Action+Cable">
+                <i class="mdi mdi-printer"></i>
+</a>            </div>
+
+            <div class="tab-pane p-2 " id="video-0" role="tabpanel">
+                <div class="tab-content">
+      <div class="tab-pane " id="video-cn" role="tabpanel">
+          <div class="lecture-embed-container">
+            <iframe src="./WebSocket &amp; Action Cable · Lecture_files/preview.html" width="100%" height="400" frameborder="0" allowfullscreen="" data-vimeo-in-modal-target="iframe"></iframe>
+          </div>
+      </div>
+      <div class="tab-pane active" id="video-en" role="tabpanel">
+          <div class="lecture-embed-container">
+            <iframe src="./WebSocket &amp; Action Cable · Lecture_files/732178764.html" width="100%" height="400" frameborder="0" allowfullscreen="" data-vimeo-in-modal-target="iframe"></iframe>
+          </div>
+      </div>
+      <div class="tab-pane " id="video-es" role="tabpanel">
+          <div class="lecture-embed-container">
+            <iframe src="./WebSocket &amp; Action Cable · Lecture_files/716149535.html" width="100%" height="400" frameborder="0" allowfullscreen="" data-vimeo-in-modal-target="iframe"></iframe>
+          </div>
+      </div>
+      <div class="tab-pane " id="video-fr" role="tabpanel">
+          <div class="lecture-embed-container">
+            <iframe src="./WebSocket &amp; Action Cable · Lecture_files/665869578.html" width="100%" height="400" frameborder="0" allowfullscreen="" data-vimeo-in-modal-target="iframe"></iframe>
+          </div>
+      </div>
+      <div class="tab-pane " id="video-pt_BR" role="tabpanel">
+          <div class="lecture-embed-container">
+            <iframe src="./WebSocket &amp; Action Cable · Lecture_files/720013605.html" width="100%" height="400" frameborder="0" allowfullscreen="" data-vimeo-in-modal-target="iframe"></iframe>
+          </div>
+      </div>
+  </div>
+  <ul class="nav nav-underline nav-underline-left nav-underline-spaced" role="tablist">
+      <li class="nav-item">
+        <a class="tab-underline  no-border" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#video-cn" role="tab">
+          🇨🇳 <span class="d-none d-sm-inline small">Chinese</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="tab-underline active no-border" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#video-en" role="tab">
+          🇬🇧 <span class="d-none d-sm-inline small">English</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="tab-underline  no-border" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#video-es" role="tab">
+          🇪🇸 🇦🇷 <span class="d-none d-sm-inline small">Spanish</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="tab-underline  no-border" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#video-fr" role="tab">
+          🇫🇷 <span class="d-none d-sm-inline small">French</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="tab-underline  no-border" data-toggle="tab" href="https://kitt.lewagon.com/camps/1044/lectures/06-Projects%2F01-Pundit#video-pt_BR" role="tab">
+          🇵🇹 🇧🇷 <span class="d-none d-sm-inline small">Portuguese</span>
+        </a>
+      </li>
+  </ul>
+
+            </div>
+
+          <div class="tab-pane p-2 active" id="source">
+
+                  <div data-controller="utilities--xhr-loader" data-utilities--xhr-loader-fetch-and-insert-value="true" data-utilities--xhr-loader-target="container" data-utilities--xhr-loader-url="/camps/1044/lectures/content/lectures/projects/action-cable.md" class="lecture-source">
+<h2 id="problem">Problem</h2>
+
+<p>Sometimes, web applications need <strong>real-time</strong> features</p>
+
+<h3 id="http">HTTP</h3>
+
+<p>HTTP is a request / response cycle protocol</p>
+
+<p><img src="./WebSocket &amp; Action Cable · Lecture_files/http-protocol.svg" alt="HTTP Protocol"></p>
+
+<p>The request <strong>has to</strong> be triggered by the <strong>client</strong></p>
+
+<h3 id="real-time">Real-time</h3>
+
+<p>In a chat app for example, several clients need to be updated in real-time with incoming messages</p>
+
+<p><br></p>
+
+<p>We don’t want to trigger HTTP requests every second to fake real-time</p>
+
+<h3 id="websocket">WebSocket</h3>
+
+<p>Unlike HTTP, WebSocket is <strong>bidirectional</strong></p>
+
+<p><img src="./WebSocket &amp; Action Cable · Lecture_files/websocket.svg" alt="WebSocket protocol"></p>
+
+<p>A message created on the server can be broadcasted to subscribed clients (browsers)</p>
+
+<hr>
+
+<h2 id="lets-build-a-chat">Lets build a chat</h2>
+
+<h3 id="boilerplate">Boilerplate</h3>
+
+<p>Start from Le Wagon’s <a href="https://github.com/lewagon/rails-templates/tree/master#devise" target="_blank">Rails Devise Template</a> :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>new <span class="se">\</span>
+  <span class="nt">-d</span> postgresql <span class="se">\</span>
+  <span class="nt">-j</span> webpack <span class="se">\</span>
+  <span class="nt">-m</span> https://raw.githubusercontent.com/lewagon/rails-templates/master/devise.rb <span class="se">\</span>
+  rails-action-cable-chat
+
+<span class="nb">cd </span>rails-action-cable-chat
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>g model Chatroom name
+<span class="nb">rails </span>g model Message content chatroom:references user:references
+<span class="nb">rails </span>g migration AddNicknameToUsers nickname
+<span class="nb">rails </span>db:migrate
+</code></pre></div></div>
+
+<h3 id="chatroom-model">Chatroom model</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># app/models/chatroom.rb</span>
+<span class="k">class</span> <span class="nc">Chatroom</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_many</span> <span class="ss">:messages</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c"># rails c</span>
+Chatroom.create<span class="o">(</span>name: <span class="s2">"general"</span><span class="o">)</span>
+User.create<span class="o">(</span>email: <span class="s2">"sebastien@lewagon.org"</span>, nickname: <span class="s2">"Sebastien"</span>, password: <span class="s2">"123456"</span><span class="o">)</span>
+User.create<span class="o">(</span>email: <span class="s2">"boris@lewagon.org"</span>, nickname: <span class="s2">"Boris"</span>, password: <span class="s2">"123456"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="chatrooms-route-and-controller">Chatrooms route and controller</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># config/routes.rb</span>
+<span class="c1"># [...]</span>
+<span class="n">resources</span> <span class="ss">:chatrooms</span><span class="p">,</span> <span class="ss">only: :show</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>g controller chatrooms
+</code></pre></div></div>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># app/controllers/chatrooms_controller.rb</span>
+<span class="k">class</span> <span class="nc">ChatroomsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@chatroom</span> <span class="o">=</span> <span class="no">Chatroom</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="chatrooms-show-view">Chatrooms show view</h3>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container chatroom"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>#<span class="cp">&lt;%=</span> <span class="vi">@chatroom</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"messages"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%</span> <span class="vi">@chatroom</span><span class="p">.</span><span class="nf">messages</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">message</span><span class="o">|</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"message-</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">id</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;small&gt;</span>
+          <span class="nt">&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">nickname</span> <span class="cp">%&gt;</span><span class="nt">&lt;/strong&gt;</span>
+          <span class="nt">&lt;i&gt;</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%a %b %e at %l:%M %p"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/i&gt;</span>
+        <span class="nt">&lt;/small&gt;</span>
+        <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="update-the-navbar">Update the navbar</h3>
+
+<p>Update the logo link to point to the root path:</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/shared/_navbar.html.erb --&gt;</span>
+<span class="c">&lt;!-- [...] --&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"navbar-brand"</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">image_tag</span> <span class="s2">"https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png"</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>And replace the avatar by <code>current_user.nickname</code> to see the context:</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/shared/_navbar.html.erb --&gt;</span>
+<span class="c">&lt;!-- [...] --&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">user_signed_in?</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">data-bs-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">nickname</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-end"</span> <span class="na">aria-labelledby=</span><span class="s">"navbarDropdown"</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">"Log out"</span><span class="p">,</span> <span class="n">destroy_user_session_path</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span><span class="ss">turbo_method: :delete</span><span class="p">},</span> <span class="ss">class: </span><span class="s2">"dropdown-item"</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<h3 id="add-some-style">Add some style</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code>curl https://gist.githubusercontent.com/dmilon/3db26308391f84b786ae6886a68897ae/raw/5aa85b85f6436794106962c1f3c088b99743f8d8/_chatroom.scss <span class="se">\</span>
+  <span class="o">&gt;</span> app/assets/stylesheets/components/_chatroom.scss
+</code></pre></div></div>
+
+<p>Don’t forget to <code>@import "chatroom";</code> in <code>components/_index.scss</code></p>
+
+<h3 id="launch-the-app">Launch the app</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>s
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">yarn </span>build <span class="nt">--watch</span>
+</code></pre></div></div>
+
+<p><br></p>
+
+<p>Sign in with 2 different users using 2 browsers (or one private window)</p>
+
+<p><br></p>
+
+<p>Go to <a href="http://localhost:3000/chatrooms/1" target="_blank">localhost:3000/chatrooms/1</a> 🚀</p>
+
+<h3 id="messages-route-and-controller">Messages route and controller</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># config/routes.rb</span>
+<span class="c1"># [...]</span>
+<span class="n">resources</span> <span class="ss">:chatrooms</span><span class="p">,</span> <span class="ss">only: :show</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:messages</span><span class="p">,</span> <span class="ss">only: :create</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>g controller messages
+</code></pre></div></div>
+
+<h3 id="chatrooms-show-view-1">Chatrooms show view</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># app/controllers/chatrooms_controller.rb</span>
+<span class="c1"># [...]</span>
+<span class="k">def</span> <span class="nf">show</span>
+  <span class="vi">@chatroom</span> <span class="o">=</span> <span class="no">Chatroom</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="vi">@message</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="c">&lt;!-- [...] --&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">simple_form_for</span> <span class="p">[</span><span class="vi">@chatroom</span><span class="p">,</span> <span class="vi">@message</span><span class="p">],</span>
+  <span class="ss">html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"d-flex"</span><span class="p">}</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+<span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">input</span> <span class="ss">:content</span><span class="p">,</span>
+    <span class="ss">label: </span><span class="kp">false</span><span class="p">,</span>
+    <span class="ss">placeholder: </span><span class="s2">"Message #</span><span class="si">#{</span><span class="vi">@chatroom</span><span class="p">.</span><span class="nf">name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="ss">wrapper_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"flex-grow-1"</span><span class="p">}</span>
+  <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Send"</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary mb-3"</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<h3 id="messages-create-action">Messages create action</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># app/controllers/messages_controller.rb</span>
+<span class="k">class</span> <span class="nc">MessagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@chatroom</span> <span class="o">=</span> <span class="no">Chatroom</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:chatroom_id</span><span class="p">])</span>
+    <span class="vi">@message</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">message_params</span><span class="p">)</span>
+    <span class="vi">@message</span><span class="p">.</span><span class="nf">chatroom</span> <span class="o">=</span> <span class="vi">@chatroom</span>
+    <span class="vi">@message</span><span class="p">.</span><span class="nf">user</span> <span class="o">=</span> <span class="n">current_user</span>
+    <span class="k">if</span> <span class="vi">@message</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">redirect_to</span> <span class="n">chatroom_path</span><span class="p">(</span><span class="vi">@chatroom</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="s2">"chatrooms/show"</span><span class="p">,</span> <span class="ss">status: :unprocessable_entity</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">message_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:message</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:content</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="testing">Testing</h3>
+
+<p>Create a message with Seb in a window.</p>
+
+<p><br></p>
+
+<p><strong>Problem</strong>: Boris has to refresh to see it</p>
+
+<hr>
+
+<h2 id="action-cable">Action Cable</h2>
+
+<p>Let’s set up Action Cable in 3 steps 😎</p>
+
+<h3 id="1-generate-the-channel">1. Generate the channel</h3>
+
+<p><img src="./WebSocket &amp; Action Cable · Lecture_files/websocket_create_cable.svg" alt="HTTP protocol"></p>
+
+<h3 id="2-subscribe-each-client">2. Subscribe each client</h3>
+
+<p><img src="./WebSocket &amp; Action Cable · Lecture_files/websocket_connect.svg" alt="HTTP protocol"></p>
+
+<h3 id="3-broadcast-data-in-the-channel">3. Broadcast data in the channel</h3>
+
+<p><img src="./WebSocket &amp; Action Cable · Lecture_files/websocket_broadcast.svg" alt="HTTP protocol"></p>
+
+<h3 id="install-action-cable">Install Action Cable</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">yarn </span>add @rails/actioncable
+</code></pre></div></div>
+
+<h3 id="generate-the-channel">Generate the channel</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>g channel Chatroom
+</code></pre></div></div>
+
+<p>Make the channel <strong>specific</strong> to 1 chatroom:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># app/channels/chatroom_channel.rb</span>
+<span class="k">class</span> <span class="nc">ChatroomChannel</span> <span class="o">&lt;</span> <span class="no">ApplicationCable</span><span class="o">::</span><span class="no">Channel</span>
+  <span class="k">def</span> <span class="nf">subscribed</span>
+    <span class="n">chatroom</span> <span class="o">=</span> <span class="no">Chatroom</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="n">stream_for</span> <span class="n">chatroom</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="create-a-stimulus-controller">Create a Stimulus controller</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">rails </span>generate stimulus chatroom_subscription
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1">// app/javascript/controllers/chatroom_subscription_controller.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createConsumer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@rails/actioncable</span><span class="dl">"</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{</span> <span class="na">chatroomId</span><span class="p">:</span> <span class="nb">Number</span> <span class="p">}</span>
+  <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">messages</span><span class="dl">"</span><span class="p">]</span>
+
+  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Subscribe to the chatroom with the id </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">chatroomIdValue</span><span class="p">}</span><span class="s2">.`</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><code>chatroomIdValue</code> is the id of the chatroom we are going to subscribe to.</p>
+
+<h3 id="connect-it-to-your-message-list">Connect it to your message list</h3>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container chatroom"</span>
+  <span class="na">data-controller=</span><span class="s">"chatroom-subscription"</span>
+  <span class="na">data-chatroom-subscription-chatroom-id-value=</span><span class="s">"</span><span class="cp">&lt;%=</span> <span class="vi">@chatroom</span><span class="p">.</span><span class="nf">id</span> <span class="cp">%&gt;</span><span class="s">"</span>
+<span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>#<span class="cp">&lt;%=</span> <span class="vi">@chatroom</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"messages"</span> <span class="na">data-chatroom-subscription-target=</span><span class="s">"messages"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- [...] --&gt;</span>
+</code></pre></div></div>
+
+<h3 id="subscribe-each-client">Subscribe each client</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="c1">//[...]</span>
+  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">channel</span> <span class="o">=</span> <span class="nx">createConsumer</span><span class="p">().</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+      <span class="p">{</span> <span class="na">channel</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ChatroomChannel</span><span class="dl">"</span><span class="p">,</span> <span class="na">id</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">chatroomIdValue</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="na">received</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Subscribed to the chatroom with the id </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">chatroomIdValue</span><span class="p">}</span><span class="s2">.`</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p><code>received</code> stores the function which is called when data is broadcasted in the channel.</p>
+
+<h3 id="refactor-the-message-into-a-partial">Refactor the message into a partial</h3>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="c">&lt;!-- [...] --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"messages"</span> <span class="na">data-chatroom-subscription-target=</span><span class="s">"messages"</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@chatroom</span><span class="p">.</span><span class="nf">messages</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">message</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s2">"messages/message"</span><span class="p">,</span> <span class="ss">message: </span><span class="n">message</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/messages/_message.html.erb --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"message-</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">id</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;small&gt;</span>
+    <span class="nt">&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">nickname</span> <span class="cp">%&gt;</span><span class="nt">&lt;/strong&gt;</span>
+    <span class="nt">&lt;i&gt;</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%a %b %e at %l:%M %p"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/i&gt;</span>
+  <span class="nt">&lt;/small&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">message</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="broadcast-each-new-message">Broadcast each new message</h3>
+
+<p>In the create action, replace the <code>if @message.save</code> block:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># app/controllers/messages_controller.rb</span>
+<span class="c1"># [...]</span>
+<span class="k">if</span> <span class="vi">@message</span><span class="p">.</span><span class="nf">save</span>
+  <span class="no">ChatroomChannel</span><span class="p">.</span><span class="nf">broadcast_to</span><span class="p">(</span>
+    <span class="vi">@chatroom</span><span class="p">,</span>
+    <span class="n">render_to_string</span><span class="p">(</span><span class="ss">partial: </span><span class="s2">"message"</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span><span class="ss">message: </span><span class="vi">@message</span><span class="p">})</span>
+  <span class="p">)</span>
+  <span class="n">head</span> <span class="ss">:ok</span>
+<span class="k">else</span>
+</code></pre></div></div>
+
+<h3 id="testing-1">Testing</h3>
+
+<p>Open the console in Seb’s tab and post a message from Boris</p>
+
+<h3 id="insert-the-message">Insert the message</h3>
+
+<p>In the <code>received</code> callback, insert the new message in the DOM:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="c1">// [...]</span>
+<span class="nx">received</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">messagesTarget</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeend</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="scroll-down">Scroll down</h3>
+
+<p>In the <code>received</code> callback, call <code>#insertMessageAndScrollDown()</code></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="c1">// [...]</span>
+<span class="nx">received</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">insertMessageAndScrollDown</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="c1">// [...]</span>
+
+<span class="err">#</span><span class="nx">insertMessageAndScrollDown</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">messagesTarget</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeend</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">messagesTarget</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">messagesTarget</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields" target="_blank"><code>private</code> method in JavaScript</a> are prepend with a <code>#</code></p>
+
+<h3 id="reset-the-form">Reset the form</h3>
+
+<p><strong>For the message sender only</strong></p>
+
+<p>We want to reset the form after the message has been sent:</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="c">&lt;!-- [...] --&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">simple_form_for</span> <span class="p">[</span><span class="vi">@chatroom</span><span class="p">,</span> <span class="vi">@message</span><span class="p">],</span>
+  <span class="ss">html: </span><span class="p">{</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">action: </span><span class="s2">"turbo:submit-end-&gt;chatroom-subscription#resetForm"</span> <span class="p">},</span> <span class="ss">class: </span><span class="s2">"d-flex"</span> <span class="p">}</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+<span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="c1">// [...]</span>
+<span class="nx">resetForm</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">reset</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code>turbo:submit-end</code> event is triggered after the form submits, so for the sender only.</p>
+
+<h3 id="unsubscribe-from-the-channel">Unsubscribe from the channel</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="c1">//[...]</span>
+<span class="nx">disconnect</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Unsubscribed from the chatroom</span><span class="dl">"</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">channel</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code>disconnect()</code> method is called <a href="https://stimulus.hotwired.dev/reference/lifecycle-callbacks#disconnection" target="_blank">when the controller disappears from the DOM</a></p>
+
+<p>At this moment, we unsubscribe from the channel.</p>
+
+<p>Have a look at the logs!</p>
+
+<hr>
+
+<h2 id="production">Production</h2>
+
+<h3 id="redis">Redis</h3>
+
+<p>ActionCable needs <a href="http://redis.io/" target="_blank"><strong>Redis</strong></a> to work in production.</p>
+
+<p><br></p>
+
+<p><a href="https://devcenter.heroku.com/articles/websockets#application-architecture" target="_blank">Read more</a> about the <strong>global state</strong> introduced by WebSocket in a Web App.</p>
+
+<h3 id="configure-redis-cloud-and-deploy">Configure Redis Cloud and deploy</h3>
+
+<p>Install <a href="https://elements.heroku.com/addons/rediscloud" target="_blank">Redis Cloud</a> Heroku add-on:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">heroku </span>addons:create rediscloud:30
+</code></pre></div></div>
+
+<p>Replace <code>REDIS_URL</code> by <code>REDISCLOUD_URL</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="c1"># config/cable.yml</span>
+  <span class="c1"># [...]</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">&lt;%= ENV.fetch("REDISCLOUD_URL") { "redis://localhost:6379/1" } %&gt;</span>
+  <span class="c1"># [...]</span>
+</code></pre></div></div>
+
+<p>Commit your work and deploy it to production:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight github"><pre class="highlight github"><code><span class="nb">git </span>push <span class="nb">heroku </span>master
+</code></pre></div></div>
+
+<hr>
+
+<h2 id="extra-resources">Extra Resources</h2>
+
+<p><a href="https://guides.rubyonrails.org/action_cable_overview.html" target="_blank">Action Cable documentation</a></p>
+
+<p><a href="https://kitt.lewagon.com/knowledge/cheatsheets/action_cable" target="_blank">Action Cable cheatsheet</a></p>
+
+<p>The full source code of the lecture is <a href="https://github.com/lewagon/rails-action-cable-chat" target="_blank">available on GitHub</a></p>
+
+<p><a href="https://kitt.lewagon.com/knowledge/tutorials/rails_action_cable_chat_message_styling" target="_blank">Tutorial for sent messages on the right and received messages on the left</a></p>
+
+<hr>
+
+<h2 id="happy-broadcasting">Happy broadcasting!</h2>
+</div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+        
+      </div>
+    </div>
+
+    <meta name="action-cable-url" content="/cable">
+    <script src="./WebSocket &amp; Action Cable · Lecture_files/application-5d95afdad5632215a434d12d7cef47705f3683ababbc80836998adf0e826d33c.js"></script>
+    <script src="./WebSocket &amp; Action Cable · Lecture_files/application-636481b723a1e965c95a.js"></script>
+    
+  <script src="./WebSocket &amp; Action Cable · Lecture_files/knowledge-4032720ae50a196e4733.js"></script>
+
+  
+
+</body></html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!-- saved from url=(0129)https://kitt.lewagon.com/camps/1044/lectures/content/lectures/projects/action-cable/index.html?title=WebSocket+%26+Action+Cable#/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link type="text/css" rel="stylesheet" href="./reveal.css">
+
+    <style type="text/css">
+      /* Global */
+      .svg-schema{
+        width: 698px;
+      }
+
+      line{
+        stroke-miterlimit: 10;
+      }
+
+      text{
+        fill: #606060;
+        font-family: "FreightSansPro", "Helvetica", "sans-serif";
+        font-size: 13px;
+      }
+
+      .title{
+        fill: #000;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .title-center{
+        text-anchor: middle;
+      }
+
+
+      /* Fills and strokes */
+
+      .line{
+        fill: none;
+      }
+
+      .line-red{
+        stroke: #B40A00;
+      }
+
+      .shape-red{
+        fill: #B40A00;
+      }
+
+      .line-grey{
+        stroke: #606060;
+      }
+
+      .shape-grey{
+        fill: #606060;
+      }
+
+      .line-white{
+        stroke: #FFF;
+      }
+
+      .shape-white{
+        fill: #FFF;
+      }
+
+      .dash{
+        stroke-dasharray: 2,2;
+      }
+
+
+      /* Utils */
+
+      .dim{
+        opacity: 0.5;
+      }
+
+
+      /* Database schema */
+
+      .database-block rect{
+        stroke: #606060;
+        fill: #FFF;
+      }
+
+      .database-block line{
+        stroke: #606060;
+      }
+
+      .database-header{
+        fill: #B40A00;
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
+      }
+
+      .database-arrow line, .database-arrow polyline{
+        stroke: #B40A00;
+        fill: none;
+      }
+
+      .database-arrow polygon{
+        fill: #B40A00;
+      }
+
+      /* Sequence Diagram */
+
+      .sequence-block text{
+        font-size: 16px;
+        text-anchor: middle;
+      }
+
+      .sequence-block rect, .sequence-block line{
+        stroke: #606060;
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .sequence-block line{
+        stroke-dasharray: 2,2;
+      }
+
+      .sequence-arrow text{
+        font-size: 14px;
+        text-anchor: middle;
+      }
+
+      .sequence-arrow line, .sequence-arrow polyline{
+        stroke: #B40A00;
+        fill: none;
+      }
+
+      .sequence-arrow polygon{
+        fill: #B40A00;
+      }
+
+      .sequence-inter{
+        stroke: #B40A00;
+        fill: #FFF;
+      }
+    </style>
+
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../../../assets/reveal_print.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+
+      var title = window.location.search.match( /title=.+/ );
+
+      if( title ) {
+        var titleElement = document.createElement( 'title' );
+        titleElement.innerText = decodeURIComponent(title[0].replace('title=', '')).replace(/\+/g, ' ').replace(/&program_id=.*/, '').replace(/&print-pdf=.*/, '');
+        document.getElementsByTagName( 'head' )[0].appendChild( titleElement );
+      }
+    </script><title>WebSocket &amp; Action Cable</title>
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease 0s;">      <script>
+      if (window.location.search.match(/print-pdf/gi)) {
+        document.body.insertAdjacentHTML('afterbegin',
+          `<svg height="40" width="400">
+             <text font-size="28px" y="25" x="30" fill="#ffffff" >
+             _w:18018:1670194694
+             </text>
+          </svg>`);
+      }
+      </script>
+
+
+    <div class="reveal linear center" data-transition-speed="default" data-background-transition="default">
+      <div class="slides" style="width: 1280px; height: 800px; zoom: 0.2;">
+        <section data-markdown="" data-markdown-parsed="true" class="present" style="top: -20px; display: block;"><h1>WebSocket &amp; Action Cable</h1>
+</section><section hidden="" class="future stack" style="top: 0px; display: block;"><section data-markdown="" data-markdown-parsed="true" style="top: -20px; display: block;"><h2>Problem</h2>
+<p>Sometimes, web applications need <strong>real-time</strong> features</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: block;"><h3>HTTP</h3>
+<p>HTTP is a request / response cycle protocol</p>
+<p><img src="./http-protocol.svg" alt="HTTP Protocol"></p>
+<p>The request <strong>has to</strong> be triggered by the <strong>client</strong></p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: block;"><h3>Real-time</h3>
+<p>In a chat app for example, several clients need to be updated in real-time with incoming messages</p>
+<p><br></p>
+<p>We don't want to trigger HTTP requests every second to fake real-time</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>WebSocket</h3>
+<p>Unlike HTTP, WebSocket is <strong>bidirectional</strong></p>
+<p><img src="./websocket.svg" alt="WebSocket protocol"></p>
+<p>A message created on the server can be broadcasted to subscribed clients (browsers)</p>
+</section></section><section hidden="" class="future stack" style="top: 0px; display: block;"><section data-markdown="" data-markdown-parsed="true" style="top: -20px; display: block;"><h2>Lets build a chat</h2>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: block;"><h3>Boilerplate</h3>
+<p>Start from Le Wagon's <a href="https://github.com/lewagon/rails-templates/tree/master#devise">Rails Devise Template</a> :</p>
+<pre><code class="bash hljs">rails new \
+  <span class="hljs-operator">-d</span> postgresql \
+  -j webpack \
+  -m https://raw.githubusercontent.com/lewagon/rails-templates/master/devise.rb \
+  rails-action-cable-chat
+
+<span class="hljs-built_in">cd</span> rails-action-cable-chat</code></pre>
+<pre><code class="bash hljs">rails g model Chatroom name
+rails g model Message content chatroom:references user:references
+rails g migration AddNicknameToUsers nickname
+rails db:migrate</code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Chatroom model</h3>
+<pre><code class="ruby hljs"><span class="hljs-comment"># app/models/chatroom.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Chatroom</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationRecord</span></span></span>
+  has_many <span class="hljs-symbol">:messages</span>
+<span class="hljs-keyword">end</span></code></pre>
+<pre><code class="bash hljs"><span class="hljs-comment"># rails c</span>
+Chatroom.create(name: <span class="hljs-string">"general"</span>)
+User.create(email: <span class="hljs-string">"sebastien@lewagon.org"</span>, nickname: <span class="hljs-string">"Sebastien"</span>, password: <span class="hljs-string">"123456"</span>)
+User.create(email: <span class="hljs-string">"boris@lewagon.org"</span>, nickname: <span class="hljs-string">"Boris"</span>, password: <span class="hljs-string">"123456"</span>)</code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Chatrooms route and controller</h3>
+<pre><code class="ruby hljs"><span class="hljs-comment"># config/routes.rb</span>
+<span class="hljs-comment"># [...]</span>
+resources <span class="hljs-symbol">:chatrooms</span>, <span class="hljs-symbol">only:</span> <span class="hljs-symbol">:show</span></code></pre>
+<pre><code class="bash hljs">rails g controller chatrooms</code></pre>
+<pre><code class="ruby hljs"><span class="hljs-comment"># app/controllers/chatrooms_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatroomsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
+    <span class="hljs-variable">@chatroom</span> = <span class="hljs-constant">Chatroom</span>.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Chatrooms show view</h3>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"container chatroom"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>#<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">chatroom.name</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">chatroom.messages.each</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">message</span>| %&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"message-&lt;%= message.id %&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">small</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">message.user.nickname</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">message.created_at.strftime</span>("%<span class="hljs-attribute">a</span> %<span class="hljs-attribute">b</span> %<span class="hljs-attribute">e</span> <span class="hljs-attribute">at</span> %<span class="hljs-attribute">l:</span>%<span class="hljs-attribute">M</span> %<span class="hljs-attribute">p</span>") %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">small</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">message.content</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Update the navbar</h3>
+<p>Update the logo link to point to the root path:</p>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/shared/_navbar.html.erb --&gt;</span>
+<span class="hljs-comment">&lt;!-- [...] --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">link_to</span> <span class="hljs-attribute">root_path</span>, <span class="hljs-attribute">class:</span> "<span class="hljs-attribute">navbar-brand</span>" <span class="hljs-attribute">do</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">image_tag</span> "<span class="hljs-attribute">https:</span>//<span class="hljs-attribute">raw.githubusercontent.com</span>/<span class="hljs-attribute">lewagon</span>/<span class="hljs-attribute">fullstack-images</span>/<span class="hljs-attribute">master</span>/<span class="hljs-attribute">uikit</span>/<span class="hljs-attribute">logo.png</span>" %&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span></code></pre>
+<p>And replace the avatar by <code>current_user.nickname</code> to see the context:</p>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/shared/_navbar.html.erb --&gt;</span>
+<span class="hljs-comment">&lt;!-- [...] --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">if</span> <span class="hljs-attribute">user_signed_in</span>? %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"nav-item dropdown"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"nav-link"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#"</span> <span class="hljs-attribute">data-bs-toggle</span>=<span class="hljs-value">"dropdown"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">current_user.nickname</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"dropdown-menu dropdown-menu-end"</span> <span class="hljs-attribute">aria-labelledby</span>=<span class="hljs-value">"navbarDropdown"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">link_to</span> "<span class="hljs-attribute">Log</span> <span class="hljs-attribute">out</span>", <span class="hljs-attribute">destroy_user_session_path</span>, <span class="hljs-attribute">data:</span> {<span class="hljs-attribute">turbo_method:</span> <span class="hljs-attribute">:delete</span>}, <span class="hljs-attribute">class:</span> "<span class="hljs-attribute">dropdown-item</span>" %&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">else</span> %&gt;</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Add some style</h3>
+<pre><code class="bash hljs">curl https://gist.githubusercontent.com/dmilon/<span class="hljs-number">3</span>db26308391f84b786ae6886a68897ae/raw/<span class="hljs-number">5</span>aa85b85f6436794106962c1f3c088b99743f8d8/_chatroom.scss \
+  &gt; app/assets/stylesheets/components/_chatroom.scss</code></pre>
+<p>Don't forget to <code>@import "chatroom";</code> in <code>components/_index.scss</code></p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Launch the app</h3>
+<pre><code class="bash hljs">rails s</code></pre>
+<pre><code class="bash hljs">yarn build --watch</code></pre>
+<p><br></p>
+<p>Sign in with 2 different users using 2 browsers (or one private window)</p>
+<p><br></p>
+<p>Go to <a href="http://localhost:3000/chatrooms/1">localhost:3000/chatrooms/1</a> 🚀</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Messages route and controller</h3>
+<pre><code class="ruby hljs"><span class="hljs-comment"># config/routes.rb</span>
+<span class="hljs-comment"># [...]</span>
+resources <span class="hljs-symbol">:chatrooms</span>, <span class="hljs-symbol">only:</span> <span class="hljs-symbol">:show</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:messages</span>, <span class="hljs-symbol">only:</span> <span class="hljs-symbol">:create</span>
+<span class="hljs-keyword">end</span></code></pre>
+<pre><code class="bash hljs">rails g controller messages</code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Chatrooms show view</h3>
+<pre><code class="ruby hljs"><span class="hljs-comment"># app/controllers/chatrooms_controller.rb</span>
+<span class="hljs-comment"># [...]</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
+  <span class="hljs-variable">@chatroom</span> = <span class="hljs-constant">Chatroom</span>.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-variable">@message</span> = <span class="hljs-constant">Message</span>.new
+<span class="hljs-keyword">end</span></code></pre>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="hljs-comment">&lt;!-- [...] --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">simple_form_for</span> [@<span class="hljs-attribute">chatroom</span>, @<span class="hljs-attribute">message</span>],
+  <span class="hljs-attribute">html:</span> {<span class="hljs-attribute">class:</span> "<span class="hljs-attribute">d-flex</span>"} <span class="hljs-attribute">do</span> |<span class="hljs-attribute">f</span>|
+%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.input</span> <span class="hljs-attribute">:content</span>,
+    <span class="hljs-attribute">label:</span> <span class="hljs-attribute">false</span>,
+    <span class="hljs-attribute">placeholder:</span> "<span class="hljs-attribute">Message</span> ##{@<span class="hljs-attribute">chatroom.name</span>}",
+    <span class="hljs-attribute">wrapper_html:</span> {<span class="hljs-attribute">class:</span> "<span class="hljs-attribute">flex-grow-1</span>"}
+  %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.submit</span> "<span class="hljs-attribute">Send</span>", <span class="hljs-attribute">class:</span> "<span class="hljs-attribute">btn</span> <span class="hljs-attribute">btn-primary</span> <span class="hljs-attribute">mb-3</span>" %&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Messages create action</h3>
+<pre><code class="ruby hljs"><span class="hljs-comment"># app/controllers/messages_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessagesController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+    <span class="hljs-variable">@chatroom</span> = <span class="hljs-constant">Chatroom</span>.find(params[<span class="hljs-symbol">:chatroom_id</span>])
+    <span class="hljs-variable">@message</span> = <span class="hljs-constant">Message</span>.new(message_params)
+    <span class="hljs-variable">@message</span>.chatroom = <span class="hljs-variable">@chatroom</span>
+    <span class="hljs-variable">@message</span>.user = current_user
+    <span class="hljs-keyword">if</span> <span class="hljs-variable">@message</span>.save
+      redirect_to chatroom_path(<span class="hljs-variable">@chatroom</span>)
+    <span class="hljs-keyword">else</span>
+      render <span class="hljs-string">"chatrooms/show"</span>, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:unprocessable_entity</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  private
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>message_params
+    params.<span class="hljs-keyword">require</span>(<span class="hljs-symbol">:message</span>).permit(<span class="hljs-symbol">:content</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Testing</h3>
+<p>Create a message with Seb in a window.</p>
+<p><br></p>
+<p><strong>Problem</strong>: Boris has to refresh to see it</p>
+</section></section><section hidden="" class="future stack" style="top: 0px; display: block;"><section data-markdown="" data-markdown-parsed="true" style="top: -20px; display: block;"><h2>Action Cable</h2>
+<p>Let's set up Action Cable in 3 steps 😎</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>1. Generate the channel</h3>
+<p><img src="./websocket_create_cable.svg" alt="HTTP protocol"></p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>2. Subscribe each client</h3>
+<p><img src="./websocket_connect.svg" alt="HTTP protocol"></p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>3. Broadcast data in the channel</h3>
+<p><img src="./websocket_broadcast.svg" alt="HTTP protocol"></p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Install Action Cable</h3>
+<pre><code class="bash hljs">yarn add @rails/actioncable</code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Generate the channel</h3>
+<pre><code class="bash hljs">rails g channel Chatroom</code></pre>
+<p>Make the channel <strong>specific</strong> to 1 chatroom:</p>
+<pre><code class="ruby hljs"><span class="hljs-comment"># app/channels/chatroom_channel.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatroomChannel</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationCable::Channel</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>subscribed
+    chatroom = <span class="hljs-constant">Chatroom</span>.find(params[<span class="hljs-symbol">:id</span>])
+    stream_for chatroom
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Create a Stimulus controller</h3>
+<pre><code class="bash hljs">rails generate stimulus chatroom_subscription</code></pre>
+<pre><code class="js hljs javascript"><span class="hljs-comment">// app/javascript/controllers/chatroom_subscription_controller.js</span>
+import { Controller } from <span class="hljs-string">"@hotwired/stimulus"</span>
+import { createConsumer } from <span class="hljs-string">"@rails/actioncable"</span>
+
+export <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> extends Controller {
+  static values = { chatroomId: <span class="hljs-built_in">Number</span> }
+  static targets = [<span class="hljs-string">"messages"</span>]
+
+  connect() {
+    <span class="hljs-built_in">console</span>.log(`Subscribe to the chatroom <span class="hljs-keyword">with</span> the id ${<span class="hljs-keyword">this</span>.chatroomIdValue}.`)
+  }
+}</code></pre>
+<p><code>chatroomIdValue</code> is the id of the chatroom we are going to subscribe to.</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Connect it to your message list</h3>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"container chatroom"</span>
+  <span class="hljs-attribute">data-controller</span>=<span class="hljs-value">"chatroom-subscription"</span>
+  <span class="hljs-attribute">data-chatroom-subscription-chatroom-id-value</span>=<span class="hljs-value">"&lt;%= @chatroom.id %&gt;"</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>#<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">chatroom.name</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages"</span> <span class="hljs-attribute">data-chatroom-subscription-target</span>=<span class="hljs-value">"messages"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- [...] --&gt;</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Subscribe each client</h3>
+<pre><code class="js hljs javascript"><span class="hljs-comment">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="hljs-comment">//[...]</span>
+  connect() {
+    <span class="hljs-keyword">this</span>.channel = createConsumer().subscriptions.create(
+      { channel: <span class="hljs-string">"ChatroomChannel"</span>, id: <span class="hljs-keyword">this</span>.chatroomIdValue },
+      { received: data =&gt; <span class="hljs-built_in">console</span>.log(data) }
+    )
+    <span class="hljs-built_in">console</span>.log(`Subscribed to the chatroom <span class="hljs-keyword">with</span> the id ${<span class="hljs-keyword">this</span>.chatroomIdValue}.`)
+  }</code></pre>
+<p><code>received</code> stores the function which is called when data is broadcasted in the channel.</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Refactor the message into a partial</h3>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="hljs-comment">&lt;!-- [...] --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages"</span> <span class="hljs-attribute">data-chatroom-subscription-target</span>=<span class="hljs-value">"messages"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">chatroom.messages.each</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">message</span>| %&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">render</span> "<span class="hljs-attribute">messages</span>/<span class="hljs-attribute">message</span>", <span class="hljs-attribute">message:</span> <span class="hljs-attribute">message</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/messages/_message.html.erb --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"message-&lt;%= message.id %&gt;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">small</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">message.user.nickname</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">message.created_at.strftime</span>("%<span class="hljs-attribute">a</span> %<span class="hljs-attribute">b</span> %<span class="hljs-attribute">e</span> <span class="hljs-attribute">at</span> %<span class="hljs-attribute">l:</span>%<span class="hljs-attribute">M</span> %<span class="hljs-attribute">p</span>") %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">small</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">message.content</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Broadcast each new message</h3>
+<p>In the create action, replace the <code>if @message.save</code> block:</p>
+<pre><code class="ruby hljs"><span class="hljs-comment"># app/controllers/messages_controller.rb</span>
+<span class="hljs-comment"># [...]</span>
+<span class="hljs-keyword">if</span> <span class="hljs-variable">@message</span>.save
+  <span class="hljs-constant">ChatroomChannel</span>.broadcast_to(
+    <span class="hljs-variable">@chatroom</span>,
+    render_to_string(<span class="hljs-symbol">partial:</span> <span class="hljs-string">"message"</span>, <span class="hljs-symbol">locals:</span> {<span class="hljs-symbol">message:</span> <span class="hljs-variable">@message</span>})
+  )
+  head <span class="hljs-symbol">:ok</span>
+<span class="hljs-keyword">else</span></code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Testing</h3>
+<p>Open the console in Seb's tab and post a message from Boris</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Insert the message</h3>
+<p>In the <code>received</code> callback, insert the new message in the DOM:</p>
+<pre><code class="js hljs javascript"><span class="hljs-comment">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="hljs-comment">// [...]</span>
+received: data =&gt; <span class="hljs-keyword">this</span>.messagesTarget.insertAdjacentHTML(<span class="hljs-string">"beforeend"</span>, data)</code></pre>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Scroll down</h3>
+<p>In the <code>received</code> callback, call <code>#insertMessageAndScrollDown()</code></p>
+<pre><code class="js hljs javascript"><span class="hljs-comment">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="hljs-comment">// [...]</span>
+received: data =&gt; <span class="hljs-keyword">this</span>.#insertMessageAndScrollDown(data)
+<span class="hljs-comment">// [...]</span>
+
+#insertMessageAndScrollDown(data) {
+  <span class="hljs-keyword">this</span>.messagesTarget.insertAdjacentHTML(<span class="hljs-string">"beforeend"</span>, data)
+  <span class="hljs-keyword">this</span>.messagesTarget.scrollTo(<span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.messagesTarget.scrollHeight)
+}</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields"><code>private</code> method in JavaScript</a> are prepend with a <code>#</code></p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Reset the form</h3>
+<p><strong>For the message sender only</strong></p>
+<p>We want to reset the form after the message has been sent:</p>
+<pre><code class="erb hljs xml"><span class="hljs-comment">&lt;!-- app/views/chatrooms/show.html.erb --&gt;</span>
+<span class="hljs-comment">&lt;!-- [...] --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">simple_form_for</span> [@<span class="hljs-attribute">chatroom</span>, @<span class="hljs-attribute">message</span>],
+  <span class="hljs-attribute">html:</span> { <span class="hljs-attribute">data:</span> { <span class="hljs-attribute">action:</span> "<span class="hljs-attribute">turbo:submit-end-</span>&gt;</span>chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+%&gt;</code></pre>
+<pre><code class="js hljs javascript"><span class="hljs-comment">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="hljs-comment">// [...]</span>
+resetForm(event) {
+  event.target.reset()
+}</code></pre>
+<p>The <code>turbo:submit-end</code> event is triggered after the form submits, so for the sender only.</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: none;"><h3>Unsubscribe from the channel</h3>
+<pre><code class="js hljs javascript"><span class="hljs-comment">// app/javascript/controllers/chatroom_subscriptions_controller.js</span>
+<span class="hljs-comment">//[...]</span>
+disconnect() {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Unsubscribed from the chatroom"</span>)
+  <span class="hljs-keyword">this</span>.channel.unsubscribe()
+}</code></pre>
+<p>The <code>disconnect()</code> method is called <a href="https://stimulus.hotwired.dev/reference/lifecycle-callbacks#disconnection">when the controller disappears from the DOM</a></p>
+<p>At this moment, we unsubscribe from the channel.</p>
+<p>Have a look at the logs!</p>
+</section></section><section hidden="" class="future stack" style="top: 0px; display: block;"><section data-markdown="" data-markdown-parsed="true" style="top: -20px; display: block;"><h2>Production</h2>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: block;"><h3>Redis</h3>
+<p>ActionCable needs <a href="http://redis.io/"><strong>Redis</strong></a> to work in production.</p>
+<p><br></p>
+<p><a href="https://devcenter.heroku.com/articles/websockets#application-architecture">Read more</a> about the <strong>global state</strong> introduced by WebSocket in a Web App.</p>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" style="top: -20px; display: block;"><h3>Configure Redis Cloud and deploy</h3>
+<p>Install <a href="https://elements.heroku.com/addons/rediscloud">Redis Cloud</a> Heroku add-on:</p>
+<pre><code class="bash hljs">heroku addons:create rediscloud:<span class="hljs-number">30</span></code></pre>
+<p>Replace <code>REDIS_URL</code> by <code>REDISCLOUD_URL</code>:</p>
+<pre><code class="yaml hljs python"><span class="hljs-comment"># config/cable.yml</span>
+  <span class="hljs-comment"># [...]</span>
+  url: &lt;%= ENV.fetch(<span class="hljs-string">"REDISCLOUD_URL"</span>) { <span class="hljs-string">"redis://localhost:6379/1"</span> } %&gt;
+  <span class="hljs-comment"># [...]</span></code></pre>
+<p>Commit your work and deploy it to production:</p>
+<pre><code class="bash hljs">git push heroku master</code></pre>
+</section></section><section data-markdown="" data-markdown-parsed="true" hidden="" class="future" style="top: -20px; display: block;"><h2>Extra Resources</h2>
+<p><a href="https://guides.rubyonrails.org/action_cable_overview.html">Action Cable documentation</a></p>
+<p><a href="https://kitt.lewagon.com/knowledge/cheatsheets/action_cable">Action Cable cheatsheet</a></p>
+<p>The full source code of the lecture is <a href="https://github.com/lewagon/rails-action-cable-chat">available on GitHub</a></p>
+<p><a href="https://kitt.lewagon.com/knowledge/tutorials/rails_action_cable_chat_message_styling">Tutorial for sent messages on the right and received messages on the left</a></p>
+</section><section data-markdown="" data-markdown-parsed="true" hidden="" class="future" style="top: -20px; display: block;"><h2>Happy broadcasting!</h2>
+</section>
+      </div>
+    <div class="backgrounds"><div class="slide-background present"></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><div class="navigate-left"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside><div class="slide-number">0</div><div class="state-background"></div><div class="pause-overlay"></div></div>
+
+    <script type="text/javascript" src="./reveal.js"></script>
+
+    <script>
+
+      var transition = '';  // default/cube/page/concave/zoom/linear/fade/none
+      if (transition == '') {
+        transition = 'linear';
+      }
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      var tracker = true;
+      Reveal.initialize({
+        width: 1280,
+        height: 800,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+        
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: transition,
+        dependencies: [
+          { src: '../../../assets/highlightjs/highlight.min.js', async: true, callback: function() { tracker = false; hljs.initHighlightingOnLoad(); } },
+          // Speaker notes
+          { src: '../../../assets/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        ]
+      });
+
+      // Title is pulled from fullstack-meta and pushed by Kitt in the Query String
+      var params = new URLSearchParams(window.location.search)
+      document.querySelector('h1').innerText = params.get('title');
+
+      // Fix highlightjs
+      setTimeout(function() {
+        if (tracker && hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+          });
+        }
+      }, 500);
+    </script><script type="text/javascript" src="./highlight.min.js"></script><script type="text/javascript" src="./notes.js"></script>
+
+  
+
+</body></html>
