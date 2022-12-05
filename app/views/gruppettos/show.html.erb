@@ -63,7 +63,8 @@
       <div class="col-6">
         <p> <%= @gruppetto.description %></p>
         <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
-        <%= link_to "Download the route as GPX", root_path %>
+        <p><%= link_to "Download the route as GPX", root_path %></p>
+        <p><%= link_to "Chat", gruppetto_chatroom_path(@gruppetto) %></p>
       </div>
     </div>
   </div>
