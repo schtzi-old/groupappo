@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :participations
-  has_many :gruppettos, through: :participations
+  has_many :participations, dependent: :destroy
+  has_many :gruppettos, through: :participations, dependent: :destroy
   has_many :tracks, dependent: :destroy
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :pending_friendships, -> {where confirmed: false}, class_name: 'friendship', foreign_key: "friend_id"
 
 

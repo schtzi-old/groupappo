@@ -1,6 +1,6 @@
 class Gruppetto < ApplicationRecord
   belongs_to :track
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_many :participations
 
   has_many :participants, through: :participations, source: :user

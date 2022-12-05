@@ -6,11 +6,11 @@ require "down"
 
 class Track < ApplicationRecord
   belongs_to :user
-  has_many :gruppettos
+  has_many :gruppettos, dependent: :destroy
   has_many :coordinates
 
-  has_one_attached :file
-  has_one_attached :image
+  has_one_attached :file, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
