@@ -1,10 +1,9 @@
 class TrackDataJob < ApplicationJob
   queue_as :default
+  sidekiq_options retry: false
 
-  def perform(*args)
-
-    # takes instance of track
-    # Create instance of datamapper
-    # Call method to create geojson
+  def perform(track)
+    sleep 3
+    track.update_map_data
   end
 end
