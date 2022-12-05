@@ -1,4 +1,4 @@
-<div class="container container-fluid mt-3 min"
+<div class="container mt-3"
       data-controller="track-subscription"
       data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
   <h1 class="pt-5"> <%= @gruppetto.name %></h1>
@@ -70,30 +70,34 @@
 
   <% if current_user == @gruppetto.user %>
     <div class="border-top mx-5 pt-3 text-center">
-        <h5 class="text-center">Gruppetto Host View - Manage Attendance</h5>
-        <div class="py-2">
-          <table class="table table-hover table-responsive-sm justify-content-between">
-            <thead>
-              <tr>
-                <th scope="col">Status</th>
-                <th scope="col">Name</th>
-                <th scope="col">Accept/Reject</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @gruppetto.participations.each do |participant| %>
-                <% unless @gruppetto.user_id == participant.user_id %>
-                    <tr>
-                      <td><%= render "participations/status", participation_status: participant.participation_status %></td>
-                      <td><p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p></td>
-                      <td><%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %></td>
-                    </tr>
+    <h5 class="text-center">Gruppetto Host View - Manage Attendance</h5>
+    <% if @gruppetto.participant_ids.count > 1 %>
+          <div class="py-2">
+            <table class="table table-hover table-responsive-sm justify-content-between">
+              <thead>
+                <tr>
+                  <th scope="col">Status</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Accept/Reject</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @gruppetto.participations.each do |participant| %>
+                  <% unless @gruppetto.user_id == participant.user_id %>
+                      <tr>
+                        <td><%= render "participations/status", participation_status: participant.participation_status %></td>
+                        <td><p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p></td>
+                        <td><%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %></td>
+                      </tr>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-    </div>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    <% else %>
+      <p>No attendees yet 😢</p>
+    <% end %>
   <% end %>
 </div>
 
