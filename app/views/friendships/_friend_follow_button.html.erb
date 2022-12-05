@@ -1,0 +1,5 @@
+<%if Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name  %>
+  <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+  <%= button_to("Add #{user.first_name} as a friend! ", new_friendship_path,
+  class: "btn btn-primary w-5",  :method => :get, params: { user_id: current_user.id, friend_id: user.id, confirmed: false }) %>
+<% end %>

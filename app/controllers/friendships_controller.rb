@@ -4,9 +4,9 @@ class FriendshipsController < ApplicationController
     @friendships = policy_scope(Friendship)
     authorize @friendships
     if params[:friendship].nil? || params[:friendship][:name] == ""
-      @user
+      @users = []
     else
-      @user = User.where(first_name: params[:friendship][:name]).first(10)
+      @users = User.where(first_name: params[:friendship][:name]).first(10)
     end
     @requests = User.all
   end
@@ -25,7 +25,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.new(friendship_params)
     authorize @friendship
     if @friendship.save
-      redirect_to friendships_path
+      redirect_to users_show_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,23 +34,20 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship.destroy if current_user.id == @friendship.user_id || current_user.id == @friendship.friend_id
     authorize @friendship
-    redirect_to friendships_path, status: :see_other
+    redirect_to users_show_path, status: :see_other
   end
 
   def edit
     authorize @friendship
   end
 
-
-
   def update
     authorize @friendship
     if @friendship.update(friendship_params)
-      redirect_to friendships_path
+      redirect_to users_show_path
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def friendship_params
@@ -64,7 +61,7 @@ class FriendshipsController < ApplicationController
     @friendship.confirmed = params[:confirmed]
     authorize @friendship
     if @friendship.save
-      redirect_to friendships_path
+      redirect_to users_show_path
     else
       render :new, status: :unprocessable_entity
     end

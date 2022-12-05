@@ -1,0 +1,21 @@
+<!--Users Friends -->
+<div class="card mb-4 mb-lg-0">
+  <div class="card-body p-0">
+    <ul class="list-group list-group-flush rounded-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <p class="mb-0"><%= current_user.first_name.capitalize %>'s Friends</p>
+      </li>
+      <% @friendships.each do |friendship| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+          <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% if friendship.friend.id == current_user.id %>
+            <p class="mb-0"><%= friendship.user.first_name%> <%= friendship.user.last_name%></p>
+          <% else %>
+            <p class="mb-0"><%= friendship.friend.first_name%> <%= friendship.friend.last_name%></p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<!--Users Friends End-->

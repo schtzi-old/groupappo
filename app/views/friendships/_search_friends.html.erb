@@ -1,0 +1,25 @@
+<!--Search Friends-->
+<div class="card mb-4 mb-lg-0">
+  <div class="card-body p-0">
+    <ul class="list-group list-group-flush rounded-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <%= simple_form_for :friendship, url: friendships_path, method: :get, html: { class: 'form-inline'} do |f| %>
+        <%= f.text_field :name, class: "row-6", placeholder: "Search Users"%>
+        <%= f.submit "Search", class: "btn btn-primary row-6 justify-content-center" %>
+        <% end %>
+      </li>
+    </ul>
+    <% unless @users.empty? %>
+      <% @users.each do |user| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+          <%if Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name  %>
+            <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= button_to("Add #{user.first_name} as a friend! ", new_friendship_path,
+            class: "btn btn-primary w-5",  :method => :get, params: { user_id: current_user.id, friend_id: user.id, confirmed: false }) %>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<!--Search Friends End-->
