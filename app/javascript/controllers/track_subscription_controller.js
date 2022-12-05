@@ -7,13 +7,19 @@ export default class extends Controller {
   static targets = ["trackImage", "totalVm", "totalKm"]
 
   connect() {
-    console.log(`Found ${this.trackIdValue}`)
-    console.log(this.trackImageTarget)
-    console.log(this.totalVmTarget)
-    console.log(this.totalKmTarget)
     this.channel = createConsumer().subscriptions.create(
       { channel: "TracksChannel", id: this.trackIdValue },
-      { received: data => console.log(data) }
-      )
+      {
+        received: (data) => {this.#insertInfo(data)}
+      }
+     )
+  }
+
+  #insertInfo(data) {
+    console.log(data)
+    this.totalVmTarget.innerHTML = `${data.totalVm} m`
+    this.totalKmTarget.innerHTML = `${data.totalKm} km`
+    this.trackImageTarget.innerHTML = ''
+    this.trackImageTarget.innerHTML = `<img height="300" width="300" src=${data.trackImage}></img>`
   }
 }

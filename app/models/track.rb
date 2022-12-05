@@ -2,7 +2,7 @@
 require "open-uri"
 # require "nokogiri"
 require "fast_polylines"
-require "down"
+# require "down"
 
 class Track < ApplicationRecord
   belongs_to :user
@@ -37,10 +37,13 @@ class Track < ApplicationRecord
 
   def broadcast_change
     TracksChannel.broadcast_to(
-      @track,
-      'hello'
+      self,
+      {
+        totalKm: total_km,
+        totalVm: total_vm,
+        trackImage: image.url
+      }
     )
-    # head :ok
   end
 
   def load_coordinates

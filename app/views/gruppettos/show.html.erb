@@ -38,7 +38,7 @@
   <div data-track-subscription-target="trackImage">
     <%# NEED TO ADD THIS WHEN WE HAVE IMAGES ATTACHED TO ROUTES IN SEED %>
     <% if @gruppetto.track.image.key %>
-      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300, data: {tracks_subscription_target: 'trackImage'} %>
+      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300 %>
     <% end %>
   </div>
 
@@ -56,7 +56,7 @@
           </tr>
           <tr>
             <td>Incline</td>
-            <td data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> vm</td>
+            <td data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> m</td>
           </tr>
         </table>
       </div>
