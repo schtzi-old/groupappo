@@ -2,10 +2,12 @@
   <div class="container py-5">
     <div class="row">
       <div class="col-lg-4">
+
+        <!--User Profile-->
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+          <%= image_tag "avatar-fallback.svg", class: "avatar rounded-circle img-fluid",style: "width: 150px;", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
             <h5 class="my-3"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
             <p class="text-muted mb-1"><%= current_user.about %></p>
             <p class="text-muted mb-4"><%= current_user.level %>, <%= current_user.country %></p>
@@ -15,6 +17,8 @@
             </div>
           </div>
         </div>
+        <!--User Profile end-->
+
         <!--Search Friends-->
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
@@ -26,10 +30,25 @@
                   <% end %>
                 </li>
             </ul>
+
+            <% unless @user.nil? %>
+              <% @user.each do |user| %>
+               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <%if Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name  %>
+                <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= button_to("Add #{user.first_name} as a friend! ", new_friendship_path,
+              class: "btn btn-primary w-5",  :method => :get, params: { user_id: current_user.id, friend_id: user.id, confirmed: false }) %>
+                <% end %>
+                </li>
+              <% end %>
+            <% end %>
+
+
           </div>
         </div>
-        <!--Search Friends-->
-        <!--Incoming Friend Requests -->
+        <!--Search Friends End-->
+
+        <!--Users Friends -->
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
@@ -49,17 +68,32 @@
             </ul>
           </div>
         </div>
-        <!--Incoming Friend Requests End-->
+        <!--Users Friends End-->
 
+        <% @friendships.each do |friendship| %>
+        <%if !Friendship.reacted?(friendship.user.id,friendship.friend.id) && friendship.user.first_name != current_user.first_name && Friendship.pending_reacted?(friendship.user.id,friendship.friend.id) && Friendship.request_origin(friendship.user.id,friendship.friend.id)%>
 
+          <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+            <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% if friendship.friend.id == current_user.id && friendship.confirmed == false%>
+                  <p class="mb-0"><%= friendship.user.first_name%> <%= friendship.user.last_name%> ::::</p>
+                  <%= button_to("Confirm", friendship_path(id: Friendship.find_friendship(friendship.user.id,friendship.friend.id)),class: "btn btn-primary w-100 h-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
+                <% else %>
+                  <p class="mb-0"><%= friendship.friend.first_name%> <%= friendship.friend.last_name%> ::::</p>
+                  <%= button_to("Confirm", friendship_path(id: Friendship.find_friendship(friendship.user.id,friendship.friend.id)),class: "btn btn-primary w-100 h-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
+                <% end %>
+          </li>
+          <% end %>
+        <% end %>
+        <!--Incoming Friend Requests-->
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <p class="mb-0">Friend Requests</p>
               </li>
-                <% unless @user.nil? %>
-                  <% @user.each do |user| %>
+                <% unless @requests.nil? %>
+                  <% @requests.each do |user| %>
                     <%if !Friendship.reacted?(current_user.id,user.id) && user.first_name != current_user.first_name && Friendship.pending_reacted?(current_user.id,user.id) && Friendship.request_origin(current_user.id,user.id)%>
 
                       <div class="nearby-user p-2">
@@ -75,8 +109,7 @@
                             <% end %>
                           </div>
                           <div class="col-md-4 col-sm-4">
-                          <%= button_to("Confirm", friendship_path(id: Friendship.find_friendship(current_user.id,user.id)),
-        class: "btn btn-primary w-100 h-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
+                          <%= button_to("Confirm", friendship_path(id: Friendship.find_friendship(current_user.id,user.id)),class: "btn btn-primary w-100 h-100",  :method => :patch, params: { friendship: { confirmed: true}}) %>
                           </div>
                         </div>
                       </div>
@@ -84,10 +117,13 @@
                   <% end %>
                 <% end %>
 
-            </ul>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+          <!--Incoming Friend Requests End-->
+
+      <!--User Private Info -->
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
@@ -132,7 +168,7 @@
                 <p class="mb-0">Level</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= current_user.level %></p>
+                <p class="text-muted mb-0"><%= current_user.level.capitalize %></p>
               </div>
             </div>
             <hr>
@@ -146,12 +182,13 @@
             </div>
           </div>
         </div>
+        <!--User Private Info End -->
 
 
 
 
 
-
+        <!--Search Friends-->
         <div class="row">
           <div class="col-md-6">
             <div class="card mb-4 mb-md-0">
@@ -182,6 +219,8 @@
           </div>
 
         </div>
+        <!--Search Friends End-->
+
       </div>
     </div>
   </div>

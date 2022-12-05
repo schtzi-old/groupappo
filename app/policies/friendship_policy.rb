@@ -1,8 +1,13 @@
 class FriendshipPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.where("user_id = ? AND confirmed = ? OR friend_id = ? AND confirmed = ?", user, true, user, true)
+    def resolve(switch = 0)
+      case switch
+      when 1
+        scope.where("user_id = ? AND confirmed = ? OR friend_id = ? AND confirmed = ?", user, false, user, false)
+      when 0
+        scope.where("user_id = ? AND confirmed = ? OR friend_id = ? AND confirmed = ?", user, true, user, true)
+      end
     end
   end
 

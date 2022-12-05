@@ -4,10 +4,11 @@ class FriendshipsController < ApplicationController
     @friendships = policy_scope(Friendship)
     authorize @friendships
     if params[:friendship].nil? || params[:friendship][:name] == ""
-      @user = User.all
+      @user
     else
-      @user = User.where(first_name: params[:friendship][:name])
+      @user = User.where(first_name: params[:friendship][:name]).first(10)
     end
+    @requests = User.all
   end
 
   def show
