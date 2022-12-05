@@ -55,7 +55,7 @@ gem "pundit"
 gem "geocoder"
 
 # Sidekiq
-gem "sidekiq"
+gem "sidekiq", "<7"
 gem "sidekiq-failures", "~> 1.0"
 
 # import xml-files
