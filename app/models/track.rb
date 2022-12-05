@@ -2,7 +2,7 @@
 require "open-uri"
 # require "nokogiri"
 require "fast_polylines"
-require "down"
+# require "down"
 
 class Track < ApplicationRecord
   belongs_to :user

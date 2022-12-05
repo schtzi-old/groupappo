@@ -2,7 +2,10 @@
   <select class="form-select" aria-label="" name='gruppetto[track][id]'>
     <option value=""></option>
     <% tracks.each do |track| %>
-      <option value="<%= track.id %>"><%= track.name %></option>
+      <option value="<%= track.id %>">
+        <%= track.name %>
+        <% unless track.total_km.nil? %>, <%= track.total_km %> km <% end %>
+        <% unless track.total_vm.nil? %>, <%= track.total_vm %> vm <% end %>
     <% end %>
   </select>
 </div>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "gruppettos/:gruppetto_id/participations/:id/reject", to: "participations#reject", as: :reject_participation
   get "test", to: "gruppettos#test"
 
-  resources :tracks, only: %i[new create]
+  resources :tracks, only: %i[create index]
 
   require "sidekiq/web"
   authenticate :user, ->(user) { user.admin? } do

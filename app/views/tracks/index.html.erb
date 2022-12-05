@@ -1,0 +1,40 @@
+<div>
+  <table class="table table-hover">
+    <thead>
+    </thead>
+      <tbody>
+        <% @tracks.each do |track| %>
+          <tr>
+            <td>
+            <%= link_to '#', class: 'text-decoration-none' do  %>
+              <div class="d-flex" style="color:#0E0000">
+                <% unless track.image.url.nil? %>
+                  <%= cl_image_tag track.image.key, height: 100, width: 100, crop: :fill %>
+                <% else %>
+                <%= image_tag "logo-fallback.svg", height: 100, width: 100 %>
+                <% end %>
+                <div class="m-1 ms-3">
+                  <h5 class="mb-0 overflow-hidden" style="color:#0E0000"><%= track.name %></h5>
+                  <div class="d-flex">
+                    <p class="text-muted">Start: </p>
+                    <p class="ms-1 overflow-hidden text-muted"><%= track.address unless track.address.nil? %></p>
+                  </div>
+                  <div class="d-flex">
+                    <div class="d-flex align-items-baseline"  style="width: 120px;">
+                      <i class="fa-regular fa-route"></i>
+                      <p class="ms-2 mb-0 flex-grow-1 text-end"><%= track.total_km.nil? ? " - " : track.total_km %> km</p>
+                    </div>
+                    <div class="d-flex align-items-baseline" style="width: 120px;margin-left:24px;">
+                      <i class="fa-regular fa-mountain-sun"></i>
+                      <p class="ms-2 mb-0 flex-grow-1 text-end"><%= track.total_km.nil? ? " - " : track.total_vm %> vm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
