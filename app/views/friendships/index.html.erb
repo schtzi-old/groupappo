@@ -8,7 +8,7 @@
           <div class="card-body text-center">
           <%= image_tag "avatar-fallback.svg", class: "avatar rounded-circle img-fluid",style: "width: 150px;", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
-            <h5 class="my-3"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
+            <h5 class="my-3">|<%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
             <p class="text-muted mb-1"><%= current_user.about %></p>
             <p class="text-muted mb-4"><%= current_user.level %>, <%= current_user.country %></p>
             <div class="d-flex justify-content-center mb-2">
