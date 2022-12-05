@@ -72,7 +72,7 @@ class Track < ApplicationRecord
 
       @elevations_array << trkpt.text.strip.to_f
     end
-    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s)
+    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s, address: Geocoder.search([@coordinates_array[0]]))
   end
 
   def calculate_distance
