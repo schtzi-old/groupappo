@@ -10,8 +10,8 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
-import GrFormTrackController from "./gr_form_track_controller"
-application.register("gr-form-track", GrFormTrackController)
+import GruppettoFormHideController from "./gruppetto_form_hide_controller"
+application.register("gruppetto-form-hide", GruppettoFormHideController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
