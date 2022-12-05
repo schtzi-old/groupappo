@@ -45,9 +45,12 @@ Gruppetto.create(name: "Ryan's Ferrari Race", track_id: 2, user_id: 3, start: Da
 Gruppetto.create(name: "Big Cycle Weekend in High Country", track_id: 4, user_id: 4, start: DateTime.strptime("17/12/2022 06:00", "%d/%m/%Y %H:%M"),
                   description: "Cycle the entire Great Vic Rail Trail over the weekend. Camping on Saturday night 🏕", gruppetto_status: "draft",
                   difficulty: "Hard", event_type: "Invite_only", participation_rule: "Manual")
-Gruppetto.create(name: "Begginer Ride in Melbourne", track_id: 1, user_id: 2, start: DateTime.strptime("04/12/2022 11:00", "%d/%m/%Y %H:%M"),
+Gruppetto.create(name: "Beginner Ride in Melbourne", track_id: 1, user_id: 2, start: DateTime.strptime("04/12/2022 11:00", "%d/%m/%Y %H:%M"),
                   description: "Just learned to ride your bike? Come meet us for an easy ride around the CDB 😎", gruppetto_status: "draft",
                   difficulty: "Easy", event_type: "Invite_only", participation_rule: "Manual")
+Gruppetto.create(name: "End of Nov 🚴🏻‍♀️", track_id: 1, user_id: 2, start: DateTime.strptime("30/11/2022 11:00", "%d/%m/%Y %H:%M"),
+                  description: "Finish November with a bang!", gruppetto_status: "draft",
+                  difficulty: "Hard", event_type: "Invite_only", participation_rule: "Manual")
 
 puts "Creating participations - gruppetto creators attending"
 Participation.create(user_id: 2, gruppetto_id: 1, participation_status: 1)

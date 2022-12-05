@@ -116,6 +116,8 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    down (5.3.1)
+      addressable (~> 2.8)
     erb (4.0.2)
       cgi (>= 0.3.3)
     erubi (1.11.0)
@@ -208,6 +210,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.8.0)
     redis-client (0.11.2)
       connection_pool
     regexp_parser (2.6.1)
@@ -295,6 +298,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  down (~> 5.0)
   erb
   faker
   fast-polylines (~> 2.0.0)
@@ -307,6 +311,7 @@ DEPENDENCIES
   puma (~> 5.0)
   pundit
   rails (~> 7.0.4)
+  redis (~> 4.0)
   sassc-rails
   selenium-webdriver
   sidekiq

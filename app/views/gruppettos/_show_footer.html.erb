@@ -1,0 +1,10 @@
+  <footer class="sticky-bottom py-0">
+    <div class="d-flex justify-content-between bg-white p-2 mt-auto">
+      <div class="w-50">
+        <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary w-100" %>
+      </div>
+      <div class="w-50">
+        <%= render "participations/new", gruppetto: @gruppetto, participant: @participant %>
+      </div>
+    </div>
+  </footer>
