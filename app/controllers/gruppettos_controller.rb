@@ -81,7 +81,7 @@ class GruppettosController < ApplicationController
   end
 
   def track_params
-    params[:gruppetto].require(:track).permit(:id, :name, :address, :total_km, :total_vm, :file, :image)
+    params[:gruppetto].require(:track).permit(:id, :name, :address, :total_km, :total_vm, :file)
   end
 
   def gruppetto_params
