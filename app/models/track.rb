@@ -7,7 +7,6 @@ require "fast_polylines"
 class Track < ApplicationRecord
   belongs_to :user
   has_many :gruppettos, dependent: :destroy
-  has_many :coordinates
 
   has_one_attached :file, dependent: :destroy
   has_one_attached :image, dependent: :destroy
