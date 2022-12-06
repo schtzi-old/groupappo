@@ -8,7 +8,7 @@ class Track < ApplicationRecord
   belongs_to :user
   has_many :gruppettos, dependent: :destroy
 
-  has_one_attached :file, dependent: :destroy
+  has_one_attached :file, service: :cloudinary_raw, dependent: :destroy
   has_one_attached :image, dependent: :destroy
 
   geocoded_by :address
