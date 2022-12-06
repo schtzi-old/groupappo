@@ -7,25 +7,25 @@
       </div>
       <div class="modal-body">
         <%= form_with url: gruppettos_path, method: :get do |form| %>
-        <hr>
+
           <%#= form.label :zip_code, "Zip Code" %>
           <%#= form.select :zip_code,
                     {
                       "Melbourne Zip Codes" => [3002, 8002, 3000, 3001, 3004, 8001, 3045, 3052, 5006, 3051, 3207, 3050, 3205, 3004, 3010, 3003]
                     } %>
-        <hr>
+
           <%= form.label :speed, "Speed" %>
           <%= form.number_field :speed, in: 1..50%>
         <hr>
           <%= form.label :difficulty, "Difficulty" %>
           <%= form.select :difficulty,
                     {
-                      "Options" => [ ["Easy", 0], ["Medium", 1], ["Hard", 2] ]
+                      "Options" => [ ["Easy"], ["Medium"], ["Hard"] ]
                     } %>
         <hr>
-          <%= form.label :length, "Length" %>
-          <%= form.range_field :length, in: 1..200%>
-        <hr>
+          <%#= form.label :length, "Length" %>
+          <%#= form.range_field :length, in: 1..200%>
+
           <%= form.label :start_date, "Start Date" %>
           <%= form.date_field :start_date%>
         <hr>
@@ -40,9 +40,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="my-5">
-<% @gruppettos.each do |gruppetto| %>
-      <%= render "index_card", gruppetto: gruppetto %>
-<%end%>
 </div>

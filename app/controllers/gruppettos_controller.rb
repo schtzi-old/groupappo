@@ -7,6 +7,7 @@ class GruppettosController < ApplicationController
   end
 
   def index
+    params[:type] = "upcoming" if params[:type].nil?
     if params[:type] == "upcoming"
       @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now))
     elsif params[:type] == "past"
@@ -21,21 +22,31 @@ class GruppettosController < ApplicationController
     # friend only
     # invite only
     console
-    unless params[:speed].nil?
+    if params[:speed].nil? || params[:speed] == ""
+    else
       @gruppettos = @gruppettos.select { |test| test.avg_speed.to_i >= params[:speed].to_i }
     end
-
-    unless params[:difficulty].nil?
-      @gruppettos = @gruppettos.select { |test| test.difficulty == "Hard" }
+    if params[:difficulty].nil?
+    else
+      @gruppettos = @gruppettos.select { |test| test.difficulty == params[:difficulty] }
     end
-    params[:type] = "upcoming" if params[:type].nil?
+    if params[:start_date].nil? || params[:start_date] == ""
+    else
+      @gruppettos = @gruppettos.select { |test| test.start >= params[:start_date] }
+    end
+    if params[:end_date].nil? || params[:end_date] == ""
+    else
+      @gruppettos = @gruppettos.select { |test| test.start <= params[:end_date] }
+    end
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
-    @markers = @gruppettos.map do |gruppetto|
-      {
-        lat: gruppetto.track.latitude,
-        lng: gruppetto.track.longitude
-      }
+    unless @gruppettos.empty?
+      @markers = @gruppettos.map do |gruppetto|
+        {
+          lat: gruppetto.track.latitude,
+          lng: gruppetto.track.longitude
+        }
+      end
     end
 
   end
