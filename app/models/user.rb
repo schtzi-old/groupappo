@@ -8,8 +8,11 @@ class User < ApplicationRecord
   has_many :gruppettos, through: :participations
   has_many :tracks, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :pending_friendships, -> {where confirmed: false}, class_name: 'friendship', foreign_key: "friend_id"
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: 'friendship', foreign_key: "friend_id"
+  has_many :messages
+  has_many :notifications, as: :recipient, dependent: :destroy
   has_one_attached :avatar
+
 
   enum :level, { novice: 0, intermediate: 1, pro: 2, merckx: 3 }, default: :novice
   validates :first_name, :last_name, :email, :password, presence: true

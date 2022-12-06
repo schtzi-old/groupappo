@@ -1,0 +1,15 @@
+<%= link_to notifications_path, class: "container notifications", data: { controller: "notification-subscription"} do %>
+  <button type="button" class="btn btn-outline-secondary position-relative">
+    <i class="fa-regular fa-bell"></i>
+
+    <% if current_user.notifications.count > 0%>
+        <% if current_user.notifications.unread.count > 0%>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                data-notification-subscription-target="notification-count">
+              <%= current_user.notifications.unread.count %>
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        <% end %>
+    <% end %>
+  </button>
+<% end %>
