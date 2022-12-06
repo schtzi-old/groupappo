@@ -2,7 +2,7 @@ class Gruppetto < ApplicationRecord
   SPEED_RANGE = (15..50)
 
   belongs_to :track
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :participations, dependent: :destroy
   has_one :chatroom, dependent: :destroy
 

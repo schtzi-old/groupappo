@@ -1,69 +1,114 @@
-<div class="container mt-3"
+<div class="mt-3 overflow-hidden"
       data-controller="track-subscription"
       data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
-  <h1 class="pt-5"> <%= @gruppetto.name %></h1>
-  <p> <%= @gruppetto.start.strftime('%d %b %l%P') unless @gruppetto.start.nil? %></p>
-
-  <div class="d-flex justify-content-between">
-    <div class="">
-        <p> <%= User.find(@gruppetto.user_id).first_name %> is hosting</p>
-    </div>
-    <div class="">
+  <div data-track-subscription-target="trackImage">
+    <% unless @gruppetto.track.image.url.nil? %>
+      <%= cl_image_tag @gruppetto.track.image.key, height: 400, width: 400, crop: :fill, class: 'w-100' %>
+    <% else %>
+      <%= image_tag "track-fallback.svg", height: 400, width: 400 %>
+    <% end %>
+  </div>
+  <div class="d-flex mt-3">
+    <div class='w-100'>
       <div class="d-flex">
-        <p class="px-1"><i class="fa-solid fa-person-biking"></i></p>
-        <% @attending_count = @gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
-        <p class="px-1"> <%= @attending_count %> riding </p>
+        <h3 class="mb-2 overflow-hidden" style="color:#0E0000"><%= @gruppetto.name %></h3>
+    </div>
+        <table class='table'>
+          <tbody >
+            <tr>
+              <td><p class="text-muted">When?</p></td>
+              <td><p class="overflow-hidden text-muted text-end"><%= @gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless @gruppetto.start.nil? %></p></td>
+            </tr>
+            <tr>
+              <td><p class="text-muted">Where?</p></td>
+              <td><p class="overflow-hidden text-muted text-end"><%= @gruppetto.track.address unless @gruppetto.track.address.nil? %></p></td>
+            </tr>
+            <tr>
+              <td ><p class="text-muted">What?</p>
+              <td>
+              <p> <%= @gruppetto.description %></p>
+              <div class="d-flex justify-content-start">
+                <div class="d-flex align-items-baseline"  style="width: 120px;">
+                  <i class="fa-solid fa-gauge" style="margin-left:2px;"></i>
+                  <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden"><%= @gruppetto.avg_speed.nil? ? " - " : @gruppetto.avg_speed %> km/h</p>
+                </div>
+                <div class="d-flex align-items-baseline"  style="width: 120px;margin-left:24px;">
+                  <i class="fa-solid fa-route"></i>
+                  <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_km %> km</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-start">
+                <div class="d-flex align-items-baseline"  style="width: 120px;">
+                  <i class="fa-solid fa-dumbbell"></i>
+                  <p class="ms-2 mb-0 flex-grow-1 text-center overflow-hidden"><%= @gruppetto.difficulty.nil? ? " - " : @gruppetto.difficulty %> </p>
+                </div>
+                <div class="d-flex align-items-baseline" style="width: 120px;margin-left:24px;">
+                  <i class="fa-solid fa-mountain"></i>
+                  <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm.nil? ? " - " : @gruppetto.track.total_vm %> vm</p>
+                </div>
+              </div>
+              <div>
+                <% if !@gruppetto.track.file.url.nil? %>
+                  <p class='mt-2 mb-0'><%= link_to "Download the route as GPX", @gruppetto.track.file.url %></p>
+                <% end %>
+              </div>
+                </td>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="">
+                  <p class="text-muted"><%= @gruppetto.user.first_name %> is hosting</p>
+                  <% if @gruppetto.user.avatar.key.nil? %>
+                    <%= image_tag "avatar-fallback.svg", height: 25, width: 25, class: 'rounded-circle shadow-sm' %>
+                  <% else %>
+                    <%= cl_image_tag @gruppetto.user.avatar.key, height: 25, width: 25, crop: :fill, class: 'rounded-circle shadow-sm' %>
+                  <% end %>
+                </div>
+              </td>
+              <td>
+                <div class="flex-grow-1 text-end pe-3">
+                  <p class="text-muted"><%= @gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %> are joining</p>
+                  <% @gruppetto.participants.each do |participant| %>
+                    <% if participant.avatar.key.nil? %>
+                      <%= image_tag "avatar-fallback.svg", height: 25, width: 25, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
+                    <% else %>
+                      <%= cl_image_tag participant.avatar.key, height: 25, width: 25, crop: :fill, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+            <td><p class="text-muted">And you are...</p></td>
+            <td>
+              <% if @gruppetto.participants.include? current_user %>
+                <% @participant = @gruppetto.participations.find { |participant| participant.user_id == current_user.id} %>
+                  <%= render "participations/status",  participation_status: @participant.participation_status  %>
+                  <% if (@participant.participation_status == "Attending") &&
+                        (@gruppetto.user != current_user) %>
+                    <%= render "participations/delete", { gruppetto: @gruppetto, participant: @participant } %>
+                  <% end %>
+              <% end %>
+            </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="d-flex">
+
       </div>
     </div>
-  </div>
-
-  <% if @gruppetto.participant_ids.include? current_user.id %>
-    <% @participant = @gruppetto.participations.find { |participant|
-          participant.user_id == current_user.id} %>
-            <%= render "participations/status",  participation_status: @participant.participation_status  %>
-  <% end %>
-  <% if (@gruppetto.participant_ids.include? current_user.id) &&
-        (@participant.participation_status == "Attending") &&
-        (@gruppetto.user_id != current_user.id) %>
-        <%= render "participations/delete", { gruppetto: @gruppetto, participant: @participant } %>
-    <% end %>
-
-  <div class="py-3">
-    <div style="width: 100%; height: 200px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-  </div>
-  <div data-track-subscription-target="trackImage">
-    <%# NEED TO ADD THIS WHEN WE HAVE IMAGES ATTACHED TO ROUTES IN SEED %>
-    <% if @gruppetto.track.image.key %>
-      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300 %>
-    <% end %>
   </div>
 
   <div class="">
     <div class="row">
       <div class="col-6">
-        <table>
-          <tr>
-            <td>Pace</td>
-            <td><%= @gruppetto.avg_speed %> km/h</td>
-          </tr>
-          <tr>
-            <td>Distance</td>
-            <td data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km %> km</td>
-          </tr>
-          <tr>
-            <td>Incline</td>
-            <td data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> m</td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-6">
-        <p> <%= @gruppetto.description %></p>
+
         <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
-        <p><%= link_to "Download the route as GPX", root_path %></p>
+
         <p><%= link_to "Chat", gruppetto_chatroom_path(@gruppetto) %></p>
       </div>
     </div>
@@ -72,7 +117,7 @@
   <% if current_user == @gruppetto.user %>
     <div class="border-top mx-5 pt-3 text-center">
     <h5 class="text-center">Gruppetto Host View - Manage Attendance</h5>
-    <% if @gruppetto.participant_ids.count > 1 %>
+    <% if @gruppetto.participant.count > 1 %>
           <div class="py-2">
             <table class="table table-hover table-responsive-sm justify-content-between">
               <thead>
@@ -101,5 +146,3 @@
     <% end %>
   <% end %>
 </div>
-
-<%= render "gruppettos/show_footer" %>
