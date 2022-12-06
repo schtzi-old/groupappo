@@ -18,6 +18,7 @@ avatar_pictures = ["https://res.cloudinary.com/droozakjm/image/upload/c_scale,q_
   "https://res.cloudinary.com/droozakjm/image/upload/c_scale,q_47,w_200/v1670309483/avatar_seed/danka-peter-SoC1ex6sI4w-unsplash_x33ge5.jpg",
   "https://res.cloudinary.com/droozakjm/image/upload/c_scale,q_47,w_200/v1670309483/avatar_seed/toa-heftiba-ANNsvl-6AG0-unsplash_bcbojy.jpg"]
 puts "Deleting old data"
+Gruppetto.destroy_all
 User.destroy_all
 
 puts 'Downloading GPX'
@@ -112,7 +113,7 @@ Gruppetto.create(name: "End of Nov 🚴🏻‍♀️", track: Track.all.sample, 
 puts "Creates chats"
 Gruppetto.all.each do |grup|
   chat = Chatroom.create(gruppetto: grup)
-  Message.create(user: grup, chatroom: chat, content: "Welcome! #{grup.name.capitalize} has been created by #{grup.user.first_name.capitalize}.")
+  Message.create(user: grup.user, chatroom: chat, content: "Welcome! #{grup.name.capitalize} has been created by #{grup.user.first_name.capitalize}.")
 end
 
 puts "Creating participations"
