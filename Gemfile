@@ -57,6 +57,9 @@ gem "pundit"
 # geocoding
 gem "geocoder"
 
+# notifications
+gem "noticed"
+
 # Sidekiq
 gem "sidekiq", "<7"
 gem "sidekiq-failures", "~> 1.0"
