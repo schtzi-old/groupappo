@@ -18,7 +18,7 @@ class Track < ApplicationRecord
   validates :name, presence: true
   validate :validate_file_filetypes
 
-  after_create :async_map_data, on: :create
+  after_commit :async_map_data, on: :create
 
   after_commit :broadcast_change
 
