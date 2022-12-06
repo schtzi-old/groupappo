@@ -7,11 +7,23 @@ import { application } from "./application"
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
-import GrFormTrackController from "./gr_form_track_controller"
-application.register("gr-form-track", GrFormTrackController)
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
+import GruppettoFormHideController from "./gruppetto_form_hide_controller"
+application.register("gruppetto-form-hide", GruppettoFormHideController)
+
+import ChatroomSubscriptionController from "./chatroom_subscription_controller"
+application.register("chatroom-subscription", ChatroomSubscriptionController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import RangeSliderController from "./range_slider_controller"
+application.register("range-slider", RangeSliderController)
+
+import TrackSubscriptionController from "./track_subscription_controller"
+application.register("track-subscription", TrackSubscriptionController)

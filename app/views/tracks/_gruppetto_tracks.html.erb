@@ -1,4 +1,4 @@
-<div class='mb-3' data-controller='gr-form-track' id='route-creation'>
+<div class='mb-3' id='route-creation'>
   <p>Use...</p>
   <%# Existing vs new route %>
     <div class="form-check form-check-inline mb-3">
@@ -7,7 +7,7 @@
               name="track_option"
               id="new-route"
               value="existing"
-              data-action='click->gr-form-track#select'>
+              data-action='click->gruppetto-form-hide#trackSelect'>
       <label class="form-check-label" for="inlineRadio1">existing route</label>
     </div>
     <div class="form-check form-check-inline">
@@ -16,7 +16,7 @@
               name="track_option"
               id="existing-route"
               value="new"
-              data-action='click->gr-form-track#new'>
+              data-action='click->gruppetto-form-hide#trackForm'>
       <label class="form-check-label" for="inlineRadio2">new route</label>
     </div>
   <%# Render form for track new, but hidden - visibility via stimulus %>

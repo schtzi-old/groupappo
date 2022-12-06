@@ -1,0 +1,15 @@
+<div class="container chatroom"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+
+  <h1><%= @chatroom.gruppetto.name %> Chat</h1>
+
+  <div class="messages py-2" data-chatroom-subscription-target="messages">
+    <% @chatroom.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>
+
+  <%= render 'messages/form', chatroom: @chatroom, message: @message%>
+  <%= link_to "Back to Gruppetto", gruppetto_path(@chatroom.gruppetto), class: "btn btn-primary" %>
+</div>
