@@ -1,24 +1,34 @@
 class GruppettosController < ApplicationController
   before_action :set_gruppetto, only: [:show]
-  skip_before_action :authenticate_user!, only: [ :test]
+  skip_before_action :authenticate_user!, only: [:search]
   def test
     @gruppetto = Gruppetto.last
     authorize @gruppetto
   end
 
   def index
-    params[:type] = "upcoming" if params[:type].nil?
     if params[:type] == "upcoming"
       @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now))
     elsif params[:type] == "past"
       @gruppettos = policy_scope(Gruppetto.where("start < ?", Time.now))
     elsif params[:type] == "going"
-      # @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now)).participations.where(user: current_user)
-      # <%= @attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
       @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
     else
-      @gruppettos = policy_scope(Gruppetto)
+       @gruppettos = policy_scope(Gruppetto)
     end
+
+    # not showing
+    # friend only
+    # invite only
+    console
+    unless params[:speed].nil?
+      @gruppettos = @gruppettos.select { |test| test.avg_speed.to_i >= params[:speed].to_i }
+    end
+
+    unless params[:difficulty].nil?
+      @gruppettos = @gruppettos.select { |test| test.difficulty == "Hard" }
+    end
+    params[:type] = "upcoming" if params[:type].nil?
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
     @markers = @gruppettos.map do |gruppetto|
@@ -27,6 +37,11 @@ class GruppettosController < ApplicationController
         lng: gruppetto.track.longitude
       }
     end
+
+  end
+
+  def search
+    @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
   end
 
   def show
