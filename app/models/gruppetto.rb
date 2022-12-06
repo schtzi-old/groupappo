@@ -3,7 +3,8 @@ class Gruppetto < ApplicationRecord
 
   belongs_to :track
   belongs_to :user
-  has_many :participations
+  has_many :participations, dependent: :destroy
+  has_one :chatroom, dependent: :destroy
 
   has_many :participants, through: :participations, source: :user
 
