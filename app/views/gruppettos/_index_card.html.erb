@@ -1,66 +1,53 @@
-<%= link_to gruppetto_path(gruppetto), :action => 'go' do  %>
-
-<div class="d-flex">
-  <div class="card info-card flex-row col-12 my-2">
-    <img class="" src="https://via.placeholder.com/128"/>
-    <div class="card-body">
-      <h5 class="card-title">
-        <%= gruppetto.name %>
-      </h5>
-      <h5>
-        <i class="fa-solid fa-calendar"></i> <%= gruppetto.start.strftime('%d %b %l%P')%>
-      </h5>
-      <div class="d-flex align-items-center">
-        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-people"></i>
+<tr>
+  <td>
+  <%= link_to gruppetto_path(gruppetto), class: 'text-decoration-none' do  %>
+    <div class="d-flex" style="color:#0E0000">
+        <div>
+          <% unless gruppetto.track.image.url.nil? %>
+            <%= cl_image_tag gruppetto.track.image.key, height: 80, width: 80, crop: :fill %>
+          <% else %>
+            <%= image_tag "track-fallback.svg", height: 80, width: 80 %>
+          <% end %>
+          <div class="bg-secondary">
+            <p class='mb-0 ml-2 text-center'>
+              <%= gruppetto.participants.count %> rider<%= gruppetto.participants.count > 1 ? 's' : '' %>
+            </p>
+          </div>
         </div>
-        <div class="">
-          <h6>
-            <%= image_tag "avatar-fallback.svg", style: 'height:32px;width:32px;'  %>
-            <%= attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %> riders
-          </h6>
-          <span class="text-danger small pt-1 fw-bold">
-            <i class="fa-sharp fa-solid fa-ruler"></i>
-            <%= gruppetto.track.total_km.round(0) %> km/h
-          </span>
-          <span class="text-muted small pt-2 ps-1">
-            <i class="fa-sharp fa-solid fa-mountain"></i>
-            <%= gruppetto.track.total_vm.round(0) %> vm
-          </span>
-        </div>
+        <div class="m-1 ms-3 flex-grow-1">
+          <div class="d-flex">
+            <div>
+              <h5 class="mb-0 overflow-hidden" style="color:#0E0000"><%= gruppetto.name %></h5>
+              <div class="d-flex">
+                <p class="overflow-hidden text-muted"><%= gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless gruppetto.start.nil? %></p>
+              </div>
+            </div>
+            <div class="d-flex flex-grow-1 align-items-baseline">
+              <%# <p class='mb-0 ml-2 overflow-hidden'><%= gruppetto.participants.count %> <%#rider<%= gruppetto.participants.count > 1 ? '(s)' : ''%></p>
+            </div>
+          </div>
+            <div class="d-flex justify-content-start">
+              <div class="d-flex align-items-baseline"  style="width: 120px;">
+                <i class="fa-solid fa-gauge" style="margin-left:2px;"></i>
+                <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden"><%= gruppetto.avg_speed.nil? ? " - " : gruppetto.avg_speed %> km/h</p>
+              </div>
+              <div class="d-flex align-items-baseline"  style="width: 120px;margin-left:24px;">
+                <i class="fa-solid fa-route"></i>
+                <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_km %> km</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-start">
+              <div class="d-flex align-items-baseline"  style="width: 120px;">
+                <i class="fa-solid fa-dumbbell"></i>
+                <p class="ms-2 mb-0 flex-grow-1 text-center overflow-hidden"><%= gruppetto.difficulty.nil? ? " - " : gruppetto.difficulty %> </p>
+              </div>
+              <div class="d-flex align-items-baseline" style="width: 120px;margin-left:24px;">
+                <i class="fa-solid fa-mountain"></i>
+                <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_vm %> vm</p>
+              </div>
+            </div>
+          </div>
       </div>
-      </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-<!--
-<div class="card info-card flex-row m-3"><img class="card-img-left example-card-img-responsive" src="https://via.placeholder.com/128"/>
-  <div class="card-body">
-    <div class="row justify-content-center">
-      <div class="row-auto">
-        <div class="table-responsive">
-          <table class="table table-borderless card-table mb-0">
-            <tbody>
-              <tr>
-                <td class="card-title"colspan="4"><%= gruppetto.name %></td>
-              </tr>
-              <tr>
-                <td class="text-success small pt-1 fw-bold"><i class="fa-solid fa-calendar"></i> <%= gruppetto.start.strftime('%d %b %l%P')%></td>
-                <td><%= image_tag "avatar-fallback.svg", style: 'height:32px;width:32px;'  %><%= @attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
-                <td><i class="fa-sharp fa-solid fa-ruler"></i><%= gruppetto.track.total_km %><%= params  %></td>
-                <td><i class="fa-sharp fa-solid fa-mountain"></i><%= gruppetto.track.total_vm %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
-<% end %>
+    <% end %>
+  </td>
+</tr>

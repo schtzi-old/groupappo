@@ -48,11 +48,17 @@ gem "sassc-rails"
 # file hosting
 gem "cloudinary"
 
+# file hosting aws
+gem 'aws-sdk-s3'
+
 # authorization
 gem "pundit"
 
 # geocoding
 gem "geocoder"
+
+# notifications
+gem "noticed"
 
 # Sidekiq
 gem "sidekiq", "<7"

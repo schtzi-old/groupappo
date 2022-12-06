@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "test", to: "gruppettos#test"
 
   resources :tracks, only: %i[new create]
+  resources :notifications, only: %i[index update]
+  get "notifications/:id/update", to: "notifications#update", as: :mark_as_read
 
 
   require "sidekiq/web"

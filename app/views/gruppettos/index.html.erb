@@ -35,8 +35,14 @@
     </li>
   </ul>
 </div>
-<div class="container mt-10" style="position:relative; top:0;">
+<div class="container mt-4" style="position:relative; top:0;">
 <%= render "search" %>
+<% @gruppettos.each do | gruppetto | %>
+  <%# renders the index_card.html.erb with sending the gruppetto params %>
+  <div class="">
+    <%= render "index_card", gruppetto: gruppetto %>
+  </div>
+<% end %>
 </div>
 <div class="d-flex justify-content-between fixed-bottom bg-white p-2">
   <div class="w-50">
