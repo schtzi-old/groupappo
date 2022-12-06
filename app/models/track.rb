@@ -9,7 +9,7 @@ class Track < ApplicationRecord
   has_many :gruppettos
   has_many :coordinates
 
-  has_one_attached :file, service: :cloudinary_raw
+  has_one_attached :file #, service: :cloudinary_raw
   has_one_attached :image
 
   geocoded_by :address
@@ -47,7 +47,7 @@ class Track < ApplicationRecord
   end
 
   def load_coordinates
-    if file.attached?
+    if !file.key.nil?
       import_gpx
       calculate_distance
       calculate_vertical_meters
@@ -61,7 +61,7 @@ class Track < ApplicationRecord
     output = ERB::Util.url_encode(encoded_coordinates)
     output = shorten_output if output.length >= 8000
 
-    p url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
+    url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
 
     file = Down.download(url)
     image.attach(io: file, filename: "track-#{id}.png", content_type: "image/png")
