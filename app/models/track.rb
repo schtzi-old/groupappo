@@ -9,7 +9,7 @@ class Track < ApplicationRecord
   has_many :gruppettos
   has_many :coordinates
 
-  has_one_attached :file
+  has_one_attached :file, service: :cloudinary_raw
   has_one_attached :image
 
   geocoded_by :address
