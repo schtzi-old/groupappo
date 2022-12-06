@@ -59,7 +59,7 @@ class Track < ApplicationRecord
   def create_track_image
     image_size = 300
     output = ERB::Util.url_encode(encoded_coordinates)
-    output = shorten_output if output.length >= 8000
+    output = ERB::Util.url_encode(shorten_output) if output.length >= 8000
 
     url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
 
