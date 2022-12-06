@@ -2,15 +2,14 @@
 require "open-uri"
 # require "nokogiri"
 require "fast_polylines"
-require "down"
+# require "down"
 
 class Track < ApplicationRecord
   belongs_to :user
-  has_many :gruppettos
-  has_many :coordinates
+  has_many :gruppettos, dependent: :destroy
 
-  has_one_attached :file
-  has_one_attached :image
+  has_one_attached :file, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
@@ -18,7 +17,9 @@ class Track < ApplicationRecord
   validates :name, presence: true
   validate :validate_file_filetypes
 
-  after_create :async_map_data
+  after_commit :async_map_data, on: :create
+
+  after_commit :broadcast_change
 
   def async_map_data
     TrackDataJob.perform_later(self)
@@ -33,8 +34,19 @@ class Track < ApplicationRecord
 
   private
 
+  def broadcast_change
+    TracksChannel.broadcast_to(
+      self,
+      {
+        totalKm: total_km,
+        totalVm: total_vm,
+        trackImage: image.url
+      }
+    )
+  end
+
   def load_coordinates
-    if file.attached?
+    if !file.key.nil?
       import_gpx
       calculate_distance
       calculate_vertical_meters
@@ -46,9 +58,9 @@ class Track < ApplicationRecord
   def create_track_image
     image_size = 300
     output = ERB::Util.url_encode(encoded_coordinates)
-    output = shorten_output if output.length >= 8000
+    output = ERB::Util.url_encode(shorten_output) if output.length >= 8000
 
-    p url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
+    url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
 
     file = Down.download(url)
     image.attach(io: file, filename: "track-#{id}.png", content_type: "image/png")
@@ -63,7 +75,7 @@ class Track < ApplicationRecord
   def import_gpx
     @coordinates_array = []
     @elevations_array = []
-    gpx_file = Down.download("#{ENV.fetch('CLOUDINARY_DOWNLOAD_URL')}#{file.attachment.blob.key}.gpx")
+    gpx_file = Down.download(file.attachment.blob.url)
 
     Nokogiri::XML(gpx_file).xpath('//xmlns:trkpt').each do |trkpt|
       lat = trkpt.xpath('@lat').to_s.to_f
@@ -72,7 +84,7 @@ class Track < ApplicationRecord
 
       @elevations_array << trkpt.text.strip.to_f
     end
-    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s)
+    update(encoded_coordinates: encode_parameters(@coordinates_array), encoded_elevations: @elevations_array.to_s, address: Geocoder.search([@coordinates_array[0]]))
   end
 
   def calculate_distance

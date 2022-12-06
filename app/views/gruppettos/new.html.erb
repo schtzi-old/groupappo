@@ -1,23 +1,65 @@
-<div class="container">
+<div class="container" data-controller="gruppetto-form-hide">
     <h1>New gruppetto</h1>
     <%= simple_form_for(@gruppetto) do |f| %>
-      <%= f.input :start %>
       <%= f.input :name %>
+      <%= f.input :start, as: :string,
+                  input_html: { data: { controller: "flatpickr" } } %>
       <%= f.input :description %>
-      <%= f.input :avg_speed %>
+      <%= f.input :avg_speed,
+                  as: :range,
+                  collection: 20..40,
+                  label: 'Average speed planned: ',
+                  wrapper_html: { data: { controller: "range-slider" } },
+                  input_html: { data: {range_slider_target: 'slider',
+                                      action: 'input->range-slider#change' },
+                                min: Gruppetto::SPEED_RANGE.min,
+                                max: Gruppetto::SPEED_RANGE.max},
+                  label_html: { data: {range_slider_target: 'label' }} %>
+      <div class="mb-3">
+        <p class="form-label select optional">What is the perceived difficulty?</p>
+        <div class="btn-group w-100">
+        <input type="hidden" name="gruppetto[difficulty]" value="" autocomplete="off">
+        <div class="flex-grow-1">
+          <input class="form-check-input radio_buttons optional btn-check" type="radio" value="Easy" name="gruppetto[difficulty]" id="gruppetto_difficulty_easy" autocomplete="off">
+          <label class="btn btn-outline-primary w-100" for="gruppetto_difficulty_easy">Easy</label>
+        </div>
+        <div class="flex-grow-1 mx-3">
+            <input class="btn-check" type="radio" value="Moderate" name="gruppetto[difficulty]" id="gruppetto_difficulty_moderate" autocomplete="off">
+            <label class="btn btn-outline-primary w-100" for="gruppetto_difficulty_moderate">Moderate</label>
+        </div>
+        <div class="flex-grow-1">
+          <input class="btn-check" type="radio" value="Hard" name="gruppetto[difficulty]" id="gruppetto_difficulty_hard" autocomplete="off">
+          <label class="btn btn-outline-primary w-100" for="gruppetto_difficulty_hard">Hard</label>
+        </div>
+      </div>
 
-      <%= f.input :difficulty,
-                  collection: Gruppetto::difficulties.keys.map{ |d| d.capitalize }%>
-      <%= f.input :event_type,
-                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize }%>
-      <%= f.input :participation_rule,
-                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
+      <hr class="">
+
 
       <%# Existing vs new route %>
       <%= render 'tracks/gruppetto_tracks', {tracks: @tracks, track: @track, f: f} %>
-      <div class="d-flex">
-        <%= f.submit 'Save and publish', class: "btn btn-primary"%>
-        <%= f.submit 'Save as draft not-implemented', class: "ms-3 btn btn-outline-primary"%>
+
+      <hr>
+
+    <button data-action="click->gruppetto-form-hide#additionalSettings" type="button" class="btn btn-link ps-0">
+      Additional settings
+      <i class="fa-regular fa-caret-down" data-gruppetto-form-hide-target="additionalSettingsCaret"></i>
+    </button>
+    <div data-gruppetto-form-hide-target="additionalSettings" class='d-none'>
+      <%= f.input :event_type,
+                  label: 'Who is allowed to participate?',
+                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize } %>
+      <%= f.input :participation_rule,
+                  label: 'Do you want to accept riders?',
+                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
+    </div>
+
+
+      <hr>
+
+      <div class="d-flex justify-content-end">
+        <%= f.submit 'Create gruppetto', class: "btn btn-primary"%>
+        <%# f.submit 'Save as draft not-implemented', class: "ms-3 btn btn-outline-primary"%>
       </div>
     <% end %>
 </div>

@@ -1,6 +1,8 @@
-<div class="container mt-3">
+<div class="container mt-3"
+      data-controller="track-subscription"
+      data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
   <h1 class="pt-5"> <%= @gruppetto.name %></h1>
-  <p> <%= @gruppetto.start.strftime('%d %b %l%P') %></p>
+  <p> <%= @gruppetto.start.strftime('%d %b %l%P') unless @gruppetto.start.nil? %></p>
 
   <div class="d-flex justify-content-between">
     <div class="">
@@ -33,22 +35,36 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-  <div>
+  <div data-track-subscription-target="trackImage">
     <%# NEED TO ADD THIS WHEN WE HAVE IMAGES ATTACHED TO ROUTES IN SEED %>
-    <%# <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 400, crop: :fill %>
+    <% if @gruppetto.track.image.key %>
+      <%= cl_image_tag @gruppetto.track.image.key, height: 300, width: 300 %>
+    <% end %>
   </div>
 
   <div class="">
     <div class="row">
       <div class="col-6">
-          <p>Distance - <%= @gruppetto.track.total_km %> km </p>
-          <p>Pace - <%= @gruppetto.avg_speed %> km/h</p>
-          <p>Incline - <%= @gruppetto.track.total_vm %> vm</p>
+        <table>
+          <tr>
+            <td>Pace</td>
+            <td><%= @gruppetto.avg_speed %> km/h</td>
+          </tr>
+          <tr>
+            <td>Distance</td>
+            <td data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km %> km</td>
+          </tr>
+          <tr>
+            <td>Incline</td>
+            <td data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm %> m</td>
+          </tr>
+        </table>
       </div>
       <div class="col-6">
         <p> <%= @gruppetto.description %></p>
         <%# TO BE UPDATED WHEN GPX FILES ARE AVAILABLE %>
-        <%= link_to "Download the route as GPX", root_path %>
+        <p><%= link_to "Download the route as GPX", root_path %></p>
+        <p><%= link_to "Chat", gruppetto_chatroom_path(@gruppetto) %></p>
       </div>
     </div>
   </div>
