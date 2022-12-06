@@ -1,0 +1,56 @@
+
+  <h1>Notifications</h1>
+
+  <table class="table table-hover table-responsive-sm justify-content-between">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notifications.reverse_each do |notification| %>
+      <% notification_type = notification.type %>
+        <tr>
+        <%# <tr data-action="click->notification-subscription#setUnread"> %>
+          <td class="align-middle ps-4">
+            <% if notification.read? %>
+              <i class="fa-regular fa-envelope-open"></i>
+            <% else %>
+              <i class="fa-regular fa-envelope"></i>
+            <% end %>
+          </td>
+          <td>
+            <% case notification_type %>
+            <% when "NewFriendRequestNotification" %>
+              <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
+              <p>
+                <%= notification.params[:friendship].user.first_name %> has sent you a friend request
+              </p>
+              <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+              <% end %>
+            <% when "AcceptedFriendRequest" %>
+              <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
+              <p>
+                <%= notification.params[:friendship].friend.first_name %> has accepted your friend request
+              </p>
+              <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+              <% end %>
+            <% when "NewParticipationRequest" %>
+              <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
+              <p>
+                <%= notification.params[:participation].user.first_name %> has requested to join your gruppetto - <%= notification.params[:participation].gruppetto.name %>
+              </p>
+              <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+              <% end %>
+            <% when "AcceptedParticipantRequest" %>
+              <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
+              <p>
+                <%= notification.params[:participation].gruppetto.user.first_name %> has accepted your request to join their gruppetto
+              </p>
+              <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

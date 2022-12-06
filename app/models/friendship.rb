@@ -2,6 +2,10 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
 
+  has_noticed_notifications
+  after_create_commit :notify_pending_friend
+  after_update_commit :notify_accepted_friend
+
   def self.reacted?(id1, id2)
     case1 = !Friendship.where(user_id: id1, friend_id: id2).empty?
     case2 = !Friendship.where(user_id: id2, friend_id: id1).empty?
@@ -27,5 +31,13 @@ class Friendship < ApplicationRecord
 
   def self.find_friends(id1)
     Friendship.where("user_id = ? AND confirmed = ? OR friend_id = ? AND confirmed = ?", id1, true, id1, true)
+  end
+
+  def notify_pending_friend
+    NewFriendRequestNotification.with(friendship: self).deliver_later(friend)
+  end
+
+  def notify_accepted_friend
+    AcceptedFriendRequest.with(friendship: self).deliver_later(user)
   end
 end

@@ -72,7 +72,7 @@
   <% if current_user == @gruppetto.user %>
     <div class="border-top mx-5 pt-3 text-center">
     <h5 class="text-center">Gruppetto Host View - Manage Attendance</h5>
-    <% if @gruppetto.participant_ids.count > 1 %>
+    <% if @gruppetto.participant_ids.count >= 1 %>
           <div class="py-2">
             <table class="table table-hover table-responsive-sm justify-content-between">
               <thead>
