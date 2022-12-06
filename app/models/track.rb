@@ -61,7 +61,7 @@ class Track < ApplicationRecord
     output = ERB::Util.url_encode(encoded_coordinates)
     output = ERB::Util.url_encode(shorten_output) if output.length >= 8000
 
-    p url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
+    url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path(#{output})/auto/#{image_size}x#{image_size}?access_token=#{ENV.fetch('MAPBOX_API_KEY')}"
 
     file = Down.download(url)
     image.attach(io: file, filename: "track-#{id}.png", content_type: "image/png")
