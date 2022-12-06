@@ -76,7 +76,7 @@ class Track < ApplicationRecord
   def import_gpx
     @coordinates_array = []
     @elevations_array = []
-    gpx_file = Down.download("#{ENV.fetch('CLOUDINARY_DOWNLOAD_URL')}#{file.attachment.blob.key}.gpx")
+    gpx_file = Down.download(file.attachment.blob.url)
 
     Nokogiri::XML(gpx_file).xpath('//xmlns:trkpt').each do |trkpt|
       lat = trkpt.xpath('@lat').to_s.to_f
