@@ -22,6 +22,9 @@ application.register("footer-nav", FooterNavController)
 import GruppettoFormHideController from "./gruppetto_form_hide_controller"
 application.register("gruppetto-form-hide", GruppettoFormHideController)
 
+import GruppettoValidatorController from "./gruppetto_validator_controller"
+application.register("gruppetto-validator", GruppettoValidatorController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
