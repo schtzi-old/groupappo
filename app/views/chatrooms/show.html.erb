@@ -1,15 +1,17 @@
-<div class="container chatroom"
+<div class="container chatroom bg-white"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-
-  <h1><%= @chatroom.gruppetto.name %> Chat</h1>
-
-  <div class="messages py-2" data-chatroom-subscription-target="messages">
+  <div class="pt-5 bg-white fixed-top">
+    <h1 class="mt-3 px-4 border-0"><%= @chatroom.gruppetto.name %> Chat</h1>
+  </div>
+  <div class="messages py-5 overflow-auto my-5" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render 'messages/message', message: message %>
     <% end %>
   </div>
 
-  <%= render 'messages/form', chatroom: @chatroom, message: @message%>
-  <%= link_to "Back to Gruppetto", gruppetto_path(@chatroom.gruppetto), class: "btn btn-primary" %>
+  <div class="pb-5 bg-white fixed-bottom">
+  <%= render 'messages/form', chatroom: @chatroom, message: @message %>
+  </div>
+  <%# <%= link_to "Back to Gruppetto", gruppetto_path(@chatroom.gruppetto), class: "btn btn-primary" %>
 </div>
