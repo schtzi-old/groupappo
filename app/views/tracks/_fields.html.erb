@@ -1,6 +1,6 @@
-<div class="<%= hidden ? 'd-none' : '' %>" data-gruppetto-form-hide-target="trackForm">
+<div class="<%= hidden ? 'd-none' : '' %>" data-gruppetto-form-hide-target="trackForm" id="dependentFields">
       <%= f.simple_fields_for(track) do |tracks_form| %>
-          <%= tracks_form.input :name %>
+          <%= tracks_form.input :name, input_html: { class: 'bg-light', data: {action: 'change->gruppetto-validator#validateField'}  }%>
           <p>Do you want to upload a gpx-file?</p>
               <div class="form-check form-check-inline mb-3">
                 <input class="form-check-input"
@@ -8,7 +8,8 @@
                         name="gruppetto[track][track_file]"
                         id="track_file"
                         value="yes"
-                        data-action='click->gruppetto-form-hide#trackFile'>
+                        data-action='click->gruppetto-form-hide#trackFile
+                                      click->gruppetto-validator#validateHiddenFields'>
                 <label class="form-check-label" for="inlineRadio1">Yes</label>
               </div>
               <div class="form-check form-check-inline">
@@ -17,15 +18,16 @@
                         name="gruppetto[track][track_file]"
                         id="track_file"
                         value="no"
-                        data-action='click->gruppetto-form-hide#noTrackFile'>
+                        data-action='click->gruppetto-form-hide#noTrackFile
+                                      click->gruppetto-validator#validateHiddenFields'>
                 <label class="form-check-label" for="inlineRadio2">No</label>
               </div>
-          <div data-gruppetto-form-hide-target="trackInfo" class="d-none">
+          <div data-gruppetto-form-hide-target="trackInfo" class="d-none" id="dependentFields">
             <%= tracks_form.input :address,
-                            input_html: {data: {address_autocomplete_target: "address"}, class: 'd-none'},
+                            input_html: {data: {address_autocomplete_target: "address", action: 'change->gruppetto-validator#validateField'}, class: 'd-none'},
                             wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-            <%= tracks_form.input :total_km %>
-            <%= tracks_form.input :total_vm %>
+            <%= tracks_form.input :total_km, input_html: { class: 'bg-light', data: {action: 'change->gruppetto-validator#validateField'}  }%>
+            <%= tracks_form.input :total_vm, input_html: { class: 'bg-light', data: {action: 'change->gruppetto-validator#validateField'}  }%>
           </div>
           <div data-gruppetto-form-hide-target="trackFile" class="d-none">
             <%= tracks_form.input :file, as: :file %>

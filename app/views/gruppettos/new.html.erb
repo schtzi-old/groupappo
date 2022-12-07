@@ -1,17 +1,19 @@
-<div class="container bg-light" data-controller="gruppetto-form-hide" style="color:">
+<div class="px-3 bg-light" data-controller="gruppetto-form-hide" style="padding-bottom:56px;">
+  <div data-controller="gruppetto-validator">
     <h1>New gruppetto</h1>
     <%= simple_form_for(@gruppetto) do |f| %>
-      <%= f.input :name , input_html: { class: 'bg-light' }, placeholder: 'Gruppetto name'%>
+      <%= f.input :name , input_html: { class: 'bg-light', data: {action: 'change->gruppetto-validator#validateField'}  }, placeholder: 'Gruppetto name'%>
       <%= f.input :start, as: :string,
-                  input_html: { data: { controller: "flatpickr" },class: 'bg-light', style:'color:green;' } %>
-      <%= f.input :description , input_html: { class: 'bg-light' }, placeholder: 'Discription of gruppetto, or any other helpful informaiton.'%>
+                  input_html: { data: { controller: "flatpickr", action: 'change->gruppetto-validator#validateField'},class: 'bg-light', style:'color:green;' } %>
+      <%= f.input :description , input_html: { class: 'bg-light',  data: { action: 'change->gruppetto-validator#validateField'}}, placeholder: 'Discription of gruppetto, or any other helpful informaiton.'%>
       <%= f.input :avg_speed,
                   as: :range,
                   collection: 20..40,
                   label: 'Average speed planned: ',
                   wrapper_html: { data: { controller: "range-slider" } },
                   input_html: { data: {range_slider_target: 'slider',
-                                      action: 'input->range-slider#change' },
+                                      action: 'input->range-slider#change',
+                                      action: 'change->gruppetto-validator#validateField' },
                                 min: Gruppetto::SPEED_RANGE.min,
                                 max: Gruppetto::SPEED_RANGE.max,
                                 class: 'bg-light'},
@@ -19,7 +21,7 @@
       <div class="mb-3">
         <p class="form-label select optional">What is the perceived difficulty?</p>
         <div class="btn-group w-100">
-        <input type="hidden" name="gruppetto[difficulty]" value="" autocomplete="off">
+        <input type="hidden" name="gruppetto[difficulty]" data-action='change->gruppetto-validator#validateField' value="" autocomplete="off">
         <div class="flex-grow-1">
           <input class="form-check-input radio_buttons optional btn-check" type="radio" value="Easy" name="gruppetto[difficulty]" id="gruppetto_difficulty_easy" autocomplete="off">
           <label class="btn btn-outline-primary w-100" for="gruppetto_difficulty_easy">Easy</label>
@@ -61,8 +63,9 @@
       <hr>
 
       <div class="d-flex justify-content-end">
-        <%= f.submit 'Create gruppetto', class: "btn btn-primary"%>
+        <%= f.submit 'Create gruppetto', class: "btn btn-primary", data: { gruppetto_validator_target: 'submit' }, disabled: true%>
         <%# f.submit 'Save as draft not-implemented', class: "ms-3 btn btn-outline-primary"%>
       </div>
     <% end %>
+  </div>
 </div>
