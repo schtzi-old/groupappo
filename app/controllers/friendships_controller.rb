@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
     if params[:friendship].nil? || params[:friendship][:name] == ""
       @user
     else
-      @user = User.where(first_name: params[:friendship][:name]).first(10)
+      @user = User.where("first_name ILIKE ?", "%#{params[:friendship][:name]}%").first(10)
     end
     @requests = User.all
   end
