@@ -1,53 +1,13 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="position:sticky; top:0;z-index:10000;">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo.svg", style: 'height:30px;width:auto;' %>
-    <% end %>
+<div class="d-flex justify-content-between w-100  bg-dark align-items-center p-3" style="position:fixed; top:0;z-index:10000;">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div>
-    <% if user_signed_in? %>
-      <%= render 'shared/notifications' %>
-    <% end %>
+    <div class='flex-grow-1'>
+      <%= image_tag "logo.svg", style: 'height:30px;width:auto' %>
     </div>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "New gruppettos", new_gruppetto_path, class: "btn btn-primary" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "All gruppettos", gruppettos_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "My gruppettos", gruppettos_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Friends", "#{friendships_path}", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Routes", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown ms-3">
-            <% if false %>
-            <% else %>
-              <%= image_tag "avatar-fallback.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My profile", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+    <div class='d-flex'>
+          <% if user_signed_in? %>
+              <%= render 'shared/notifications' %>
+          <% else %>
+              <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+          <% end %>
     </div>
-  </div>
 </div>

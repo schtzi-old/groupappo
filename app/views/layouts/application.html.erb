@@ -22,10 +22,13 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+    <div style='margin-top:56px'>
+      <%= render "shared/flashes" %>
 
-    <%= yield %>
-
-  <%= render 'shared/footer_nav' %>
+      <%= yield %>
+    </div>
+    <% if user_signed_in? %>
+      <%= render 'shared/footer_nav' %>
+      <% end %>
   </body>
 </html>
