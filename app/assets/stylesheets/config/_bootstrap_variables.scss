@@ -6,13 +6,14 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 $black;
 $font-size-base: 0.75rem;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
+$body-color: $light-gray;
+$dark: $dark-gray;
+$primary:    $green;
+$success:    $light-green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
@@ -20,6 +21,8 @@ $warning:    $orange;
 // Buttons & inputs' radius
 $border-radius:    4px;
 $border-radius-lg: 8px;
-$border-radius-sm: 2px;
+$border-radius-sm: 4px;
+
 
 // Override other variables below!
+$form-check-input-border:                 1px solid rgba($gray-400, .25);
