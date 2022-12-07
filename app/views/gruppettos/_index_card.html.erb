@@ -1,7 +1,7 @@
 <tr>
   <td>
   <%= link_to gruppetto_path(gruppetto), class: 'text-decoration-none' do  %>
-    <div class="d-flex bg-light px-3 py-2 rounded">
+    <div class="d-flex bg-light px-3 py-2 rounded shadow">
         <div>
           <% unless gruppetto.track.image.url.nil? %>
             <%= cl_image_tag gruppetto.track.image.key, height: 85, width: 85, crop: :fill, class: 'rounded-top' %>
