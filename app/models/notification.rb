@@ -16,10 +16,10 @@ class Notification < ApplicationRecord
     #   }
     # )
 
-    NotificationsChannel.broadcast_to(
-      self,
-      {count: Notification.count}
-    )
+    #NotificationsChannel.broadcast_to(
+     # self,
+     # {count: Notification.count}
+    #)
     raise
   end
 end
