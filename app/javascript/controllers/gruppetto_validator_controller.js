@@ -35,7 +35,7 @@ const validations = {
 export default class extends Controller {
   static targets = ['submit']
   connect() {
-    console.log('connected to form validator')
+    console.log('connected to form validator!')
   }
 
   // formValidate = () => {
