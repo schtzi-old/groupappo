@@ -7,7 +7,7 @@
     <div class='flex-grow-1'>
 
       <%# we need to add link to uocoming gruppettos %>
-        <%= link_to gruppettos_path do %>
+        <%= link_to gruppettos_path(type: "going") do %>
           <h2 class='m-0 text-center mt-2'><i class="fa-regular fa-calendar" style='color:white'></i></h2>
         <% end %>
     </div>
@@ -18,7 +18,9 @@
         <% end %>
     </div>
     <div class='flex-grow-1'>
-      <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-user-group" style='color:white'></i></h2>
+      <%= link_to friendships_path do %>
+        <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-user-group" style='color:white'></i></h2>
+      <% end %>
     </div>
     <div class='flex-grow-1 justify-content-center d-flex'>
       <% if current_user.avatar.key.nil? %>

@@ -6,11 +6,11 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $black;
+$body-bg:                 #eeeeee;
 $font-size-base: 0.75rem;
 
 // Colors
-$body-color: $light-gray;
+$body-color: $gray;
 $dark: $dark-gray;
 $primary:    $green;
 $success:    $light-green;
@@ -25,4 +25,3 @@ $border-radius-sm: 4px;
 
 
 // Override other variables below!
-$form-check-input-border:                 1px solid rgba($gray-400, .25);
