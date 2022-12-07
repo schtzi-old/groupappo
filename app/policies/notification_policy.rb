@@ -17,4 +17,9 @@ class NotificationPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def destroy?
+    true
+    # record.user == user
+  end
 end
