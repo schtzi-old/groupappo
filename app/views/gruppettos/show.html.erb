@@ -1,11 +1,12 @@
+
 <div class="mt-3 overflow-hidden"
       data-controller="track-subscription"
       data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
   <div data-track-subscription-target="trackImage">
     <% unless @gruppetto.track.image.url.nil? %>
-      <%= cl_image_tag @gruppetto.track.image.key, height: 400, width: 400, crop: :fill, class: 'w-100' %>
+      <%= cl_image_tag @gruppetto.track.image.key, height: 400, width: 400, crop: :fill, class: 'w-100', id: 'image' %>
     <% else %>
-      <%= image_tag "track-fallback.svg", height: 400, width: 400 %>
+      <%= image_tag "track-fallback.svg", height: 400, width: 400, class: 'w-100', data: { track_subscription_target: "trackImage" }, id: 'image' %>
     <% end %>
   </div>
   <div class="d-flex mt-3">

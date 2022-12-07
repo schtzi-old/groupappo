@@ -19,7 +19,8 @@ export default class extends Controller {
     console.log(data)
     this.totalVmTarget.innerHTML = `${data.totalVm} m`
     this.totalKmTarget.innerHTML = `${data.totalKm} km`
-    this.trackImageTarget.innerHTML = ''
-    this.trackImageTarget.innerHTML = `<img height="300" width="300" src=${data.trackImage}></img>`
+    // this.trackImageTarget.innerHTML = ''
+    // this.trackImageTarget.src = ${data.trackImage}
+    // = new Image().src = `${data.trackImage}`
   }
 }
