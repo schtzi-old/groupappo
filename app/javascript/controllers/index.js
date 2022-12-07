@@ -16,6 +16,9 @@ application.register("delete-notifications-list", DeleteNotificationsListControl
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
+import FooterNavController from "./footer_nav_controller"
+application.register("footer-nav", FooterNavController)
+
 import GruppettoFormHideController from "./gruppetto_form_hide_controller"
 application.register("gruppetto-form-hide", GruppettoFormHideController)
 
@@ -30,6 +33,9 @@ application.register("notification-subscription", NotificationSubscriptionContro
 
 import RangeSliderController from "./range_slider_controller"
 application.register("range-slider", RangeSliderController)
+
+import SearchFilterController from "./search_filter_controller"
+application.register("search-filter", SearchFilterController)
 
 import TrackSubscriptionController from "./track_subscription_controller"
 application.register("track-subscription", TrackSubscriptionController)
