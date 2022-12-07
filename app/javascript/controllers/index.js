@@ -10,6 +10,9 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
+import DeleteNotificationsListController from "./delete_notifications_list_controller"
+application.register("delete-notifications-list", DeleteNotificationsListController)
+
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 

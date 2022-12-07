@@ -13,6 +13,18 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def destroy
+    @notifications = policy_scope(Notification)
+    authorize @notifications
+    @notifications.destroy_all
+  end
+
+  def count_unread
+    @notifications = policy_scope(Notification)
+    authorize @notifications
+    @count = @notifications.count
+  end
+
   private
 
   def notification_redirection
