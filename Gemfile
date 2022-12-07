@@ -75,6 +75,8 @@ gem 'erb'
 # gem to download files
 gem "down", "~> 5.0"
 
+gem 'has_scope'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

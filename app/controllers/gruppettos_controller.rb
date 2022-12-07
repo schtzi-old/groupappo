@@ -1,6 +1,6 @@
 class GruppettosController < ApplicationController
   before_action :set_gruppetto, only: [:show]
-  skip_before_action :authenticate_user!, only: [ :test]
+  skip_before_action :authenticate_user!, only: [:search]
   def test
     @gruppetto = Gruppetto.last
     authorize @gruppetto
@@ -13,20 +13,45 @@ class GruppettosController < ApplicationController
     elsif params[:type] == "past"
       @gruppettos = policy_scope(Gruppetto.where("start < ?", Time.now))
     elsif params[:type] == "going"
-      # @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now)).participations.where(user: current_user)
-      # <%= @attending_count = gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
       @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
     else
-      @gruppettos = policy_scope(Gruppetto)
+       @gruppettos = policy_scope(Gruppetto)
+    end
+
+    # not showing
+    # friend only
+    # invite only
+    if params[:speed].nil? || params[:speed] == ""
+    else
+      @gruppettos = @gruppettos.select { |test| test.avg_speed.to_i >= params[:speed].to_i }
+    end
+    if params[:difficulty].nil?
+    else
+      @gruppettos = @gruppettos.select { |test| test.difficulty == params[:difficulty] }
+    end
+    if params[:start_date].nil? || params[:start_date] == ""
+    else
+      @gruppettos = @gruppettos.select { |test| test.start >= params[:start_date] }
+    end
+    if params[:end_date].nil? || params[:end_date] == ""
+    else
+      @gruppettos = @gruppettos.select { |test| test.start <= params[:end_date] }
     end
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
-    @markers = @gruppettos.map do |gruppetto|
-      {
-        lat: gruppetto.track.latitude,
-        lng: gruppetto.track.longitude
-      }
+    unless @gruppettos.empty?
+      @markers = @gruppettos.map do |gruppetto|
+        {
+          lat: gruppetto.track.latitude,
+          lng: gruppetto.track.longitude
+        }
+      end
     end
+
+  end
+
+  def search
+    @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
   end
 
   def show

@@ -10,6 +10,7 @@
   </div>
 </div>
 <div class=""  style=" width:100%;position:fixed; left: 50%; transform:translate(-50%, -50%);  z-index:1000; ">
+<button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Search Filter</button>
   <ul class="nav nav-tabs nav-fill d-flex justify-content-around bd-highlight start-10" style="width:100%; background:white;" role="tablist">
     <li class="nav-item">
       <% if params[:type] == "upcoming" %>
@@ -34,8 +35,10 @@
     </li>
   </ul>
 </div>
-<div class="mt-4 col-12" style="position:relative; top:0;">
-
+<div class="container mt-4" style="position:relative; top:0;">
+<%= render "search" %>
+<div class="my-5">
+<% @gruppettos.each do | gruppetto | %>
   <%# renders the index_card.html.erb with sending the gruppetto params %>
   <table class="table table-hover table-borderless">
     <thead>
@@ -47,6 +50,16 @@
     </tbody>
   </table>
   <div class="">
+    <%= render "index_card", gruppetto: gruppetto %>
   </div>
-
+<% end %>
+</div>
+</div>
+<div class="d-flex justify-content-between fixed-bottom bg-white p-2">
+  <div class="w-50">
+    <%= link_to "Back to Grupettos", gruppettos_path, class: "btn btn-outline-primary w-100" %>
+  </div>
+  <div class="w-50">
+    <%= link_to "Home", root_path,class: "btn btn-primary w-100"%>
+  </div>
 </div>
