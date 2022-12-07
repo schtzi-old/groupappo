@@ -21,7 +21,6 @@ class GruppettosController < ApplicationController
     # not showing
     # friend only
     # invite only
-    console
     if params[:speed].nil? || params[:speed] == ""
     else
       @gruppettos = @gruppettos.select { |test| test.avg_speed.to_i >= params[:speed].to_i }

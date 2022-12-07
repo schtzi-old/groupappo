@@ -20,7 +20,7 @@
           <%= form.label :difficulty, "Difficulty" %>
           <%= form.select :difficulty,
                     {
-                      "Options" => [ ["Easy"], ["Medium"], ["Hard"] ]
+                      "Options" => [ ["Easy"], ["Moderate"], ["Hard"] ]
                     } %>
         <hr>
           <%#= form.label :length, "Length" %>
@@ -32,11 +32,12 @@
           <%= form.label :end_date, "End Date" %>
           <%= form.date_field :end_date%>
         <hr>
+
+          <%= form.submit "Search", class: "btn btn-primary" %>
+          <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= form.submit "Search", class: "btn btn-primary" %>
-        <% end %>
       </div>
     </div>
   </div>

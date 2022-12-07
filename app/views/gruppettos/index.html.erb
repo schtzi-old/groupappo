@@ -36,49 +36,7 @@
   </ul>
 </div>
 <div class="container mt-4" style="position:relative; top:0;">
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" style="display: none; z-index:10000;">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Search Filter</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= form_with url: gruppettos_path, method: :get do |form| %>
-
-          <%#= form.label :zip_code, "Zip Code" %>
-          <%#= form.select :zip_code,
-                    {
-                      "Melbourne Zip Codes" => [3002, 8002, 3000, 3001, 3004, 8001, 3045, 3052, 5006, 3051, 3207, 3050, 3205, 3004, 3010, 3003]
-                    } %>
-
-          <%= form.label :speed, "Speed" %>
-          <%= form.number_field :speed, in: 1..50%>
-        <hr>
-          <%= form.label :difficulty, "Difficulty" %>
-          <%= form.select :difficulty,
-                    {
-                      "Options" => [ ["Easy"], ["Moderate"], ["Hard"] ]
-                    } %>
-        <hr>
-          <%#= form.label :length, "Length" %>
-          <%#= form.range_field :length, in: 1..200%>
-
-          <%= form.label :start_date, "Start Date" %>
-          <%= form.date_field :start_date%>
-        <hr>
-          <%= form.label :end_date, "End Date" %>
-          <%= form.date_field :end_date%>
-        <hr>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= form.submit "Search", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render "search" %>
 <div class="my-5">
 <% @gruppettos.each do | gruppetto | %>
   <%# renders the index_card.html.erb with sending the gruppetto params %>
