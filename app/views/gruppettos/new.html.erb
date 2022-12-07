@@ -1,10 +1,10 @@
-<div class="container" data-controller="gruppetto-form-hide">
+<div class="container bg-light" data-controller="gruppetto-form-hide" style="color:">
     <h1>New gruppetto</h1>
     <%= simple_form_for(@gruppetto) do |f| %>
-      <%= f.input :name %>
+      <%= f.input :name , input_html: { class: 'bg-light' }, placeholder: 'Gruppetto name'%>
       <%= f.input :start, as: :string,
-                  input_html: { data: { controller: "flatpickr" } } %>
-      <%= f.input :description %>
+                  input_html: { data: { controller: "flatpickr" },class: 'bg-light', style:'color:green;' } %>
+      <%= f.input :description , input_html: { class: 'bg-light' }, placeholder: 'Discription of gruppetto, or any other helpful informaiton.'%>
       <%= f.input :avg_speed,
                   as: :range,
                   collection: 20..40,
@@ -13,8 +13,9 @@
                   input_html: { data: {range_slider_target: 'slider',
                                       action: 'input->range-slider#change' },
                                 min: Gruppetto::SPEED_RANGE.min,
-                                max: Gruppetto::SPEED_RANGE.max},
-                  label_html: { data: {range_slider_target: 'label' }} %>
+                                max: Gruppetto::SPEED_RANGE.max,
+                                class: 'bg-light'},
+                  label_html: { data: {range_slider_target: 'label' },class: 'bg-light' } %>
       <div class="mb-3">
         <p class="form-label select optional">What is the perceived difficulty?</p>
         <div class="btn-group w-100">
@@ -48,10 +49,12 @@
     <div data-gruppetto-form-hide-target="additionalSettings" class='d-none'>
       <%= f.input :event_type,
                   label: 'Who is allowed to participate?',
-                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize } %>
+                  collection: Gruppetto::event_types.keys.map{ |d| d.capitalize },
+                  input_html: { class: 'bg-light' } %>
       <%= f.input :participation_rule,
                   label: 'Do you want to accept riders?',
-                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize }%>
+                  collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize },
+                  input_html: { class: 'bg-light' } %>
     </div>
 
 

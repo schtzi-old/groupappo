@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :tracks, only: %i[new create]
   resources :notifications, only: %i[index update]
   get "notifications/:id/update", to: "notifications#update", as: :mark_as_read
+  delete "notifications/", to: "notifications#destroy", as: :notifications_delete
 
 
   require "sidekiq/web"
