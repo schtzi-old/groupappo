@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :friendships
   root to: "pages#home"
+  get "gruppettos/search", to: "gruppettos#search"
   resources :gruppettos do
     resources :participations, only: %i[create update destroy]
     resources :chatrooms, only: :show do
