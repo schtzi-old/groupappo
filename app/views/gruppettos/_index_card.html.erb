@@ -1,12 +1,12 @@
 <tr>
   <td>
   <%= link_to gruppetto_path(gruppetto), class: 'text-decoration-none' do  %>
-    <div class="d-flex bg-dark p-2 rounded">
+    <div class="d-flex bg-dark px-3 py-2 rounded">
         <div>
           <% unless gruppetto.track.image.url.nil? %>
-            <%= cl_image_tag gruppetto.track.image.key, height: 80, width: 80, crop: :fill, class: 'rounded-top' %>
+            <%= cl_image_tag gruppetto.track.image.key, height: 85, width: 85, crop: :fill, class: 'rounded-top' %>
           <% else %>
-            <%= image_tag "track-fallback.svg", height: 80, width: 80, class: 'rounded-top' %>
+            <%= image_tag "track-fallback.svg", height: 85, width: 85, class: 'rounded-top' %>
           <% end %>
           <div class="bg-secondary rounded-bottom">
             <p class='mb-0 ml-2 text-center text-light'>
@@ -27,21 +27,21 @@
             </div>
           </div>
             <div class="d-flex justify-content-start">
-              <div class="d-flex align-items-baseline"  style="width: 120px;">
+              <div class="d-flex align-items-baseline"  style="width: 90px;">
                 <i class="fa-solid fa-gauge" style="margin-left:2px;"></i>
                 <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden text-light"><%= gruppetto.avg_speed.nil? ? " - " : gruppetto.avg_speed %> km/h</p>
               </div>
-              <div class="d-flex align-items-baseline"  style="width: 120px;margin-left:24px;">
+              <div class="d-flex align-items-baseline"  style="width: 90px;margin-left:24px;">
                 <i class="fa-solid fa-route"></i>
                 <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden text-light"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_km %> km</p>
               </div>
             </div>
             <div class="d-flex justify-content-start">
-              <div class="d-flex align-items-baseline"  style="width: 120px;">
+              <div class="d-flex align-items-baseline"  style="width: 90px;">
                 <i class="fa-solid fa-dumbbell"></i>
                 <p class="ms-2 mb-0 flex-grow-1 text-center overflow-hidden text-light"><%= gruppetto.difficulty.nil? ? " - " : gruppetto.difficulty %> </p>
               </div>
-              <div class="d-flex align-items-baseline" style="width: 120px;margin-left:24px;">
+              <div class="d-flex align-items-baseline" style="width: 90px;margin-left:24px;">
                 <i class="fa-solid fa-mountain"></i>
                 <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden text-light"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_vm %> vm</p>
               </div>
