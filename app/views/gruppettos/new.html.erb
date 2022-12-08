@@ -54,7 +54,7 @@
                   collection: Gruppetto::event_types.keys.map{ |d| d.capitalize },
                   input_html: { class: 'bg-light' } %>
       <%= f.input :participation_rule,
-                  label: 'Do you want to accept riders?',
+                  label: 'Do you want riders to automatically participate? Or do you want to confirm manually?',
                   collection: Gruppetto::participation_rules.keys.map{ |d| d.capitalize },
                   input_html: { class: 'bg-light' } %>
     </div>
