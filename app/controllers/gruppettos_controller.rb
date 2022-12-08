@@ -15,28 +15,38 @@ class GruppettosController < ApplicationController
     elsif params[:type] == "going"
       @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
     else
-       @gruppettos = policy_scope(Gruppetto)
+      @gruppettos == policy_scope(Gruppetto)
     end
 
     # not showing
     # friend only
     # invite only
+    if params[:zip_code].nil? || params[:zip_code] == "0"
+    else
+      @gruppettos = (Track.joins(:gruppettos).near([Track.first.latitude,Track.first.longitude], params[:distance]).to_a).map {|tr| tr.gruppettos }.to_a
+      @gruppettos.map! {|g_r_a|  g_r_a = g_r_a[0]}
+    end
+
     if params[:speed].nil? || params[:speed] == ""
     else
       @gruppettos = @gruppettos.select { |test| test.avg_speed.to_i >= params[:speed].to_i }
     end
-    if params[:difficulty].nil?
+    if params[:difficulty].nil? || params[:difficulty] == ""
     else
       @gruppettos = @gruppettos.select { |test| test.difficulty == params[:difficulty] }
     end
     if params[:start_date].nil? || params[:start_date] == ""
+      @gruppettos = @gruppettos.select { |test| test.start.to_datetime >= Date.today.to_datetime }
     else
-      @gruppettos = @gruppettos.select { |test| test.start >= params[:start_date] }
+      @gruppettos = @gruppettos.select { |test| test.start.to_datetime >= params[:start_date].to_datetime }
     end
     if params[:end_date].nil? || params[:end_date] == ""
     else
-      @gruppettos = @gruppettos.select { |test| test.start <= params[:end_date] }
+      @gruppettos = @gruppettos.select { |test| test.start.to_datetime <= params[:end_date].to_datetime }
     end
+    @gruppettos.sort_by!{|a| a.start}
+
+
     # The `geocoded` scope filters only flats with coordinates
     # For each Gruppetto get the latitiude and the longitude. Then save it in an array of markers.
     unless @gruppettos.empty?
