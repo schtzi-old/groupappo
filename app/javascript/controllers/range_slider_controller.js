@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   change() {
-    console.log(this.sliderTarget.value)
     this.labelTarget.innerHTML = `Average speed planned: ${this.sliderTarget.value} km / hour`
   }
 }

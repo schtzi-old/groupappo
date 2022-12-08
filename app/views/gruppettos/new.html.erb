@@ -1,4 +1,4 @@
-<div class="p-3 bg-light" data-controller="gruppetto-form-hide" style="padding-bottom:48px;">
+<div class="px-3 pt-3 bg-light" data-controller="gruppetto-form-hide" style="padding-bottom:56px;">
   <div data-controller="gruppetto-validator">
     <h1>New gruppetto</h1>
     <%= simple_form_for(@gruppetto) do |f| %>
@@ -12,8 +12,7 @@
                   label: 'Average speed planned: ',
                   wrapper_html: { data: { controller: "range-slider" } },
                   input_html: { data: {range_slider_target: 'slider',
-                                      action: 'input->range-slider#change',
-                                      action: 'change->gruppetto-validator#validateField' },
+                                      action: 'input->range-slider#change' },
                                 min: Gruppetto::SPEED_RANGE.min,
                                 max: Gruppetto::SPEED_RANGE.max,
                                 class: 'bg-light'},
@@ -46,7 +45,7 @@
 
     <button data-action="click->gruppetto-form-hide#additionalSettings" type="button" class="btn btn-link ps-0">
       Additional settings
-      <i class="fa-regular fa-caret-down" data-gruppetto-form-hide-target="additionalSettingsCaret"></i>
+      <i class="fa-solid fa-caret-down text-primary" data-gruppetto-form-hide-target="additionalSettingsCaret"></i>
     </button>
     <div data-gruppetto-form-hide-target="additionalSettings" class='d-none'>
       <%= f.input :event_type,
