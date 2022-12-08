@@ -6,7 +6,7 @@
     <% unless @gruppetto.track.image.url.nil? %>
       <%= cl_image_tag @gruppetto.track.image.key, height: 400, width: 400, crop: :fill, class: 'w-100', id: 'image' %>
     <% else %>
-      <%= image_tag "track-fallback.svg", height: 400, width: 400, class: 'w-100', data: { track_subscription_target: "trackImage" }, id: 'image' %>
+      <%= image_tag "track-fallback.svg", height: 400, width: 400, class: 'w-100', id: 'image' %>
     <% end %>
   </div>
   <div class="m-2 px-3 py-2 bg-light p-1 rounded">

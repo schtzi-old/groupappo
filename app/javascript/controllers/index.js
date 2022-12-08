@@ -16,9 +16,6 @@ application.register("delete-notifications-list", DeleteNotificationsListControl
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
-import FooterNavController from "./footer_nav_controller"
-application.register("footer-nav", FooterNavController)
-
 import GruppettoFormHideController from "./gruppetto_form_hide_controller"
 application.register("gruppetto-form-hide", GruppettoFormHideController)
 

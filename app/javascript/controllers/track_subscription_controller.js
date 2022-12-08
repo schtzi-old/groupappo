@@ -20,8 +20,7 @@ export default class extends Controller {
     console.log(data)
     this.totalVmTarget.innerHTML = `${data.totalVm} m`
     this.totalKmTarget.innerHTML = `${data.totalKm} km`
-    // this.trackImageTarget.innerHTML = ''
-
-    this.trackImageTarget.src = new Image().src = `${data.trackImage}`
+    this.trackImageTarget.innerHTML = ''
+    this.trackImageTarget.insertAdjacentHTML('afterBegin', `<img height="400" width="400" class="w-100" id="image" src="${data.trackImage}">`)
   }
 }
