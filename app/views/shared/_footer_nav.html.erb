@@ -1,7 +1,6 @@
-<div class="d-flex justify-content-between w-100 bg-dark p-2 align-self-stretch"  style="position:fixed; bottom:0;z-index:10000;">
+<div class="d-flex justify-content-between w-100 bg-dark px-2 align-self-stretch"  style="position:fixed; bottom:0;z-index:10000;padding-bottom:18px;padding-top:18px">
     <div class='flex-grow-1'>
       <%= link_to gruppettos_path do %>
-
         <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-house <%= ((request.url.include? "gruppettos") && (!request.url.include? "going") && (!request.url.include? "new")) ? 'text-primary' : '' %>" style='color:white'></i></h2>
       <% end %>
     </div>
@@ -20,11 +19,31 @@
         <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-user-group <%= 'text-primary' if (request.url.include? "friendships")  %>" style='color:white'></i></h2>
       <% end %>
     </div>
+
+<% if false %>
+
+
+              <li class="nav-item dropdown">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
+<% end %>
+
+
     <div class='flex-grow-1 justify-content-center d-flex'>
       <% if current_user.avatar.key.nil? %>
-        <%= image_tag "avatar-fallback.svg", height: 40, width: 40, class: 'rounded-circle shadow-sm' %>
+        <%= image_tag "avatar-fallback.svg", height: 40, width: 40, class: 'rounded-circle shadow-sm dropdown-toggle', id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %>
-        <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fill, class: 'rounded-circle shadow-sm' %>
+        <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fill, class: 'rounded-circle shadow-sm', id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% end %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "My profile", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
     </div>
 </div>
