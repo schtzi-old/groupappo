@@ -1,0 +1,20 @@
+<%# <%= turbo_frame_tag dom_id(participant) do %>
+  <div class="flex-grow-1 text-end pe-3 participants-going" id="participants-going">
+    <p class="">
+      <%= attending_count = @gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %>
+      <% if attending_count > 1 %>
+        are
+      <% else %>
+        is
+      <% end %>
+      joining
+    </p>
+    <% @gruppetto.participations.filter{|attending| attending.participation_status == "Attending" }.each do |part| %>
+      <% if part.user.avatar.key.nil? %>
+        <%= image_tag "avatar-fallback.svg", height: 25, width: 25, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
+      <% else %>
+        <%= cl_image_tag part.user.avatar.key, height: 25, width: 25, crop: :fill, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
+      <% end %>
+    <% end %>
+  </div>
+<%# <% end %>
