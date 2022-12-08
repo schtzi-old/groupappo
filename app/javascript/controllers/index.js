@@ -37,5 +37,8 @@ application.register("range-slider", RangeSliderController)
 import SearchFilterController from "./search_filter_controller"
 application.register("search-filter", SearchFilterController)
 
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
+
 import TrackSubscriptionController from "./track_subscription_controller"
 application.register("track-subscription", TrackSubscriptionController)

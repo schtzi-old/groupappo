@@ -6,9 +6,9 @@
         <div class="card mb-4 rounded">
           <div class="card-body text-center">
             <% if current_user.avatar.key.nil? %>
-              <%= image_tag "avatar-fallback.svg", class: "avatar rounded-circle img-fluid",style: "width: 150px;", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= image_tag "avatar-fallback.svg", class: "avatar rounded-circle img-fluid",style: "width: 150px; height: 150px;", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
-              <%= cl_image_tag current_user.avatar.key, class: "avatar rounded-circle img-fluid",style: "width: 150px;", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= cl_image_tag current_user.avatar.key, class: "avatar rounded-circle img-fluid",style: "width: 150px; height: 150px;", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
             <h5 class="my-3 "style="font-size:18px;"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
             <p class="text-muted mb-1"><%= current_user.about %></p>
@@ -40,9 +40,9 @@
                   <div class="d-flex ">
                     <div class="">
                       <% if user.avatar.key.nil? %>
-                        <%= image_tag "avatar-fallback.svg", class: "avatar", style: "width:32px;height:32px;" %>
+                        <%= image_tag "avatar-fallback.svg", class: "avatar", style: "width:50px; height:50px;" %>
                       <% else %>
-                        <%= cl_image_tag user.avatar.key, class: "avatar", style: "width:32px;height:32px;"%>
+                        <%= cl_image_tag user.avatar.key, class: "avatar", style: "width:50px; height:50px;"%>
                       <% end %>
                     </div>
                     <p class="px-3" style="font-size:18px;"><%= user.first_name %> <%= user.last_name[0] %>.</p>
