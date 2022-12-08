@@ -1,89 +1,50 @@
 <tr>
   <td class="pb-0">
   <%= link_to gruppetto_path(gruppetto), class: 'text-decoration-none' do  %>
-    <div class="bg-light p-3 rounded shadow">
-    <div class="d-flex justify-content-between">
-        <div class=''>
-          <h5 class="mb-2 me-2 overflow-hidden fw-bold"><%= gruppetto.name %></h5>
-          <div class="d-flex">
-            <p class="overflow-hidden mb-2 text-dark fw-lighter"><%= gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless gruppetto.start.nil? %></p>
-          </div>
-            <p class='mb-0 ml-2'>
+    <div class="d-flex bg-light px-2 py-2 rounded shadow">
+        <div>
+          <% unless gruppetto.track.image.url.nil? %>
+            <%= cl_image_tag gruppetto.track.image.key, height: 120, width: 90, crop: :fill, class: 'rounded-top' %>
+          <% else %>
+            <%= image_tag "track-fallback.svg", height: 120, width: 90, class: 'rounded-top' %>
+          <% end %>
+          <div class="bg-secondary rounded-bottom">
+            <p class='py-1 mb-0 ml-2 text-center text-light'>
               <%= gruppetto.participations.filter{|attending| attending.participation_status == "Attending" }.count %> rider<%= gruppetto.participants.count > 1 ? 's' : '' %>
             </p>
+          </div>
         </div>
-        <div class='me-1'>
-          <% unless gruppetto.track.image.url.nil? %>
-            <%= cl_image_tag gruppetto.track.image.key, height: 100, width: 100, crop: :fill, class: 'rounded' %>
-          <% else %>
-            <%= image_tag "track-fallback.svg", height: 100, width: 100, class: 'rounded' %>
-          <% end %>
-        </div>
-      </div>
-        <div class="m-1 mt-2 flex-grow-1">
-          <table class='w-100'>
-            <tbody>
-              <tr>
-                <td>
-                  <i class="fa-solid fa-gauge" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Kilometers per hour" style="margin-left:2px;"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.avg_speed.nil? ? " - " : gruppetto.avg_speed %></p>
-                </td>
-                <td>
-                   <p class="mb-1 text-start text-dark" style='width:30px'>km/h</p>
-                </td>
-                <td>
-                  <i class="fa-solid fa-route" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Distance in kilometres" ></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_km %></p>
-                </td>
-                <td>
-                  <p class="mb-1 text-start text-dark" style='width:30px'>km</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <i class="fa-solid fa-dumbbell" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Difficulty"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.difficulty.nil? ? " - " : gruppetto.difficulty %> </p>
-                </td>
-                <td>
-                <p class="mb-1 text-start text-dark" style='width:30px'></p>
-                </td>
-                <td>
-                  <i class="fa-solid fa-mountain" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Vertical meters / Elevation"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_vm %></p>
-                </td>
-                <td>
-                  <p class="mb-1 text-start text-dark" style='width:30px'>vm</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="m-1 ms-3 flex-grow-1">
+          <div class="d-flex">
+            <div>
+              <h5 class="mb-0 overflow-hidden fw-bold" style='max-width:335px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'><%= gruppetto.name %></h5>
+              <div class="d-flex">
+                <p class="overflow-hidden text-dark fw-lighter mb-1"><%= gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless gruppetto.start.nil? %></p>
+              </div>
+            </div>
+            <div class="d-flex flex-grow-1 align-items-baseline">
+              <%# <p class='mb-0 ml-2 overflow-hidden'><%= gruppetto.participants.count %> <%#rider<%= gruppetto.participants.count > 1 ? '(s)' : ''%></p>
+            </div>
+          </div>
 
             <div class="d-flex justify-content-start">
-              <div class="d-flex align-items-baseline"  style="width: 140px;">
-
-
+              <div class="align-items-baseline"  style="width: 90px;">
+                <p class='mb-0' style="font-size:12px">Average speed</p>
+                <p class=" mb-2 flex-grow-1 overflow-hidden text-dark"><%= gruppetto.avg_speed.nil? ? " - " : gruppetto.avg_speed %> km/h</p>
               </div>
-              <div class="d-flex align-items-baseline"  style="width: 140px;margin-left:24px;">
-
-
+              <div class="align-items-baseline"  style="width: 90px;margin-left:24px;">
+                <p class='mb-0' style="font-size:12px">Distance</p>
+                <p class=" mb-2 flex-grow-1 overflow-hidden text-dark"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_km %> km</p>
               </div>
             </div>
             <div class="d-flex justify-content-start">
-              <div class="d-flex align-items-baseline"  style="width: 140px;">
-
-
+              <div class="align-items-baseline"  style="width: 90px;">
+                <p class='mb-0' style="font-size:12px">Difficulty</p>
+                <p class=" mb-0 flex-grow-1 overflow-hidden text-dark"><%= gruppetto.difficulty.nil? ? " - " : gruppetto.difficulty %> </p>
               </div>
-              <div class="d-flex align-items-baseline" style="width: 140px;margin-left:24px;">
-
-
+              <div class="align-items-baseline" style="width: 90px;margin-left:24px;">
+                <p class='mb-0' style="font-size:12px">Elevation Gain</p>
+                <p class=" mb-0 flex-grow-1 overflow-hidden text-dark"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_vm %> m</p>
               </div>
             </div>
           </div>
