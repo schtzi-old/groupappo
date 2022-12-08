@@ -25,7 +25,7 @@
             <tbody>
               <tr>
                 <td>
-                  <i class="fa-solid fa-gauge" style="margin-left:2px;"></i>
+                  <i class="fa-solid fa-gauge" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Kilometers per hour" style="margin-left:2px;"></i>
                 </td>
                 <td>
                   <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.avg_speed.nil? ? " - " : gruppetto.avg_speed %></p>
@@ -34,7 +34,7 @@
                    <p class="mb-1 text-start text-dark" style='width:30px'>km/h</p>
                 </td>
                 <td>
-                  <i class="fa-solid fa-route"></i>
+                  <i class="fa-solid fa-route" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Distance in kilometres" ></i>
                 </td>
                 <td>
                   <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_km %></p>
@@ -45,7 +45,7 @@
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-dumbbell"></i>
+                  <i class="fa-solid fa-dumbbell" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Difficulty"></i>
                 </td>
                 <td>
                   <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.difficulty.nil? ? " - " : gruppetto.difficulty %> </p>
@@ -54,7 +54,7 @@
                 <p class="mb-1 text-start text-dark" style='width:30px'></p>
                 </td>
                 <td>
-                  <i class="fa-solid fa-mountain"></i>
+                  <i class="fa-solid fa-mountain" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Vertical meters / Elevation"></i>
                 </td>
                 <td>
                   <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= gruppetto.track.total_km.nil? ? " - " : gruppetto.track.total_vm %></p>
