@@ -9,11 +9,23 @@
       <% end %>
       joining
     </p>
-    <% @gruppetto.participations.filter{|attending| attending.participation_status == "Attending" }.each do |part| %>
-      <% if part.user.avatar.key.nil? %>
-        <%= image_tag "avatar-fallback.svg", height: 25, width: 25, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
-      <% else %>
-        <%= cl_image_tag part.user.avatar.key, height: 25, width: 25, crop: :fill, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
+    <% first_five = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending" } %>
+    <% if first_five.count > 5 %>
+      <% first_five[0...5].each do |part| %>
+        <% if part.user.avatar.key.nil? %>
+          <%= image_tag "avatar-fallback.svg", height: 50, width: 50, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -30px;' %>
+        <% else %>
+          <%= cl_image_tag part.user.avatar.key, height: 50, width: 50, crop: :fill, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -30px;' %>
+        <% end %>
+      <% end %>
+      + <%= first_five.count - 5 %>
+    <% else %>
+      <% first_five.each do |part| %>
+        <% if part.user.avatar.key.nil? %>
+          <%= image_tag "avatar-fallback.svg", height: 50, width: 50, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -30px;' %>
+        <% else %>
+          <%= cl_image_tag part.user.avatar.key, height: 50, width: 50, crop: :fill, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -30px;' %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
