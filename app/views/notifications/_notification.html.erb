@@ -1,5 +1,5 @@
 <div data-controller="delete-notifications-list">
-    <div class="d-flex justify-content-between p-3">
+    <div class="d-flex justify-content-between p-4">
       <h1>Notifications</h1>
       <%= link_to notifications_delete_path,
             data: {action: "click->delete-notifications-list#remove", turbo_method: :delete, turbo_track:"reload"},
