@@ -12,11 +12,13 @@ class Friendship < ApplicationRecord
     case1 == case2
   end
   # Does the two users have a pending friendship
+
   def self.pending_reacted?(id1, id2)
     case1 = Friendship.where(user_id: id1, friend_id: id2, confirmed: true).empty?
     case2 = Friendship.where(user_id: id2, friend_id: id1, confirmed: true).empty?
     case1 == case2
   end
+
   def self.request_origin(id1, id2)
     case1 = Friendship.where(user_id: id1, friend_id: id2, confirmed: false).empty?
   end
