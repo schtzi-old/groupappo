@@ -7,7 +7,6 @@ class GruppettosController < ApplicationController
   end
 
   def index
-    console
     params[:type] = "upcoming" if params[:type].nil?
     if params[:type] == "upcoming"
       @gruppettos = policy_scope(Gruppetto.where("start > ?", Time.now))
