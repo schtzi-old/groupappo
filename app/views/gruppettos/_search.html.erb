@@ -7,24 +7,32 @@
       <div class="modal-body">
         <%= form_with url: gruppettos_path, method: :get do |form| %>
 
-          <%#= form.label :zip_code, "Zip Code" %>
-          <%#= form.select :zip_code,
+          <%= form.label :zip_code, "Zip Code" %>
+          <%= form.select :zip_code,
                     {
-                      "Melbourne Zip Codes" => [3002, 8002, 3000, 3001, 3004, 8001, 3045, 3052, 5006, 3051, 3207, 3050, 3205, 3004, 3010, 3003]
+                      # "Melbourne Zip Codes" => [3002, 8002, 3000, 3001, 3004, 8001, 3045, 3052, 5006, 3051, 3207, 3050, 3205, 3004, 3010, 3003]
+                      "Melbourne Zip Codes" => [
+                        ["Select",0],
+                        [3000,[144.956776,-37.817403].reverse],
+                        [3002,[144.982207,-37.818517].reverse],
+                        [3003,[144.949592,-37.810871].reverse],
+                        [3004,[144.970161,-37.844246].reverse],
+                        [3005,[144.950858,-37.824608].reverse]
+                      ]
                     } %>
-
+        <hr>
+          <%= form.label :distance, "Distance" %>
+          <%= form.range_field :distance, in: 1..100%>
+        <hr>
           <%= form.label :speed, "Speed" %>
-          <%= form.number_field :speed, in: 1..50%>
+          <%= form.number_field :speed, in: 0..50%>
         <hr>
           <%= form.label :difficulty, "Difficulty" %>
           <%= form.select :difficulty,
                     {
-                      "Options" => [ ["Easy"], ["Moderate"], ["Hard"] ]
+                      "Options" => [ ["Select",""], ["Easy","Easy"], ["Moderate","Moderate"], ["Hard","Moderate"] ]
                     } %>
         <hr>
-          <%#= form.label :length, "Length" %>
-          <%#= form.range_field :length, in: 1..200%>
-
           <%= form.label :start_date, "Start Date" %>
           <%= form.date_field :start_date%>
         <hr>

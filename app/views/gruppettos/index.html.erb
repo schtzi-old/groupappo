@@ -8,45 +8,27 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+  <div style='position:fixed;bottom:78px' class='w-100 d-flex justify-content-center'>
+    <% if params[:commit] != 'going' %>
+      <button type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModalScrollable">
+        Search gruppettos
+      </button>
 
-<% if false %>
-<div class=""  style="">
+      <% if params[:commit] %>
+        <form action="/gruppettos?type<%=params[:type]%>">
+          <button type="submit" class="btn ms-2" style='background-color:#CA3759;'><h5 class='mb-0'><i class="text-light fa-solid fa-xmark"></i></h5></button>
+        </form>
 
-    <ul class="nav nav-tabs nav-fill d-flex justify-content-around bd-highlight start-10" style="width:100%; background:white;" role="tablist">
-      <li class="nav-item">
-        <% if params[:type] == "upcoming" %>
-          <%= link_to "Upcoming", gruppettos_path(type: "upcoming"), class: "nav-link active bg-primary bg-gradient text-white", data_toggle: "tab", role: "tab", aria_controls: "tasks", aria_selected: "true"%>
-        <% else %>
-          <%= link_to "Upcoming", gruppettos_path(type: "upcoming"), class: "nav-link bg-hover-primary-10", data_toggle: "tab", role: "tab", aria_controls: "files", aria_selected: "false"%>
-        <% end %>
-      </li>
-      <li class="nav-item bg-hover-primary-10">
-        <% if params[:type] == "going" %>
-          <%= link_to "Going", gruppettos_path(type: "going"), class: "nav-link active bg-primary bg-gradient text-white", data_toggle: "tab", role: "tab", aria_controls: "tasks", aria_selected: "true"%>
-        <% else %>
-          <%= link_to "Going", gruppettos_path(type: "going"), class: "nav-link bg-hover-primary-10", data_toggle: "tab", role: "tab", aria_controls: "files", aria_selected: "false"%>
-        <% end %>
-      </li>
-      <li class="nav-item bg-hover-primary-10">
-        <% if params[:type] == "past" %>
-          <%= link_to "Past", gruppettos_path(type: "past"), class: "nav-link active bg-primary bg-gradient text-white", data_toggle: "tab", role: "tab", aria_controls: "tasks", aria_selected: "true"%>
-        <% else %>
-          <%= link_to "Past", gruppettos_path(type: "past"), class: "nav-link bg-hover-primary-10", data_toggle: "tab", role: "tab", aria_controls: "files", aria_selected: "false"%>
-        <% end %>
-      </li>
-    </ul>
+      <% end %>
+    <% end %>
   </div>
-  <%end %>
-<div class="" style="margin-top:-10px;">
+  <div class="" style="margin-top:-10px;">
   <%= render "search" %>
 <div>
-  <button type="button"
-          class="btn btn-primary w-25"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModalScrollable"
-          style='position:fixed;left:35vw;bottom:78px'>
-    Search Filter
-  </button>
+<div  style='padding-bottom:56px'>
   <%# renders the index_card.html.erb with sending the gruppetto params %>
   <table class="table table-hover table-borderless" style="background: rgba(238,238,238,0.9);border-radius: 10px;">
     <thead>
@@ -57,6 +39,4 @@
         <% end %>
     </tbody>
   </table>
-
-  </div>
 </div>
