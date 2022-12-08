@@ -19,7 +19,6 @@ export default class extends Controller {
   }
 
   additionalSettings () {
-    console.log('click')
     if (this.additionalSettingsTarget.classList.contains('d-none')) {
       this.additionalSettingsTarget.classList.remove('d-none')
       this.additionalSettingsCaretTarget.classList.replace('down', 'up')
