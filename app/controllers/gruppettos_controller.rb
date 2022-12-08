@@ -14,6 +14,7 @@ class GruppettosController < ApplicationController
       @gruppettos = policy_scope(Gruppetto.where("start < ?", Time.now))
     elsif params[:type] == "going"
       @gruppettos = policy_scope(Gruppetto.joins(:participations).where(user: current_user))
+      @gruppettos = @gruppettos.uniq{|g| g.id}
     else
       @gruppettos == policy_scope(Gruppetto)
     end
