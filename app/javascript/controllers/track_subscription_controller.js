@@ -7,6 +7,7 @@ export default class extends Controller {
   static targets = ["trackImage", "totalVm", "totalKm"]
 
   connect() {
+    console.log('connected to subsrciption')
     this.channel = createConsumer().subscriptions.create(
       { channel: "TracksChannel", id: this.trackIdValue },
       {
@@ -20,6 +21,6 @@ export default class extends Controller {
     this.totalVmTarget.innerHTML = `${data.totalVm} m`
     this.totalKmTarget.innerHTML = `${data.totalKm} km`
     this.trackImageTarget.innerHTML = ''
-    this.trackImageTarget.innerHTML = `<img height="300" width="300" src=${data.trackImage}></img>`
+    this.trackImageTarget.insertAdjacentHTML('afterBegin', `<img height="400" width="400" class="w-100" id="image" src="${data.trackImage}">`)
   }
 }

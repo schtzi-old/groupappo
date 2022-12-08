@@ -19,7 +19,7 @@ class Track < ApplicationRecord
 
   after_commit :async_map_data, on: :create
 
-  after_commit :broadcast_change
+  # after_commit :broadcast_change
 
   def async_map_data
     TrackDataJob.perform_later(self)
@@ -30,10 +30,12 @@ class Track < ApplicationRecord
     create_track_image
     # create_geojson
     # inform frontend about new data via ActionCable
+    broadcast_change
   end
 
-
   def broadcast_change
+    sleep 1.5
+    # debugger
     TracksChannel.broadcast_to(
       self,
       {
