@@ -29,50 +29,26 @@
       <div>
          <p class="text-muted"> <%= @gruppetto.description %></p>
       </div>
-      <table class='w-100'>
-            <tbody>
-              <tr>
-                <td>
-                  <i class="fa-solid fa-gauge" style="margin-left:2px;"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= @gruppetto.avg_speed.nil? ? " - " : @gruppetto.avg_speed %></p>
-                </td>
-                <td>
-                   <p class="mb-1 text-start text-dark" style='width:30px'>km/h</p>
-                </td>
-                <td>
-                  <i class="fa-solid fa-route"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_km %></p>
-                </td>
-                <td>
-                  <p class="mb-1 text-start text-dark" style='width:30px'>km</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <i class="fa-solid fa-dumbbell"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= @gruppetto.difficulty.nil? ? " - " : @gruppetto.difficulty %> </p>
-                </td>
-                <td>
-                <p class="mb-1 text-start text-dark" style='width:30px'></p>
-                </td>
-                <td>
-                  <i class="fa-solid fa-mountain"></i>
-                </td>
-                <td>
-                  <p class="mb-1 me-1 text-end overflow-hidden text-dark"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_vm %></p>
-                </td>
-                <td>
-                  <p class="mb-1 text-start text-dark" style='width:30px'>vm</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="d-flex justify-content-start w-100">
+        <div class="d-flex align-items-baseline pb-2" style="width: 150px;">
+          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;"><%= @gruppetto.avg_speed.nil? ? " - " : @gruppetto.avg_speed %> km/h </p>
+          <i class="fa-solid fa-gauge"></i>
+        </div>
+        <div class="d-flex align-items-baseline pb-2"  style="width: 150px;margin-left:42px;">
+          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;" data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_km %> km</p>
+          <i class="fa-solid fa-route"></i>
+        </div>
+      </div>
+      <div class="d-flex justify-content-start w-100">
+        <div class="d-flex align-items-baseline pt-2" style="width: 150px;">
+          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;"><%= @gruppetto.difficulty.nil? ? " - " : @gruppetto.difficulty %> </p>
+          <i class="fa-solid fa-dumbbell"></i>
+        </div>
+        <div class="d-flex align-items-baseline pt-2" style="width: 150px;margin-left:42px;">
+          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;" data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm.nil? ? " - " : @gruppetto.track.total_vm %> vm</p>
+          <i class="fa-solid fa-mountain"></i>
+        </div>
+      </div>
     </div>
   </div>
 
