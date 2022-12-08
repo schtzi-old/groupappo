@@ -15,6 +15,5 @@ class Gruppetto < ApplicationRecord
 
   validates :avg_speed, numericality: { only_integer: true, in: SPEED_RANGE }
 
-  # validates :name, :description, :gruppetto_status, :avg_speed, :difficulty, :event_type, :participation_rule,
-  #           presence: true
+  validates :name, :description, :start, presence: true
 end
