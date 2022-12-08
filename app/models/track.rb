@@ -32,7 +32,6 @@ class Track < ApplicationRecord
     # inform frontend about new data via ActionCable
   end
 
-
   def broadcast_change
     TracksChannel.broadcast_to(
       self,
