@@ -77,24 +77,24 @@ end
 
 puts "Creating gruppettos"
 
-user = User.all.sample
+user = User.find_by(first_name: "Shelley")
 Gruppetto.create(name: "Christmas Ride around the City", track: Track.all.sample, user: user, start: DateTime.strptime("25/12/2022 12:00", "%d/%m/%Y %H:%M"),
-                  description: "Ho ho ho, ride with Santa 🎅🏼", gruppetto_status: 'upcoming',
+                  description: "Ho ho ho, bring your bike and ride with Santa 🎅🏼", gruppetto_status: 'upcoming',
                   difficulty: "Moderate", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
 user = User.all.sample
-Gruppetto.create(name: "Batch #1044 Ride for your life!", track: Track.all.sample, user: user, start: DateTime.strptime("03/12/2022 07:30", "%d/%m/%Y %H:%M"),
-                  description: "Catch with all of your Le Wagon friends", gruppetto_status: 'upcoming',
+Gruppetto.create(name: "Batch #1044 Ride for your life!", track: Track.all.sample, user: user, start: DateTime.strptime("10/12/2022 07:30", "%d/%m/%Y %H:%M"),
+                  description: "Catch with all of your favourite Le Wagon friends", gruppetto_status: 'upcoming',
                   difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
 user = User.all.sample
-Gruppetto.create(name: "Cycle and Chill", track: Track.all.sample, user: user, start: DateTime.strptime("04/12/2022 16:00", "%d/%m/%Y %H:%M"),
-                  description: "Bit of cycling, bit of chilling on a Sunday arvo", gruppetto_status: 'upcoming',
+Gruppetto.create(name: "Cycle and Chill", track: Track.all.sample, user: user, start: DateTime.strptime("11/12/2022 16:00", "%d/%m/%Y %H:%M"),
+                  description: "Bit of cycling, bit of chilling on a Sunday arvo!", gruppetto_status: 'upcoming',
                   difficulty: "Easy", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
-user = User.all.sample
-Gruppetto.create(name: "Jan(aka yarn) Bike Race Black Diamond", track: Track.all.sample, user: user, start: DateTime.strptime("10/12/2022 06:00", "%d/%m/%Y %H:%M"),
+user = User.find_by(first_name: "Jan")
+Gruppetto.create(name: "Jan(aka yarn) Bike Race Black Diamond", track: Track.all.sample, user: user, start: DateTime.strptime("17/12/2022 06:00", "%d/%m/%Y %H:%M"),
                   description: "Yarning up that hill (and back down again a load of times)", gruppetto_status: 'upcoming',
                   difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
-user = User.all.sample
-Gruppetto.create(name: "Ryan's Ferrari Race", track: Track.all.sample, user: user, start: DateTime.strptime("04/12/2022 11:00", "%d/%m/%Y %H:%M"),
+user = User.find_by(first_name: "Ryan")
+Gruppetto.create(name: "Ryan's Ferrari Race", track: Track.all.sample, user: user, start: DateTime.strptime("12/12/2022 11:00", "%d/%m/%Y %H:%M"),
                   description: "It's a Caulfield road race, bring your own ferrari!", gruppetto_status: 'upcoming',
                   difficulty: "Moderate", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
 user = User.all.sample
@@ -102,18 +102,18 @@ Gruppetto.create(name: "Big Cycle Weekend in High Country", track: Track.all.sam
                   description: "Cycle the entire Great Vic Rail Trail over the weekend. Camping on Saturday night 🏕", gruppetto_status: 'upcoming',
                   difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
 user = User.all.sample
-Gruppetto.create(name: "Beginner Ride in Melbourne", track: Track.all.sample, user: user, start: DateTime.strptime("04/12/2022 11:00", "%d/%m/%Y %H:%M"),
+Gruppetto.create(name: "Beginner Ride in Melbourne City", track: Track.all.sample, user: user, start: DateTime.strptime("15/12/2022 11:00", "%d/%m/%Y %H:%M"),
                   description: "Just learned to ride your bike? Come meet us for an easy ride around the CDB 😎", gruppetto_status: 'upcoming',
                   difficulty: "Easy", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
 user = User.all.sample
-Gruppetto.create(name: "End of Nov 🚴🏻‍♀️", track: Track.all.sample, user: user, start: DateTime.strptime("30/11/2022 11:00", "%d/%m/%Y %H:%M"),
-                  description: "Finish November with a bang!", gruppetto_status: 'upcoming',
-                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
+Gruppetto.create(name: "End of the Year NYE Party & Cycle! 🚴🏻‍♀️", track: Track.all.sample, user: user, start: DateTime.strptime("31/12/2022 13:00", "%d/%m/%Y %H:%M"),
+                  description: "Finish 2022 with a bang!", gruppetto_status: 'upcoming',
+                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: 32)
 
 puts "Creates chats"
 Gruppetto.all.each do |grup|
   chat = Chatroom.create(gruppetto: grup)
-  Message.create(user: grup.user, chatroom: chat, content: "Welcome! #{grup.name.capitalize} has been created by #{grup.user.first_name.capitalize}.")
+  Message.create(user: grup.user, chatroom: chat, content: "Welcome! 👋 #{grup.name.capitalize} has been created by #{grup.user.first_name.capitalize}.")
 end
 
 puts "Creating participations"
