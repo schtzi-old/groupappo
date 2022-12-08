@@ -1,15 +1,15 @@
-<div data-controller="delete-notifications-list">
+<div class="container" data-controller="delete-notifications-list">
     <div class="d-flex justify-content-between p-4">
-      <h1>Notifications</h1>
+      <h1 class="pt-2">Notifications</h1>
       <%= link_to notifications_delete_path,
             data: {action: "click->delete-notifications-list#remove", turbo_method: :delete, turbo_track:"reload"},
             class: "btn" do %>
-          <p>Clear all notifications</p>
+          <p class="btn btn-outline-secondary">Clear all</p>
       <% end %>
     </div>
 
     <div data-delete-notifications-list-target="table">
-      <table class="table table-hover table-responsive-sm justify-content-between"
+      <table class="table table-responsive-sm justify-content-between"
               data-toggle="table" data-sort-name="read_at" data-sort-order="asc">
         <thead>
           <tr>
@@ -30,32 +30,32 @@
                 <td>
                   <% case notification_type %>
                   <% when "NewFriendRequestNotification" %>
-                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
-                    <p>
+                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none card rounded-lg bg-success shadow-sm border-0 mb-1 me-2 text-dark" do %>
+                    <p class="p-2 mb-0">
                       <%= notification.params[:friendship].user.first_name %> has sent you a friend request
                     </p>
-                    <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+                    <p class="p-2 mb-0"><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
                     <% end %>
                   <% when "AcceptedFriendRequest" %>
-                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
-                    <p>
+                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none card rounded-lg bg-success shadow-sm border-0 mb-1 me-2 text-dark" do %>
+                    <p class="p-2 mb-0">
                       <%= notification.params[:friendship].friend.first_name %> has accepted your friend request
                     </p>
-                    <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+                    <p class="p-2 mb-0"><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
                     <% end %>
                   <% when "NewParticipationRequest" %>
-                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
-                    <p>
+                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none card rounded-lg bg-success shadow-sm border-0 mb-1 me-2 text-dark" do %>
+                    <p class="p-2 mb-0">
                       <%= notification.params[:participation].user.first_name %> has requested to join your gruppetto - <%= notification.params[:participation].gruppetto.name %>
                     </p>
-                    <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+                    <p class="p-2 mb-0"><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
                     <% end %>
                   <% when "AcceptedParticipantRequest" %>
-                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none" do %>
-                    <p>
+                    <%= link_to mark_as_read_path(notification), class: "text-decoration-none card rounded-lg bg-success shadow-sm border-0 mb-1 me-2 text-dark" do %>
+                    <p class="p-2 mb-0">
                       <%= notification.params[:participation].gruppetto.user.first_name %> has accepted your request to join their gruppetto
                     </p>
-                    <p><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
+                    <p class="p-2 mb-0"><%= notification.created_at.to_date.strftime("%e %b at %l%P") %></p>
                     <% end %>
                   <% end %>
                 </td>
