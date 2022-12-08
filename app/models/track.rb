@@ -89,7 +89,8 @@ class Track < ApplicationRecord
   end
 
   def fetch_address
-    "#{Geocoder.search([@coordinates_array[0][0], @coordinates_array[0][1]])[0].data['address']['road']}, #{Geocoder.search([@coordinates_array[0][0], @coordinates_array[0][1]])[0].data['address']['city']}, #{Geocoder.search([@coordinates_array[0][0], @coordinates_array[0][1]])[0].data['address']['country']}"
+    object = Geocoder.search([@coordinates_array[0][0], @coordinates_array[0][1]])[0].data
+    "#{object['address']['road']}, #{object['address']['city']}, #{object['address']['country']}"
   end
 
   def calculate_distance
