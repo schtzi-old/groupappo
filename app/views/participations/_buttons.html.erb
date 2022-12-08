@@ -1,26 +1,32 @@
 <div class="d-flex flex-column">
   <% if  participant.participation_status == "Rejected" %>
-    <%= link_to "Accept",
-      accept_participation_path(gruppetto, participant),
+    <%= link_to accept_participation_path(gruppetto, participant),
       data: {turbo_method: :accept, turbo_track:"reload"},
-      class: "btn btn-outline-success mb-1"
-    %>
+      class: "btn btn-outline-success mb-1" do %>
+      <i class="fa-regular fa-thumbs-up"></i>
+    <% end %>
   <% elsif participant.participation_status == "Attending" %>
-    <%= link_to "Reject",
-      reject_participation_path(gruppetto, participant),
+    <%= link_to reject_participation_path(gruppetto, participant),
       data: {turbo_method: :reject, turbo_track:"reload"},
-      class: "btn btn-outline-danger  mb-1"
-    %>
+      class: "btn btn-outline-danger mb-1" do %>
+      <i class="fa-regular fa-thumbs-down"></i>
+    <% end %>
   <% elsif participant.participation_status == "Pending" %>
-    <%= link_to "Accept",
-      accept_participation_path(gruppetto, participant),
-      data: {turbo_method: :accept, turbo_track:"reload"},
-      class: "btn btn-outline-success  mb-1"
-    %>
-    <%= link_to "Reject",
-      reject_participation_path(gruppetto, participant),
-      data: {turbo_method: :reject, turbo_track:"reload"},
-      class: "btn btn-outline-danger  mb-1"
-    %>
+    <div class="d-flex justify-content-between">
+      <div class="">
+      <%= link_to accept_participation_path(gruppetto, participant),
+        data: {turbo_method: :accept, turbo_track:"reload"},
+        class: "btn btn-outline-success mb-1" do %>
+        <i class="fa-regular fa-thumbs-up"></i>
+      <% end %>
+      </div>
+      <div class="">
+      <%= link_to reject_participation_path(gruppetto, participant),
+        data: {turbo_method: :reject, turbo_track:"reload"},
+        class: "btn btn-outline-danger mb-1" do %>
+        <i class="fa-regular fa-thumbs-down"></i>
+      <% end %>
+      </div>
+    </div>
   <% end %>
 </div>

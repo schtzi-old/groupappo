@@ -1,0 +1,7 @@
+<%= turbo_frame_tag dom_id(participant) do %>
+  <div class="row">
+    <div class="col"><%= render "participations/status", participation_status: participant.participation_status %></div>
+    <div class="col"><p class="text-center m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p></div>
+    <div class="col"><%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %></div>
+  </div>
+<% end %>

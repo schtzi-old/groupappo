@@ -13,7 +13,7 @@
     <div class='d-flex justify-content-between'>
       <div class='w-100'>
           <h3 class="mb-0 overflow-hidden fw-bold" style='color:#37caa8;'><%= @gruppetto.name %></h3>
-          <p class="text-muted mb-0">on <%= @gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless @gruppetto.start.nil? %></p>
+          <p class="text-muted mb-0 pt-2">on <%= @gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless @gruppetto.start.nil? %></p>
           <p class="text-muted">starting at <%= @gruppetto.track.address unless @gruppetto.track.address.nil? %></p>
       </div>
       <div>
@@ -29,17 +29,17 @@
          <p> <%= @gruppetto.description %></p>
       </div>
         <div class="d-flex justify-content-start">
-          <div class="d-flex align-items-baseline"  style="width: 100px;">
+          <div class="d-flex align-items-baseline py-1"  style="width: 100px;">
             <i class="fa-solid fa-gauge" style="margin-left:2px;"></i>
             <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden"><%= @gruppetto.avg_speed.nil? ? " - " : @gruppetto.avg_speed %> km/h</p>
           </div>
-          <div class="d-flex align-items-baseline"  style="width: 100px;margin-left:42px;">
+          <div class="d-flex align-items-baseline py-1"  style="width: 100px;margin-left:42px;">
             <i class="fa-solid fa-route"></i>
             <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_km %> km</p>
           </div>
         </div>
         <div class="d-flex justify-content-start">
-          <div class="d-flex align-items-baseline"  style="width: 100px;">
+          <div class="d-flex align-items-baseline py-1"  style="width: 100px;">
             <i class="fa-solid fa-dumbbell"></i>
             <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden"><%= @gruppetto.difficulty.nil? ? " - " : @gruppetto.difficulty %> </p>
           </div>
@@ -69,16 +69,7 @@
                 </div>
               </td>
               <td class='px-0 pb-3'>
-                <div class="flex-grow-1 text-end pe-3">
-                  <p class=""><%= @gruppetto.participations.count {|attending| attending.participation_status == "Attending" } %> are joining</p>
-                  <% @gruppetto.participations.filter{|attending| attending.participation_status == "Attending" }.each do |part| %>
-                    <% if part.user.avatar.key.nil? %>
-                      <%= image_tag "avatar-fallback.svg", height: 25, width: 25, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
-                    <% else %>
-                      <%= cl_image_tag part.user.avatar.key, height: 25, width: 25, crop: :fill, class: 'rounded-circle shadow-sm', style: 'margin-inline-start: -20px;' %>
-                    <% end %>
-                  <% end %>
-                </div>
+                <%= render "show_going", grupppetto: @gruppetto %>
               </td>
             </tr>
             <tr>
@@ -103,9 +94,9 @@
         </table>
 
       </div>
-    <div class="m-2 px-3 py-2 bg-light p-1 rounded">
-        <h4 class="mb-3 overflow-hidden" style='color:#37caa8;'>Chat with the gruppetto</h4>
-        <p><%= link_to "Chat", gruppetto_chatroom_path(@gruppetto), class: 'btn btn-primary' %></p>
+    <div class="m-2 px-1 py-2">
+        <%# <h4 class="mb-3 overflow-hidden" style='color:#37caa8;'>Chat with the gruppetto</h4> %>
+        <%= link_to "Chat with the gruppetto", gruppetto_chatroom_path(@gruppetto), class: 'btn btn-primary w-100' %>
       </div>
     </div>
   <% if current_user == @gruppetto.user %>
@@ -113,29 +104,21 @@
     <div class="m-2 px-3 py-2 bg-light p-1 rounded">
         <h4 class="mb-0 overflow-hidden" style='color:#37caa8;'>Manage your participants</h4>
         <% if @gruppetto.participants.count > 1 %>
-              <div class="py-2">
-                <table class="table table-hover table-responsive-sm justify-content-between">
-                  <thead>
-                    <tr>
-                      <th scope="col">Status</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Accept/Reject</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @gruppetto.participations.each do |participant| %>
-                      <% unless @gruppetto.user_id == participant.user_id %>
-                          <tr>
-                            <td><%= render "participations/status", participation_status: participant.participation_status %></td>
-                            <td><p class="m-0"><%= participant.user.first_name %> <%= participant.user.last_name %></p></td>
-                            <td><%= render "participations/buttons", participant: participant, gruppetto: @gruppetto %></td>
-                          </tr>
-                      <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
+          <div class="py-2">
+            <div class="table table-hover table-responsive-sm justify-content-between">
+              <div class="row border-bottom">
+                <h5 class="col text-center">Status</h5>
+                <h5 class="col text-center">Name</h5>
+                <h5 class="col text-center">Accept/Reject</h5>
               </div>
-
+              <div>
+                <% @gruppetto.participations.each do |participant| %>
+                  <% unless @gruppetto.user_id == participant.user_id %>
+                      <%= render "participations/participant", participant: participant %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% else %>
           <p>No attendees yet 😢</p>

@@ -1,10 +1,10 @@
 <% case participation_status %>
   <% when "Pending" %>
-    <button type="button" class="btn btn-outline-primary w-50" disabled>Request pending</button>
+    <button type="button" class="btn btn-outline-primary text-center w-100" disabled>Pending</button>
   <% when "Attending" %>
-    <button type="button" class="btn btn-primary w-50" disabled>Attending</button>
+    <button type="button" class="btn btn-primary text-center w-100" disabled>Attending</button>
   <% when "Rejected" %>
-    <button type="button" class="btn btn-outline-dark w-50" disabled>Request reqected</button>
+    <button type="button" class="btn btn-outline-dark text-center w-100" disabled>Rejected</button>
   <% else %>
     Unknown status
 <% end %>
