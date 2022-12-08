@@ -1,5 +1,5 @@
-<div class="<%= hidden ? 'd-none' : '' %>" data-gruppetto-form-hide-target="trackSelector">
-  <select class="form-select" aria-label="" name='gruppetto[track][id]'>
+<div class="<%= hidden ? 'd-none' : '' %>" data-gruppetto-form-hide-target="trackSelector" id="dependentFields">
+  <select class="form-select bg-light" aria-label="" name='gruppetto[track][id]' data-action='change->gruppetto-validator#validateField'>
     <option value=""></option>
     <% tracks.each do |track| %>
       <option value="<%= track.id %>"><%= track.name %></option>

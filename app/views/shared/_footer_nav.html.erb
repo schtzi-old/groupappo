@@ -1,25 +1,23 @@
-<div class="d-flex justify-content-between w-100 bg-dark p-2 align-self-stretch" style="position:fixed; bottom:0;z-index:10000;">
+<div class="d-flex justify-content-between w-100 bg-dark p-2 align-self-stretch"  style="position:fixed; bottom:0;z-index:10000;">
     <div class='flex-grow-1'>
       <%= link_to gruppettos_path do %>
-        <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-house text-primary" style='color:white'></i></h2>
+
+        <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-house <%= ((request.url.include? "gruppettos") && (!request.url.include? "going") && (!request.url.include? "new")) ? 'text-primary' : '' %>" style='color:white'></i></h2>
       <% end %>
     </div>
     <div class='flex-grow-1'>
-
-      <%# we need to add link to uocoming gruppettos %>
         <%= link_to gruppettos_path(type: "going") do %>
-          <h2 class='m-0 text-center mt-2'><i class="fa-regular fa-calendar" style='color:white'></i></h2>
+          <h2 class='m-0 text-center mt-2'><i class="fa-regular fa-calendar <%= 'text-primary' if (request.url.include? "going")  %>" style='color:white'></i></h2>
         <% end %>
     </div>
     <div class='flex-grow-1'>
-
         <%= link_to new_gruppetto_path do %>
-          <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-circle-plus" style='color:white'></i></h2>
+          <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-circle-plus <%= 'text-primary' if (request.url.include? "new")  %>" style='color:white'></i></h2>
         <% end %>
     </div>
     <div class='flex-grow-1'>
       <%= link_to friendships_path do %>
-        <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-user-group" style='color:white'></i></h2>
+        <h2 class='m-0 text-center mt-2'><i class="fa-solid fa-user-group <%= 'text-primary' if (request.url.include? "friendships")  %>" style='color:white'></i></h2>
       <% end %>
     </div>
     <div class='flex-grow-1 justify-content-center d-flex'>
