@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-between w-100  bg-dark align-items-center p-3" style="position:fixed; top:0;z-index:10000;">
 
     <div class='flex-grow-1'>
+      <%= link_to root_path do %>
       <%= image_tag "logo.svg", style: 'height:30px;width:auto' %>
+      <% end %>
     </div>
     <div class='d-flex'>
           <% if user_signed_in? %>

@@ -15,40 +15,43 @@
       <div class='w-100'>
           <h3 class="mb-1 overflow-hidden" style='color:#37caa8;'><%= @gruppetto.name %></h3>
           <h5 class="mb- pt-2"><%= @gruppetto.start.strftime('%d.%m.%Y  - %l%P') unless @gruppetto.start.nil? %></h5>
-          <p class="text-muted">starting at <%= @gruppetto.track.address unless @gruppetto.track.address.nil? %></p>
       </div>
       <div>
         <% if !@gruppetto.track.file.url.nil? %>
           <%= link_to @gruppetto.track.file.url, class: 'btn btn-outline-secondary' do %>
-            <div class='d-flex align-items-baseline'><i class="fa-solid fa-download me-2"></i>GPX</div>
+            <div class='d-flex align-items-baseline'><i class="fa-solid fa-download me-2"></i>GPS</div>
           <% end %>
         <% end %>
       </div>
     </div>
+          <p class="text-muted">starting at <%= @gruppetto.track.address unless @gruppetto.track.address.nil? %></p>
+          <hr>
     <div>
       <div>
          <p class="text-muted"> <%= @gruppetto.description %></p>
+
+        <div class="d-flex justify-content-start">
+          <div class="align-items-baseline"  style="width: 140px;">
+            <p class='mb-0' style="font-size:12px">Average speed</p>
+            <p class=" mb-2 flex-grow-1 overflow-hidden text-dark"><%= @gruppetto.avg_speed.nil? ? " - " : @gruppetto.avg_speed %> km/h</p>
+          </div>
+          <div class="align-items-baseline"  style="width: 140px;margin-left:24px;">
+            <p class='mb-0' style="font-size:12px">Distance</p>
+            <p class=" mb-2 flex-grow-1 overflow-hidden text-dark" data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_km %> km</p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-start">
+          <div class="align-items-baseline"  style="width: 140px;">
+            <p class='mb-0' style="font-size:12px">Difficulty</p>
+            <p class=" mb-0 flex-grow-1 overflow-hidden text-dark"><%= @gruppetto.difficulty.nil? ? " - " : @gruppetto.difficulty %> </p>
+          </div>
+          <div class="align-items-baseline" style="width: 140px;margin-left:24px;">
+            <p class='mb-0' style="font-size:12px">Elevation Gain</p>
+            <p class=" mb-0 flex-grow-1 overflow-hidden text-dark" data-track-subscription-target="totalVm"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_vm %> m</p>
+          </div>
+        </div>
       </div>
-        <div class="d-flex justify-content-start w-100">
-        <div class="d-flex align-items-baseline pb-2" style="width: 150px;">
-          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;"><%= @gruppetto.avg_speed.nil? ? " - " : @gruppetto.avg_speed %> km/h </p>
-          <i class="fa-solid fa-gauge"></i>
-        </div>
-        <div class="d-flex align-items-baseline pb-2"  style="width: 150px;margin-left:42px;">
-          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;" data-track-subscription-target="totalKm"><%= @gruppetto.track.total_km.nil? ? " - " : @gruppetto.track.total_km %> km</p>
-          <i class="fa-solid fa-route"></i>
-        </div>
-      </div>
-      <div class="d-flex justify-content-start w-100">
-        <div class="d-flex align-items-baseline pt-2" style="width: 150px;">
-          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;"><%= @gruppetto.difficulty.nil? ? " - " : @gruppetto.difficulty %> </p>
-          <i class="fa-solid fa-dumbbell"></i>
-        </div>
-        <div class="d-flex align-items-baseline pt-2" style="width: 150px;margin-left:42px;">
-          <p class="ms-2 mb-0 flex-grow-1 text-end overflow-hidden" style="margin-right:20px;" data-track-subscription-target="totalVm"><%= @gruppetto.track.total_vm.nil? ? " - " : @gruppetto.track.total_vm %> vm</p>
-          <i class="fa-solid fa-mountain"></i>
-        </div>
-      </div>
+
     </div>
   </div>
 
@@ -61,9 +64,9 @@
             <div class="">
               <p class=""><%= @gruppetto.user.first_name %> is hosting</p>
               <% if @gruppetto.user.avatar.key.nil? %>
-                <%= image_tag "avatar-fallback.svg", height: 50, width: 50, class: 'rounded-circle shadow-sm' %>
+                <%= image_tag "avatar-fallback.svg", height: 45, width: 45, class: 'rounded-circle shadow-sm' %>
               <% else %>
-                <%= cl_image_tag @gruppetto.user.avatar.key, height: 50, width: 50, crop: :fill, class: 'rounded-circle shadow-sm' %>
+                <%= cl_image_tag @gruppetto.user.avatar.key, height: 45, width: 45, crop: :fill, class: 'rounded-circle shadow-sm' %>
               <% end %>
             </div>
           </td>

@@ -8,13 +8,13 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-  <div style='position:fixed;bottom:78px' class='w-100 d-flex justify-content-center'>
+  <div style='position:fixed;bottom:86px' class='w-100 d-flex justify-content-center'>
     <% if params[:commit] != 'going' %>
       <button type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#exampleModalScrollable">
-        Search gruppettos
+        Filter
       </button>
 
       <% if params[:commit] %>
@@ -28,7 +28,7 @@
   <div class="" style="margin-top:-10px;">
   <%= render "search" %>
 <div>
-<div  style='padding-bottom:56px'>
+<div  style='padding-bottom:112px'>
   <%# renders the index_card.html.erb with sending the gruppetto params %>
   <table class="table table-hover table-borderless" style="background: rgba(238,238,238,0.9);border-radius: 10px;">
     <thead>
