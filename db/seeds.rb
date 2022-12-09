@@ -35,7 +35,7 @@ Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274842/gpx-f
 # Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274842/gpx-files/2022-12-05_990200641_GPX_Download__Dights_Falls_Best_view_of_Melbourne_Runde_von_Victoria_Park_vtxf69.gpx'),
 # Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274842/gpx-files/2022-12-05_990200595_GPX_Download__Hawthorne_Velodrome_Brighton_Beach_wave_riders_Runde_von_Auburn_xwzf31.gpx'),
 # Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274841/gpx-files/2022-12-05_990200575_GPX_Download__Bonds_Rd_climb_Down_hill_slalom_Runde_von_Jewell_upilrw.gpx'),
-# Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274840/gpx-files/2022-12-05_990200660_GPX_Download__Capital_city_trail_Un_passable_Runde_von_North_Melbourne_qaz7gl.gpx'),
+Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274840/gpx-files/2022-12-05_990200660_GPX_Download__Capital_city_trail_Un_passable_Runde_von_North_Melbourne_qaz7gl.gpx'),
 # Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274841/gpx-files/2022-12-05_990200888_GPX_Download__Best_view_of_Melbourne_Dights_Falls_Runde_von_North_Richmond_ha9t5m.gpx'),
 # Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274841/gpx-files/2022-12-05_990200853_GPX_Download__Hurstbridge_trail_Smith_Gully_Cafe_Runde_von_Diamond_Creek_e6quzk.gpx'),
 # Down.download('https://res.cloudinary.com/dyvocxltk/raw/upload/v1670274840/gpx-files/2022-12-05_990200869_GPX_Download__Hawthorne_Velodrome_Best_view_of_Melbourne_Runde_von_Burnley_lazgo9.gpx'),
@@ -68,53 +68,59 @@ user_data.each do |info|
   user.save
 end
 
-puts "Creating tracks"
-tracks.each do |track_info|
-  track = Track.create(user: User.all.sample, name: track_info[0])
-  track.file.attach(io: track_info[1], filename: track_info[1].original_filename, content_type: 'application/xml')
-end
+# puts "Creating tracks"
+# tracks.each do |track_info|
+#   track = Track.create(user: User.all.sample, name: track_info[0])
+#   track.file.attach(io: track_info[1], filename: track_info[1].original_filename, content_type: 'application/xml')
+# end
 
 puts "Creating gruppettos"
 
-user = User.find_by(first_name: "Shelley")
-Gruppetto.create(name: "Christmas Ride around the City", track: Track.all.sample, user: user, start: DateTime.strptime("25/12/2022 12:00", "%d/%m/%Y %H:%M"),
-                  description: "Ho ho ho, bring your bike and ride with Santa 🎅🏼", gruppetto_status: 'upcoming',
-                  difficulty: "Moderate", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
-user = User.all.sample
-Gruppetto.create(name: "Batch #1044 Ride for your life!", track: Track.all.sample, user: user, start: DateTime.strptime("10/12/2022 07:30", "%d/%m/%Y %H:%M"),
-                  description: "Catch with all of your favourite Le Wagon friends", gruppetto_status: 'upcoming',
-                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
-user = User.all.sample
-Gruppetto.create(name: "Cycle and Chill", track: Track.all.sample, user: user, start: DateTime.strptime("11/12/2022 16:00", "%d/%m/%Y %H:%M"),
-                  description: "Bit of cycling, bit of chilling on a Sunday arvo!", gruppetto_status: 'upcoming',
-                  difficulty: "Easy", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
-user = User.find_by(first_name: "Jan")
-Gruppetto.create(name: "Jan(aka yarn) Bike Race Black Diamond", track: Track.all.sample, user: user, start: DateTime.strptime("17/12/2022 06:00", "%d/%m/%Y %H:%M"),
-                  description: "Yarning up that hill (and back down again a load of times)", gruppetto_status: 'upcoming',
-                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
 user = User.find_by(first_name: "Ryan")
-Gruppetto.create(name: "Ryan's Ferrari Race", track: Track.all.sample, user: user, start: DateTime.strptime("12/12/2022 11:00", "%d/%m/%Y %H:%M"),
-                  description: "It's a Caulfield road race, bring your own ferrari!", gruppetto_status: 'upcoming',
-                  difficulty: "Moderate", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
+track = Track.create(user: user, name: tracks[0][0])
+track.file.attach(io: tracks[0][1], filename: tracks[0][1].original_filename, content_type: 'application/xml')
+grup = Gruppetto.create(name: "Ryan's Ferrari Bike Race", track: track, user: user, start: DateTime.strptime("12/12/2022 11:00", "%d/%m/%Y %H:%M"),
+                  description: "Want to see my Ferrari? Here is your chance! My bike is a 1 of 1 Ferrari, says the sticker I put on the side of it. It's a road race.", gruppetto_status: 'upcoming',
+                  difficulty: "Easy", event_type: "Open", participation_rule: "Manual", avg_speed: 20)
+Participation.create(user: user, gruppetto: grup, participation_status: 1)
+
+user = User.find_by(first_name: "Jan")
+track = Track.create(user: user, name: tracks[1][0])
+track.file.attach(io: tracks[1][1], filename: tracks[1][1].original_filename, content_type: 'application/xml')
+grup = Gruppetto.create(name: "Feierabendrunde mit Marc", track: track, user: user, start: DateTime.strptime("18/12/2022 12:00", "%d/%m/%Y %H:%M"),
+                  description: "Jan's coastal trail - better be fast or you'll be last!", gruppetto_status: 'upcoming',
+                  difficulty: "Moderate", event_type: "Open", participation_rule: "Manual", avg_speed: 45)
+Participation.create(user: user, gruppetto: grup, participation_status: 1)
+
+user = User.find_by(first_name: "Talina")
+track = Track.create(user: user, name: tracks[2][0])
+track.file.attach(io: tracks[2][1], filename: tracks[2][1].original_filename, content_type: 'application/xml')
+grup = Gruppetto.create(name: "Batch #1044 Ride for your life!", track: track, user: user, start: DateTime.strptime("20/12/2022 07:30", "%d/%m/%Y %H:%M"),
+                  description: "Talina misses all of her Le Wagon friends already! Come catch up with everyone, and let's ride our 🚲 ", gruppetto_status: 'upcoming',
+                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: 30)
+Participation.create(user: user, gruppetto: grup, participation_status: 1)
+
 user = User.all.sample
-Gruppetto.create(name: "Big Cycle Weekend in High Country", track: Track.all.sample, user: user, start: DateTime.strptime("17/12/2022 06:00", "%d/%m/%Y %H:%M"),
-                  description: "Cycle the entire Great Vic Rail Trail over the weekend. Camping on Saturday night 🏕", gruppetto_status: 'upcoming',
-                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
+track = Track.create(user: user, name: tracks[3][0])
+track.file.attach(io: tracks[3][1], filename: tracks[3][1].original_filename, content_type: 'application/xml')
+grup = Gruppetto.create(name: "Beginner Ride along the Yarra River - Dights Falls", track: track, user: user, start: DateTime.strptime("10/01/2023 12:00", "%d/%m/%Y %H:%M"),
+                  description: "Just learned to ride your bike? Come meet us for an easy ride along the river! ", gruppetto_status: 'upcoming',
+                  difficulty: "Easy", event_type: "Open", participation_rule: "Manual", avg_speed: 15)
+Participation.create(user: user, gruppetto: grup, participation_status: 1)
+
 user = User.all.sample
-Gruppetto.create(name: "Beginner Ride in Melbourne City", track: Track.all.sample, user: user, start: DateTime.strptime("15/12/2022 11:00", "%d/%m/%Y %H:%M"),
-                  description: "Just learned to ride your bike? Come meet us for an easy ride around the CDB 😎", gruppetto_status: 'upcoming',
-                  difficulty: "Easy", event_type: "Open", participation_rule: "Manual", avg_speed: (23..32).to_a.sample)
-user = User.all.sample
-Gruppetto.create(name: "End of the Year NYE Party & Cycle! 🚴🏻‍♀️", track: Track.all.sample, user: user, start: DateTime.strptime("31/12/2022 13:00", "%d/%m/%Y %H:%M"),
+track = Track.create(user: user, name: tracks[4][0])
+track.file.attach(io: tracks[4][1], filename: tracks[4][1].original_filename, content_type: 'application/xml')
+grup = Gruppetto.create(name: "End of the Year NYE Party & Cycle! 🚴🏻‍♀️", track: track, user: user, start: DateTime.strptime("31/12/2022 13:00", "%d/%m/%Y %H:%M"),
                   description: "Finish 2022 with a bang!", gruppetto_status: 'upcoming',
-                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: 32)
+                  difficulty: "Hard", event_type: "Open", participation_rule: "Manual", avg_speed: 35)
+Participation.create(user: user, gruppetto: grup, participation_status: 1)
 
 puts "Creating participations"
 
-# Gruppetto.all.each do |grup|
-#   Participation.create(user: grup.user, gruppetto: grup, participation_status: 1)
-#   (0..6).to_a.sample.times do
-#     Participation.create(user: User.all.filter { |u| u != grup.user }.sample, gruppetto: grup, participation_status: 0)
-#     Participation.create(user: User.all.filter { |u| u != grup.user }.sample, gruppetto: grup, participation_status: 1)
-#   end
-# end
+Gruppetto.all.each do |grup|
+  (0..6).to_a.sample.times do
+    Participation.create(user: User.all.filter { |u| u != grup.user }.sample, gruppetto: grup, participation_status: 0)
+    Participation.create(user: User.all.filter { |u| u != grup.user }.sample, gruppetto: grup, participation_status: 1)
+  end
+end
