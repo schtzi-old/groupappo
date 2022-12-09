@@ -1,8 +1,8 @@
 <%# <%= turbo_frame_tag dom_id(participant) do %>
   <div class="flex-grow-1 text-end pe-3 participants-going" id="participants-going">
     <p class="">
-      <%= attending_count = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending"  && attending.user != current_user} %>
-      <% if attending_count > 1 %>
+      <%= attending_count = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending"  && attending.user != current_user}.count %>
+      <% if attending_count > 1 || attending_count == 0 %>
         are
       <% else %>
         is
