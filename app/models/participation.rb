@@ -10,7 +10,6 @@ class Participation < ApplicationRecord
 
   def notify_pending_participant
     NewParticipationRequest.with(participation: self).deliver_later(gruppetto.user)
-    raise
   end
 
   def notify_accepted_participant

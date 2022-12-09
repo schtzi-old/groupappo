@@ -69,10 +69,10 @@
               </li>
               <% @friendships.each do |friendship| %>
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <% if friendship.user.avatar.key.nil? %>
+                      <% if friendship.friend.avatar.key.nil? %>
                         <%= image_tag "avatar-fallback.svg", class: "avatar", style: "width:32px;height:32px;" %>
                       <% else %>
-                        <%= cl_image_tag friendship.user.avatar.key, class: "avatar", style: "width:32px;height:32px;"%>
+                        <%= cl_image_tag friendship.friend.avatar.key, class: "avatar", style: "width:32px;height:32px;"%>
                       <% end %>
 
                       <% if friendship.friend.id == current_user.id %>
