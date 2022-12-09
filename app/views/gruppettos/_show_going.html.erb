@@ -1,7 +1,7 @@
 <%# <%= turbo_frame_tag dom_id(participant) do %>
   <div class="flex-grow-1 text-end pe-3 participants-going" id="participants-going">
     <p class="">
-      <%= attending_count = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending"  && attending.user != current_user}.count %>
+      <%= attending_count = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending"  && attending.user != @gruppetto.user}.count %>
       <% if attending_count > 1 || attending_count == 0 %>
         are
       <% else %>
@@ -9,7 +9,7 @@
       <% end %>
       joining
     </p>
-    <% first_five = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending"  && attending.user != current_user} %>
+    <% first_five = @gruppetto.participations.filter{|attending| attending.participation_status == "Attending"  && attending.user != @gruppetto.user} %>
     <% if first_five.count > 5 %>
       <% first_five[0...5].each do |part| %>
         <% if part.user.avatar.key.nil? %>
