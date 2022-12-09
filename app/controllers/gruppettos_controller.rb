@@ -37,12 +37,15 @@ class GruppettosController < ApplicationController
       @gruppettos = @gruppettos.select { |test| test.difficulty == params[:difficulty] }
     end
     if params[:start_date].nil? || params[:start_date] == ""
+      @gruppettos = @gruppettos.select { |g| g.start.to_s.length > 1 }
       @gruppettos = @gruppettos.select { |test| test.start.to_datetime >= Date.today.to_datetime }
     else
+      @gruppettos = @gruppettos.select { |g| g.start.to_s.length > 1 }
       @gruppettos = @gruppettos.select { |test| test.start.to_datetime >= params[:start_date].to_datetime }
     end
     if params[:end_date].nil? || params[:end_date] == ""
     else
+      @gruppettos = @gruppettos.select { |g| g.start.to_s.length > 1 }
       @gruppettos = @gruppettos.select { |test| test.start.to_datetime <= params[:end_date].to_datetime }
     end
     @gruppettos.sort_by!{|a| a.start}
