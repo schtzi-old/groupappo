@@ -1,4 +1,4 @@
-<div class="mt-3" style="padding-bottom: 24px"
+<div class="mt-3" style="padding-bottom:80px; margin-bottom:80px;"
       data-controller="track-subscription"
       data-track-subscription-track-id-value="<%= @gruppetto.track.id %>">
 
@@ -105,7 +105,7 @@
   </div>
 
   <% if current_user == @gruppetto.user %>
-    <div class="m-2 p-3 bg-light p-1 rounded" style='padding-bottom:56px; margin-bottom:56px;'>
+    <div class="m-2 p-3 bg-light p-1 rounded">
         <h4 class="" style='color:#37caa8;'>Manage your participants</h4>
         <% if @gruppetto.participants.count > 1 %>
           <div class="pt-2 ">

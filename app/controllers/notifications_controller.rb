@@ -22,11 +22,17 @@ class NotificationsController < ApplicationController
   private
 
   def notification_redirection
+
     case @notification.type
-    when "NewFriendRequestNotification" || "AcceptedFriendRequest"
+    when "NewFriendRequestNotification"
       redirect_to friendships_path
-    when "NewParticipationRequest" || "AcceptedParticipantRequest"
+    when "AcceptedFriendRequest"
+      redirect_to friendships_path
+    when "NewParticipationRequest"
+      redirect_to gruppetto_path(@notification.params[:participation].gruppetto)
+    when "AcceptedParticipantRequest"
       redirect_to gruppetto_path(@notification.params[:participation].gruppetto)
     end
+
   end
 end

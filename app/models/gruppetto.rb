@@ -15,5 +15,15 @@ class Gruppetto < ApplicationRecord
 
   validates :avg_speed, numericality: { only_integer: true, in: SPEED_RANGE }
 
-  validates :name, :description, :start, presence: true
+  validates :name, :start, presence: true
+
+  after_create :create_depending
+
+  private
+
+  def create_depending
+    Participation.create(user: user, gruppetto: self, participation_status: "Attending")
+    @chatroom = Chatroom.create(gruppetto: self)
+    Message.create(user: user, chatroom: @chatroom, content: " Welcome! #{name.capitalize} has been created by #{user.first_name.capitalize}.")
+  end
 end
